@@ -1,7 +1,14 @@
+'use client'
+import React from "react";
+
+import { HeaderViewContext } from "@/contexts/HeaderViewContext";
+
 export default function Home() {
+  const {handleScroll} = React.useContext(HeaderViewContext);
+
   return (
     <div className="page">
-      <div className="contain">
+      <div className="contain" onScroll={(e) => handleScroll(e)}>
         <div className="envelope">
           <section className="
             h-screen bg-[url(../assets/sala.jpeg)] bg-cover bg-center
@@ -38,7 +45,7 @@ export default function Home() {
             <p>Nosso objetivo é ajudar na tomada de decisões para agregar valor ao imóvel, nesta fase um layout bem resolvido é fundamental para sucesso do projeto de interiores e permitir que a integração dos das pessoas junto aos elementos arquitetônicos ocorram da forma mais fluida possível.</p>
             <p>Após essa etapa que requer mais detalhes técnicos e funcionais, acredite, somos criativos, acompanhamos as tendências e novidades do setor para deixar seu espaço otimizado, personalizado, iluminado, automatizado e aconchegante.</p>
           </section>
-          <section id="Contato" className="bg-mood-primary text-mood-light">
+          <section id="Contato" className="bg-mood-tertiary text-mood-light">
             <h2>Contatos</h2>
             <p>Instagram e Whatsapp</p>
           </section>

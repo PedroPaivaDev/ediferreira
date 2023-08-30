@@ -14,7 +14,6 @@ module.exports = {
       colors: {
         'mood': {
           'light': '#faf0e9',
-          'dark': '#0c1e10',
           'primary': '#1e4d2a',
           'secondary': '#6f8474',
           'tertiary': '#cb97a5',
