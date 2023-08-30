@@ -3,25 +3,198 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --mainHeight: 100vh;
+  --mainWidth: 100vw;
+  --paddingIPhone: 70px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*, *:after, *:before {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  vertical-align: middle;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--mainWidth);
+  z-index: 1;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: var(--mainWidth);
+  height: var(--mainHeight);
+  overflow: hidden;
+  z-index: 0;
+}
+
+input, select, label {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+  appearance: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul, a {
+  list-style:none;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 10px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 10px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+p, small, del {
+  font-weight: normal;
+}
+
+small {
+  font-size: 0.625rem;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+
+.contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-bottom: var(--paddingIPhone);
+}
+
+.envelope {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 30px 20px 50px 20px;
+  text-align: center;
+}
+
+section p {
+  max-width: 900px
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.animeLeft {
+  opacity: 0;
+  transform: translateX(calc(-100vw * 0.2));
+  animation: animeX .3s forwards;
+}
+
+.animeRight {
+  opacity: 0;
+  transform: translateX(calc(100vw * 0.2));
+  animation: animeX .3s forwards;
+}
+
+@keyframes animeX {
+  to{
+      opacity: 1;
+      transform: initial;
+  }
+}
+
+@media (min-width: 40rem) {
+  .contain::-webkit-scrollbar, .bgPaper::-webkit-scrollbar {
+      background: transparent;
+      width: 10px;
+  }
+  .contain::-webkit-scrollbar-track, .bgPaper::-webkit-scrollbar-track {
+      background: rgba(127,105,91,0.2);
+      border-radius: 10px;
+      padding: 5px;
+  }
+  .contain::-webkit-scrollbar-thumb, .bgPaper::-webkit-scrollbar-thumb {
+      background-color: rgba(127,105,91,0.4);
+      border-radius: 10px;
+  }
+}
+
+.shadowBg {
+  padding: 20px 20px;
+  border-radius: 40px;
+  background: rgba(0,0,0,0.7);
+  box-shadow: 0 0 10px 10px rgba(0,0,0,0.7);
+  margin-top: 10px;
 }
