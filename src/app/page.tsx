@@ -2,9 +2,16 @@
 import React from "react";
 
 import { HeaderViewContext } from "@/contexts/HeaderViewContext";
+import { getData } from "@/services/firebase";
+import Image from "next/image";
 
 export default function Home() {
   const {handleScroll} = React.useContext(HeaderViewContext);
+  const [contentDB, setContentDB] = React.useState<ContentDB|null>(null);
+
+  React.useEffect(() => {
+    getData<ContentDB|null>('content', setContentDB);
+  },[]);
 
   return (
     <main onScroll={(e) => handleScroll(e)}>
@@ -17,10 +24,14 @@ export default function Home() {
       </section>
       <section id="Sobre" className="bg-mood-secondary gap-5">
         <div className="flex flex-col sm:flex-row items-center gap-5 max-w-[900px]">
-          <div className="
+          {contentDB && <Image
+            src={contentDB?.home.photoEdi} alt="Foto Designer Edi"
+            width={180} height={128} 
+          />}
+          <div className={`
             w-60 h-60 rounded-full col-span-3
             bg-[url(../assets/sobre-fot1.jpeg)] bg-cover bg-center
-          "/>
+          `}/>
           <div className="flex flex-col flex-1 gap-5">
             <p className="text-mood-light text-justify">
               Sou Designer de Interiores e Lignting Designer, com formação em 2008 e pós graduação em 2012 pelo Centro Universitário Belas Artes.
