@@ -15,23 +15,26 @@ export default function Home() {
 
   return (
     <main onScroll={(e) => handleScroll(e)}>
+      {/* h-screen bg-[url(../assets/sala.jpeg)] bg-cover bg-center */}
       <section className="
-        h-screen bg-[url(../assets/sala.jpeg)] bg-cover bg-center
         flex shrink-0 flex-col justify-end items-center gap-1
+        p-0 relative h-screen
       ">
+        {contentDB?.home.bgVideo && <video autoPlay loop muted
+          className="w-full h-full object-cover absolute top-0 -z-10"
+        >
+          <source src={contentDB?.home.bgVideo} type="video/mp4"/>
+        </video>}
         <h1 className="text-mood-light">Edi Ferreira</h1>
-        <h3 className="text-mood-light">Designer de Interiores</h3>
+        <h3 className="text-mood-light pb-8">Designer de Interiores</h3>
       </section>
       <section id="Sobre" className="bg-mood-secondary gap-5">
         <div className="flex flex-col sm:flex-row items-center gap-5 max-w-[900px]">
           {contentDB && <Image
             src={contentDB?.home.photoEdi} alt="Foto Designer Edi"
-            width={180} height={128} 
+            width={240} height={240}
+            className="rounded-full col-span-3 object-cover h-60"
           />}
-          <div className={`
-            w-60 h-60 rounded-full col-span-3
-            bg-[url(../assets/sobre-fot1.jpeg)] bg-cover bg-center
-          `}/>
           <div className="flex flex-col flex-1 gap-5">
             <p className="text-mood-light text-justify">
               Sou Designer de Interiores e Lignting Designer, com formação em 2008 e pós graduação em 2012 pelo Centro Universitário Belas Artes.

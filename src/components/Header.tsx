@@ -7,11 +7,15 @@ const sections = ['Sobre', 'Projetos', 'Contato'];
 
 
 const Header = () => {
-  const {visible} = React.useContext(HeaderViewContext);
+  const {visible, currentScrollZero} = React.useContext(HeaderViewContext);
 
   return (
     <header className={`
-      h-10 bg-mood-light duration-300
+      h-10 duration-300
+      ${currentScrollZero ?
+        'bg-transparent' :
+        'bg-mood-primary'
+      }
       ${visible ? 'translate-y-0' : '-translate-y-full'}
     `}>
       <nav className='flex justify-center items-center w-full'>
@@ -20,7 +24,7 @@ const Header = () => {
             <li key={section}>
               <a
                 href={`#${section}`}
-                className='text-mood-primary hover:text-mood-tertiary duration-300'
+                className='text-mood-light hover:text-mood-tertiary duration-300'
               >
                 {section}
               </a>

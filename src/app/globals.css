@@ -5,7 +5,7 @@
 :root {
   --mainHeight: 100vh;
   --mainWidth: 100vw;
-  --paddingIPhone: 70px;
+  --paddingIPhone: 120px;
 }
 
 *, *:after, *:before {
@@ -49,6 +49,10 @@ main {
   z-index: 0;
   text-align: center;
   overflow: auto;
+}
+
+main section:last-child {
+  padding-bottom: var(--paddingIPhone);
 }
 
 section {
