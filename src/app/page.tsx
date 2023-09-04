@@ -15,8 +15,7 @@ export default function Home() {
 
   return (
     <main onScroll={(e) => handleScroll(e)}>
-      {/* h-screen bg-[url(../assets/sala.jpeg)] bg-cover bg-center */}
-      <section className="
+      <section id="home" className="
         flex shrink-0 flex-col justify-end items-center gap-1
         p-0 relative h-screen
       ">
@@ -26,7 +25,7 @@ export default function Home() {
           <source src={contentDB?.home.bgVideo} type="video/mp4"/>
         </video>}
         <h1 className="text-mood-light">Edi Ferreira</h1>
-        <h3 className="text-mood-light pb-8">Designer de Interiores</h3>
+        <h3 className="text-mood-light mb-24">Designer de Interiores</h3>
       </section>
       <section id="Sobre" className="bg-mood-secondary gap-5">
         <div className="flex flex-col sm:flex-row items-center gap-5 max-w-[900px]">
