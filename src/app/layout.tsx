@@ -21,12 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} text-mood-primary bg-mood-tertiary`}>
+      <body className={`${poppins.className} text-mood-primary bg-mood-light`}>
         <HeaderViewProvider>
           <Header />
-          <main>
-            {children}
-          </main>
+          {children}
         </HeaderViewProvider>
       </body>
     </html>

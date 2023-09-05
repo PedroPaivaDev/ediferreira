@@ -13,9 +13,9 @@ interface ProjectsDB {
 }
 
 interface ProjectDB {
-  [key:string]: {
-    id: string;
-    mainPhoto: string;
-    slide: string[];
-  }
+  id: string;
+  name: string;
+  mainPhoto: string;
+  slide: string[];
+  resume: string;
 }
