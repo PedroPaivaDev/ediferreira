@@ -1,9 +1,11 @@
 'use client'
 import React from "react";
+import Image from "next/image";
 
 import { HeaderViewContext } from "@/contexts/HeaderViewContext";
 import { getData } from "@/services/firebase";
-import Image from "next/image";
+
+import Slider from "@/components/Slider";
 
 export default function Home() {
   const {handleScroll} = React.useContext(HeaderViewContext);
@@ -19,11 +21,14 @@ export default function Home() {
         flex shrink-0 flex-col justify-end items-center gap-1
         p-0 relative h-screen
       ">
-        {contentDB?.home.bgVideo && <video autoPlay loop muted
-          className="w-full h-full object-cover absolute top-0 -z-10"
-        >
-          <source src={contentDB?.home.bgVideo} type="video/mp4"/>
-        </video>}
+        {contentDB?.home.bgVideo &&
+          <video
+            autoPlay loop muted playsInline preload="auto"
+            className="w-full h-full object-cover absolute top-0 -z-10"
+          >
+            <source src={contentDB?.home.bgVideo} type="video/mp4"/>
+          </video>
+        }
         <h1 className="text-mood-light">Edi Ferreira</h1>
         <h3 className="text-mood-light mb-24">Designer de Interiores</h3>
       </section>
@@ -53,6 +58,7 @@ export default function Home() {
       <section id="Projetos" className="bg-mood-light flex flex-col gap-5">
         <h2>Projetos</h2>
         <p>Uma das experiências mais emocionantes da vida é vivenciar o sonho da moradia própria.</p>
+        {contentDB && <Slider projects={contentDB?.projects}/>}
         <p>Nosso objetivo é ajudar na tomada de decisões para agregar valor ao imóvel, nesta fase um layout bem resolvido é fundamental para sucesso do projeto de interiores e permitir que a integração dos das pessoas junto aos elementos arquitetônicos ocorram da forma mais fluida possível.</p>
         <p>Após essa etapa que requer mais detalhes técnicos e funcionais, acredite, somos criativos, acompanhamos as tendências e novidades do setor para deixar seu espaço otimizado, personalizado, iluminado, automatizado e aconchegante.</p>
       </section>

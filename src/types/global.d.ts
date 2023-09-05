@@ -16,6 +16,6 @@ interface ProjectDB {
   id: string;
   name: string;
   mainPhoto: string;
-  slide: string[];
-  resume: string;
+  images: string[];
+  description: string;
 }

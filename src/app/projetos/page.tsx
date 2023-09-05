@@ -3,10 +3,13 @@ import React from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { getData } from '@/services/firebase';
+import { HeaderViewContext } from '@/contexts/HeaderViewContext';
+
 import Project from '@/components/Project';
 
 const Projects = () => {
   const projectId = useSearchParams().get('projeto');
+  const {handleScroll} = React.useContext(HeaderViewContext);
   const [projectsDB, setProjectsDB] = React.useState<ProjectsDB|null>(null);
 
   React.useEffect(() => {
@@ -14,7 +17,7 @@ const Projects = () => {
   },[]);
 
   return (
-    <main className='bg-mood-primary pt-20'>
+    <main className='bg-mood-primary pt-20' onScroll={(e) => handleScroll(e)}>
       {projectsDB && projectId &&
         <Project project={projectsDB[projectId]}/>
       }
