@@ -84,7 +84,7 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
             {projects[projectId].name}
           </h3>
           <Link href={`projetos?projeto=${projectId}`}
-            className='text-mood-light hover:text-mood-secondary'
+            className='text-mood-light hover:text-mood-secondary duration-300'
           >
             ver mais detalhes
           </Link>
