@@ -17,7 +17,7 @@ const Projects = () => {
   },[]);
 
   return (
-    <main className='bg-mood-primary pt-20' onScroll={(e) => handleScroll(e)}>
+    <main className='bg-mood-light pt-20' onScroll={(e) => handleScroll(e)}>
       {projectsDB && projectId &&
         <Project project={projectsDB[projectId]}/>
       }

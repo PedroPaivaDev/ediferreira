@@ -1,6 +1,7 @@
 interface ContentDB {
   home: HomeDB;
   projects: ProjectsDB;
+  contacts: ContactsDB;
 }
 
 interface HomeDB {
@@ -18,4 +19,21 @@ interface ProjectDB {
   mainPhoto: string;
   images: string[];
   description: string;
+}
+
+interface ContactsDB {
+  description: string;
+  social: ContactsSocialDB;
+}
+
+interface ContactsSocialDB {
+  [key:string]: ContactDB;
+}
+
+interface ContactDB {
+  id: string;
+  name: string;
+  icon: string;
+  address: string;
+  url: string;
 }

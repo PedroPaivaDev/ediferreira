@@ -67,24 +67,28 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
     <div id='slider'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      className='w-full h-almostScreen relative flex items-end justify-center'
+      className='
+        w-full h-almostScreen relative flex items-end justify-center
+        overflow-x-hidden
+      '
     >
       {projects && Object.keys(projects).map(projectId =>
         <div key={projects[projectId].id}
           style={objectBgImage(projects[projectId].mainPhoto)}
           className={`
-            absolute w-full h-full
+            absolute w-full h-full rounded-md
             flex flex-col justify-end items-center pb-12
             ${projectId===currentProject.id ?
               `visible ${animeDirection}` : 'invisible'
             }
+            shadow-blackShadowInsetBottom
           `}
         >
           <h3 className='text-mood-light'>
             {projects[projectId].name}
           </h3>
           <Link href={`projetos?projeto=${projectId}`}
-            className='text-mood-light hover:text-mood-secondary duration-300'
+            className='text-mood-light hover:text-mood-secondary'
           >
             ver mais detalhes
           </Link>

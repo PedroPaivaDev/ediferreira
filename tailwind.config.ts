@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       boxShadow: {
         'blackShadowInset': 'inset 0 0 100px 50px black',
-        'whiteShadowInset': 'inset 0 0 100px 50px white'
+        'whiteShadowInset': 'inset 0 0 100px 50px white',
+        'blackShadowInsetBottom': 'inset 0 -150px 100px -100px black'
       },
       colors: {
         'mood': {
