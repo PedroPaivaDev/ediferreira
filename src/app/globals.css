@@ -133,8 +133,11 @@ small {
 }
 
 .h-almostScreen {
-  max-width: 900px;
   height: calc(100vh - 160px);
+}
+
+.max-h-almostScreen {
+  max-height: calc(100vh - 160px);
 }
 
 .animeLeft {

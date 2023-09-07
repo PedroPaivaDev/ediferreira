@@ -68,8 +68,8 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       className='
-        w-full h-almostScreen relative flex items-end justify-center
-        overflow-x-hidden
+        w-full max-w-[900px] h-almostScreen relative
+        flex items-end justify-center overflow-x-hidden
       '
     >
       {projects && Object.keys(projects).map(projectId =>
@@ -103,6 +103,7 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
               ${projectId===currentProject.id ?
                 'bg-mood-secondary' : 'bg-mood-tertiary'
               }
+              border border-mood-quaternary border-solid
             `}
             key={projectId}
             onClick={() => setCurrentProject(projects[projectId])}
