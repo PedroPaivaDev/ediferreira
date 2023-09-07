@@ -3,18 +3,14 @@ import React from "react";
 import Image from "next/image";
 
 import { HeaderViewContext } from "@/contexts/HeaderViewContext";
-import { getData } from "@/services/firebase";
+import { ContentDBContext } from "@/contexts/ContentDBContext";
 
 import Slider from "@/components/Slider";
 import Contact from "@/components/Contact";
 
 export default function Home() {
   const {handleScroll} = React.useContext(HeaderViewContext);
-  const [contentDB, setContentDB] = React.useState<ContentDB|null>(null);
-
-  React.useEffect(() => {
-    getData<ContentDB|null>('content', setContentDB);
-  },[]);
+  const contentDB = React.useContext(ContentDBContext);
 
   return (
     <main onScroll={(e) => handleScroll(e)}>

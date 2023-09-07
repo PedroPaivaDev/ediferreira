@@ -20,7 +20,7 @@ const Project = ({project}:PropsProject) => {
         {project.images.map(imageUrl =>
           <div key={imageUrl}
             style={objectBgImage(imageUrl)}
-            className='w-full h-almostScreen mb-5 '
+            className='w-full h-almostScreen mb-10 rounded-md shadow-lg'
           />
         )}
       </section>
