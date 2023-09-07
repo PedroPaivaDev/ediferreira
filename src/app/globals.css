@@ -132,6 +132,10 @@ small {
   margin-bottom: 10px;
 }
 
+.w-almostScreen {
+  width: calc(100vw - 40px);
+}
+
 .h-almostScreen {
   height: calc(100vh - 200px);
 }

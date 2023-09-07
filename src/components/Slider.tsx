@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import objectBgImage from '@/helpers/objectBgImage';
+import SlideArrows from './SlideArrows';
 
 interface PropsSlider {
   projects: ProjectsDB;
@@ -14,22 +15,23 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
   const [currentProject, setCurrentProject] = React.useState<ProjectDB>(projects[Object.keys(projects)[0]]);
   const [animeDirection, setAnimeDirection] = React.useState('animeRight');
 
-  function handleSwipe(direction: 'right' | 'left') {
+  function handleSwipe(direction:string) {
     if(Object.keys(projects).length > 1) {
       const arrayProjects = Object.keys(projects);
       const indexCurrentProj = arrayProjects.indexOf(currentProject.id);
       if(
-        direction==='right' &&
+        direction==='left' &&
         indexCurrentProj > 0
       ) {
         setAnimeDirection('animeLeft');
         setCurrentProject(projects[arrayProjects[indexCurrentProj - 1]]);
       } else if(
-        direction==='left' &&
+        direction==='right' &&
         indexCurrentProj < (arrayProjects.length - 1)
       ) {
+        console.log(direction)
         setAnimeDirection('animeRight');
-        setCurrentProject(projects[arrayProjects[indexCurrentProj + 1]])
+        setCurrentProject(projects[arrayProjects[indexCurrentProj + 1]]);
       } else {
         return;
       }
@@ -53,9 +55,9 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
 
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
       if (deltaX > 0) {
-        handleSwipe('right');
-      } else {
         handleSwipe('left');
+      } else {
+        handleSwipe('right');
       }
     }
 
@@ -84,11 +86,17 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
             shadow-blackShadowInsetBottom
           `}
         >
+          <SlideArrows
+            currentIndexImage={Object.keys(projects).indexOf(currentProject.id)}
+            projectImages={Object.keys(projects)}
+            handleArrowClick={handleSwipe}
+            classname={'bottom-10 absolute'}
+          />
           <h3 className='text-mood-light'>
             {projects[projectId].name}
           </h3>
           <Link href={`projetos?projeto=${projectId}`}
-            className='text-mood-light hover:text-mood-secondary'
+            className='text-mood-light hover:text-mood-secondary z-20'
           >
             ver mais detalhes
           </Link>
