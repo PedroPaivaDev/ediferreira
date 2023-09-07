@@ -11,7 +11,7 @@ const Project = ({project}:PropsProject) => {
 
   return (
     <>
-      {modalImage && <ProjectModal modalImage={modalImage} setModalImage={setModalImage}/>}
+      {modalImage && <ProjectModal projectImages={project.images} modalImage={modalImage} setModalImage={setModalImage}/>}
       <section>
         <h1 className='text-mood-primary'>
           {project.name}
