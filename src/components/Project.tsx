@@ -1,17 +1,14 @@
 import React from 'react';
 
-import ProjectModal from './ProjectModal';
-
 interface PropsProject {
   project: ProjectDB;
+  setModalImage: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const Project = ({project}:PropsProject) => {
-  const [modalImage, setModalImage] = React.useState<string|null>(null);
+const Project = ({project, setModalImage}:PropsProject) => {
 
   return (
     <>
-      {modalImage && <ProjectModal projectImages={project.images} modalImage={modalImage} setModalImage={setModalImage}/>}
       <section>
         <h1 className='text-mood-primary'>
           {project.name}

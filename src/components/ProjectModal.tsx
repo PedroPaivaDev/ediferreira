@@ -29,7 +29,7 @@ const ProjectModal = ({projectImages, modalImage, setModalImage}:PropsProjectMod
     <div onClick={(e) => handleOutsideClick(e)}
       className='
         w-full h-full p-5 fixed top-0 bg-black bg-opacity-80
-        flex justify-center items-center
+        flex justify-center items-center z-30
       '
     >
       <div className='

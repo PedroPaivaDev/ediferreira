@@ -29,7 +29,6 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
         direction==='right' &&
         indexCurrentProj < (arrayProjects.length - 1)
       ) {
-        console.log(direction)
         setAnimeDirection('animeRight');
         setCurrentProject(projects[arrayProjects[indexCurrentProj + 1]]);
       } else {

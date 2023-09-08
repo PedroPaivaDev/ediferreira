@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --mainHeight: 100vh;
-  --mainWidth: 100vw;
   --paddingIPhone: 120px;
 }
 
@@ -25,8 +23,8 @@
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  width: cac(var(--mainWidth)-20px);
-  height: var(--mainHeight);
+  width: cac(100vw - 20px);
+  height: 100vh;
 }
 
 header {
@@ -39,6 +37,15 @@ header {
   z-index: 20;
 }
 
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding-top: var(--paddingIPhone);
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -49,10 +56,6 @@ main {
   z-index: 0;
   text-align: center;
   overflow: auto;
-}
-
-main section:last-child {
-  padding-bottom: var(--paddingIPhone);
 }
 
 section {

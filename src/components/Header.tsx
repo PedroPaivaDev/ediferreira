@@ -10,7 +10,6 @@ import logo from '../assets/logo-provisoria.jpeg';
 
 const sections = ['Projetos', 'Contato'];
 
-
 const Header = () => {
   const path = usePathname();
   const {visible, currentScrollZero} = React.useContext(HeaderViewContext);

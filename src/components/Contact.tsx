@@ -1,49 +1,53 @@
 import React from 'react';
 
-interface PropsContact {
-  contactsDB: ContactsDB;
-}
+import { ContentDBContext } from '@/contexts/ContentDBContext';
 
-const Contact = ({contactsDB}:PropsContact) => {
+const Contact = () => {
+  const contentDB = React.useContext(ContentDBContext);
+
   return (
-    <section id="Contato"
-      className="relative bg-mood-tertiary text-mood-light flex flex-col gap-5"
-    >
-      <h2>Contatos</h2>
-      <p className='text-mood-light'>{contactsDB.description}</p>
-      <ul className='
-        flex flex-col justify-center items-start gap-5
-      '>
-        {Object.keys(contactsDB.social).map(socialId =>
-          <li key={contactsDB.social[socialId].id}
-            className="group flex justify-center items-center gap-3 cursor-pointer"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg"
-              width="30" height="30" viewBox="0 0 256 256"
-              className='fill-mood-light group-hover:fill-mood-primary duration-300'
-            >
-              <path d={contactsDB.social[socialId].icon}></path>
-            </svg>
-            <a
-              href={contactsDB.social[socialId].url} target="_blank"
-              className="
-                group-hover:text-mood-primary duration-300
-                flex flex-col justify-center items-start
-              "
-            >
-              {contactsDB.social[socialId].name}
-              <small>{contactsDB.social[socialId].address}</small>
-            </a>
-          </li>
-        )}
-      </ul>
-      <a
-        href={`https://pedropaiva.vercel.app`} target="_blank"
-        className="absolute bottom-2 text-sm text-thin font-sans text-mood-quaternary hover:text-mood-light duration-300"
+    <>
+      <section id="Contato"
+        className="bg-mood-tertiary text-mood-light gap-5"
       >
-        Desenvolvido por PedroPaivaDev
-      </a>
-    </section>
+        <h2>Contatos</h2>
+        <p className='text-mood-light'>{contentDB?.contacts.description}</p>
+        <ul className='
+          flex flex-col justify-center items-start gap-5
+        '>
+          {contentDB && Object.keys(contentDB.contacts.social).map(socialId =>
+            <li key={contentDB?.contacts.social[socialId].id}
+              className="group flex justify-center items-center gap-3 cursor-pointer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg"
+                width="30" height="30" viewBox="0 0 256 256"
+                className='fill-mood-light group-hover:fill-mood-primary duration-300'
+              >
+                <path d={contentDB?.contacts.social[socialId].icon}></path>
+              </svg>
+              <a
+                href={contentDB?.contacts.social[socialId].url} target="_blank"
+                className="
+                  group-hover:text-mood-primary duration-300
+                  flex flex-col justify-center items-start
+                "
+              >
+                {contentDB?.contacts.social[socialId].name}
+                <small>{contentDB?.contacts.social[socialId].address}</small>
+              </a>
+            </li>
+          )}
+        </ul>
+      </section>
+      <footer className='relative bg-mood-tertiary'>
+        <a
+          href={`https://pedropaiva.vercel.app`} target="_blank"
+          className="absolute bottom-2 text-sm text-thin font-sans text-mood-quaternary hover:text-mood-light duration-300"
+        >
+          Desenvolvido por PedroPaivaDev
+        </a>
+      </footer>
+    </>
   )
 }
 
