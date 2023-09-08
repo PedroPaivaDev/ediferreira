@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 
 import { HeaderViewContext } from '@/contexts/HeaderViewContext';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
+import scrollToTop from '@/helpers/scrollToTop';
 
 import Project from '@/components/Project';
 import ProjectModal from '@/components/ProjectModal';
@@ -23,8 +24,10 @@ const Projects = () => {
       const nextProjectIndex = Object.keys(contentDB.projects).indexOf(projectId) + 1;
 
       if(direction==='left') {
+        scrollToTop();
         push(`projetos?projeto=${Object.keys(contentDB.projects)[previousProjectIndex]}`);
       } else {
+        scrollToTop();
         push(`projetos?projeto=${Object.keys(contentDB.projects)[nextProjectIndex]}`);
       }
     } else return;

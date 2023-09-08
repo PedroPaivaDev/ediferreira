@@ -15,7 +15,7 @@ interface PropsSlideArrows {
 const SlideArrows = ({currentIndexImage, handleArrowClick, projectImages, classname=''}:PropsSlideArrows) => {
   return (
     <div key={currentIndexImage}
-      className={`${classname} lg:absolute w-almostScreen lg:w-full p-5 lg:p-5 flex justify-between items-center`}
+      className={`${classname} lg:absolute w-almostScreen lg:w-full p-5 flex justify-between items-center`}
     >
       {Object.keys(slideArrows).map(arrowDirection =>
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256"

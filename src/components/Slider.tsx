@@ -85,12 +85,12 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
             shadow-blackShadowInsetBottom
           `}
         >
-          <SlideArrows
+          {currentProject.id===projectId && <SlideArrows
             currentIndexImage={Object.keys(projects).indexOf(currentProject.id)}
             projectImages={Object.keys(projects)}
             handleArrowClick={handleSwipe}
             classname={'bottom-10 absolute'}
-          />
+          />}
           <h3 className='text-mood-light'>
             {projects[projectId].name}
           </h3>
