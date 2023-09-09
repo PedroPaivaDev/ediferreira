@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import objectBgImage from '@/helpers/objectBgImage';
+
 import SlideArrows from './SlideArrows';
 
 interface PropsSlider {
@@ -69,7 +70,7 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       className='
-        w-full max-w-[900px] h-almostScreen relative
+        w-full max-w-[900px] h-almostScreen relative shadow-lg
         flex items-end justify-center overflow-x-hidden
       '
     >
@@ -78,7 +79,7 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
           style={objectBgImage(projects[projectId].mainPhoto)}
           className={`
             absolute w-full h-full rounded-md
-            flex flex-col justify-end items-center pb-12
+            flex flex-col justify-end items-center pb-16
             ${projectId===currentProject.id ?
               `visible ${animeDirection}` : 'invisible'
             }
@@ -89,7 +90,7 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
             currentIndexImage={Object.keys(projects).indexOf(currentProject.id)}
             projectImages={Object.keys(projects)}
             handleArrowClick={handleSwipe}
-            classname={'bottom-10 absolute'}
+            classname={'bottom-16 absolute'}
           />}
           <h3 className='text-mood-light'>
             {projects[projectId].name}

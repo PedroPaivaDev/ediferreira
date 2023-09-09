@@ -2,6 +2,8 @@ import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
+import Footer from './Footer';
+
 const Contact = () => {
   const contentDB = React.useContext(ContentDBContext);
 
@@ -39,14 +41,7 @@ const Contact = () => {
           )}
         </ul>
       </section>
-      <footer className='relative bg-mood-tertiary'>
-        <a
-          href={`https://pedropaiva.vercel.app`} target="_blank"
-          className="absolute bottom-2 text-sm text-thin font-sans text-mood-quaternary hover:text-mood-light duration-300"
-        >
-          Desenvolvido por PedroPaivaDev
-        </a>
-      </footer>
+      <Footer />
     </>
   )
 }
