@@ -85,7 +85,7 @@ button {
   cursor: pointer;
 }
 
-ul, a {
+a {
   list-style:none;
   text-decoration: none;
   font-weight: bold;

@@ -8,8 +8,6 @@ import { HeaderViewContext } from '@/contexts/HeaderViewContext';
 import { getData } from '@/services/firebase';
 import logo from '../assets/logo-provisoria.jpeg';
 
-const sections = ['Projetos', 'Contato'];
-
 const Header = () => {
   const path = usePathname();
   const {visible, currentScrollZero} = React.useContext(HeaderViewContext);
@@ -22,23 +20,29 @@ const Header = () => {
   return (
     <header className={`
       h-16 duration-300
-      ${currentScrollZero && !path.includes('projetos') ?
+      ${currentScrollZero && path==='/' ?
         'bg-transparent' : 'bg-mood-primary'
       }
       ${visible ? 'translate-y-0' : '-translate-y-full'}
     `}>
       <nav className='relative flex justify-center items-center w-full max-w-[900px]'>
-        <ul className='flex justify-between items-center w-full flex-1 gap-5 m-5'>
-          {sections.map(section =>
-            <li key={section}>
-              <Link
-                href={`/#${section}`} 
-                className='hover:text-mood-tertiary duration-300 text-mood-light'
-              >
-                {section}
-              </Link>
-            </li>
-          )}
+        <ul className='flex justify-start items-center w-full gap-10 m-5'>
+          <li>
+            <Link
+              href={`/projetos`} 
+              className='hover:text-mood-tertiary duration-300 text-mood-light'
+            >
+              Projetos
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={`/sobre`} 
+              className='hidden sm:block hover:text-mood-tertiary duration-300 text-mood-light'
+            >
+              Sobre
+            </Link>
+          </li>
         </ul>
         <Link href="/#home" className='absolute w-14 h-14'>
           <Image
@@ -46,12 +50,9 @@ const Header = () => {
             className='w-full h-full'
           />
         </Link>
-        <ul className='
-          invisible sm:visible flex justify-end items-center gap-5
-          absolute right-28
-        '>
+        <ul className='flex justify-end items-center w-full gap-5 m-5'>
           {contactsSocialDB && Object.keys(contactsSocialDB).map(socialId =>
-            <li key={contactsSocialDB[socialId].id}>
+            <li className='hidden sm:block' key={contactsSocialDB[socialId].id}>
               <a href={contactsSocialDB[socialId].url} target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg"
                   width="30" height="30" viewBox="0 0 256 256"
@@ -62,6 +63,14 @@ const Header = () => {
               </a>
             </li>
           )}
+          <li>
+            <Link
+              href={`/#Contato`} 
+              className='hover:text-mood-tertiary duration-300 text-mood-light'
+            >
+              Contato
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

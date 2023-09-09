@@ -12,7 +12,7 @@ const Contact = () => {
       <section id="Contato"
         className="bg-mood-tertiary text-mood-light gap-5"
       >
-        <h2>Contatos</h2>
+        <h2>Fale Conosco</h2>
         <p className='text-mood-light'>{contentDB?.contacts.description}</p>
         <ul className='
           flex flex-col justify-center items-start gap-5

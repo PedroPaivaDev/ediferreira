@@ -1,74 +1,46 @@
 'use client'
 import React from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import { HeaderViewContext } from '@/contexts/HeaderViewContext';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
-import scrollToTop from '@/helpers/scrollToTop';
 
 import Project from '@/components/Project';
 import ProjectModal from '@/components/ProjectModal';
-import SlideArrows from '@/components/SlideArrows';
 import Contact from '@/components/Contact';
+import Services from '@/components/Services';
+import Slider from '@/components/Slider';
+import ProjectArrows from '@/components/ProjectArrows';
 
-const Projects = () => {
-  const {push} = useRouter()
+const PageProjects = () => {
   const projectId = useSearchParams().get('projeto');
   const {handleScroll} = React.useContext(HeaderViewContext);
   const contentDB = React.useContext(ContentDBContext);
   const [modalImage, setModalImage] = React.useState<string|null>(null);
 
-  function handleSwitchProject(direction:string) {
-    if(contentDB && projectId) {
-      const previousProjectIndex = Object.keys(contentDB.projects).indexOf(projectId) - 1;
-      const nextProjectIndex = Object.keys(contentDB.projects).indexOf(projectId) + 1;
-
-      if(direction==='left') {
-        scrollToTop();
-        push(`projetos?projeto=${Object.keys(contentDB.projects)[previousProjectIndex]}`);
-      } else {
-        scrollToTop();
-        push(`projetos?projeto=${Object.keys(contentDB.projects)[nextProjectIndex]}`);
-      }
-    } else return;
-  }
-
   return (
     <main className='bg-mood-light pt-16' onScroll={(e) => handleScroll(e)}>
+      {contentDB && !projectId && <>
+        <Services />
+        <section>
+          <h2>Projetos</h2>
+          <Slider projects={contentDB?.projects}/>
+        </section>
+      </>}
       {contentDB?.projects && projectId &&
         <>
-          <div
-            className='relative w-full flex justify-center items-center bg-mood-quaternary'
-          >
-            <h3 className='text-mood-light m-5'>outros projetos</h3>
-            <SlideArrows
-              currentIndexImage={Object.keys(contentDB.projects).indexOf(projectId)}
-              projectImages={Object.keys(contentDB.projects)}
-              handleArrowClick={handleSwitchProject}
-              classname={'absolute top-0'}
-            />
-          </div>
+          <ProjectArrows projectId={projectId} />
           {modalImage && <ProjectModal
             projectImages={contentDB.projects[projectId].images}
             modalImage={modalImage} setModalImage={setModalImage}
           />}
           <Project project={contentDB.projects[projectId]} setModalImage={setModalImage}/>
-          <div
-            className='relative w-full flex justify-center items-center bg-mood-quaternary'
-          >
-            <h3 className='text-mood-light m-5'>outros projetos</h3>
-            <SlideArrows
-              currentIndexImage={Object.keys(contentDB.projects).indexOf(projectId)}
-              projectImages={Object.keys(contentDB.projects)}
-              handleArrowClick={handleSwitchProject}
-              classname={'absolute top-0'}
-            />
-          </div>
-          <Contact />
+          <ProjectArrows projectId={projectId} />
         </>
       }
+      <Contact />
     </main>
   )
 }
 
-export default Projects;
+export default PageProjects;
