@@ -16,11 +16,13 @@ As informações dos projetos foram salvas em um banco de dados do [Firebase](ht
 ## Instruções
 A primeira sessão **Vídeo** mostra um vídeo com alguns trabalhos da designer. O *Header* da página some quando o visitante rola a página para baixo e reaparece quando rola a página para cima.
 
-A segunda sessão **Sobre** conta um pouco da história da desginer e explica a forma como ela trabalha.
+A segunda sessão **Serviços** mostra um link de atalho para acessar a página de projetos, para que o usuário veja os produtos que são entregues pela designer e veja alguns projetos.
 
 A terceira sessão **Projetos** exibe um carroçel de imagens, com uma imagem de cada trabalho feito pela designer. Ao clicar na foto, o usuário é redirecionado para a página desse projeto específico, para mostrar mais detalhes e imagens do mesmo.
 
-A quarta e última sessão **Contato** mostra um link para acessar o Instagram e o Whatsapp, além do e-mail para contato.
+A quarta sessão **Sobre** possui um breve resumo sobre a formação da designer e um link que redireciona o usuário para outra página, onde é exibida uma foto da designer e mais detalhes sobre a sua história.
+
+A quinta e última sessão **Contato** mostra um link para acessar o Instagram e o Whatsapp, além do e-mail para contato.
 
 > Caso você seja um desenvolvedor, use as instruções abaixo para instalar as dependências e sugerir alterações para a aplicação.
 
@@ -47,7 +49,8 @@ Clique nas versões abaixo, para observar a evolução do projeto ao longo do te
 
 | Versão | Update |
 | ------ | ------ |
-| [main](https://ediferreira.vercel.app/) | Primeira versão do projeto. |
+| [Versão 0.0](https://ediferreira-git-v00-pedropaivadev.vercel.app/) | Primeira versão do projeto, apresentada para a designer no dia 08 de Setembro de 2023, quando foram solicitados alguns ajustes a serem feitos. |
+| [Versão 0.1](https://ediferreira-git-v01-pedropaivadev.vercel.app/) | A página 'projetos' foi desenvolvida, para mostrar o que a designer entrega após a conclusão do projeto. Também foi adicionada a página 'sobre' para reduzir a quantidade de texto na página 'home'. Foi utilizada uma API para mostrar no site, alguns posts do Instagram da designer. |
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
