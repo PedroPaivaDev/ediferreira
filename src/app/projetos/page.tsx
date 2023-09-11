@@ -2,7 +2,6 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import { HeaderViewContext } from '@/contexts/HeaderViewContext';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
 import Project from '@/components/Project';
@@ -14,12 +13,11 @@ import ProjectArrows from '@/components/ProjectArrows';
 
 const PageProjects = () => {
   const projectId = useSearchParams().get('projeto');
-  const {handleScroll} = React.useContext(HeaderViewContext);
   const contentDB = React.useContext(ContentDBContext);
   const [modalImage, setModalImage] = React.useState<string|null>(null);
 
   return (
-    <main className='bg-mood-light pt-16' onScroll={(e) => handleScroll(e)}>
+    <main className='bg-mood-light pt-16'>
       {contentDB && !projectId && <>
         <Services />
         <section>
