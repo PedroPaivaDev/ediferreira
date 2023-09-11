@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --paddingIPhone: 120px;
+  --paddingIPhone: 150px;
 }
 
 *, *:after, *:before {
@@ -23,8 +23,6 @@
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  width: cac(100vw - 20px);
-  height: 100vh;
 }
 
 header {
@@ -55,7 +53,6 @@ main {
   height: 100%;
   z-index: 0;
   text-align: center;
-  overflow: auto;
 }
 
 section {

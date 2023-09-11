@@ -6,6 +6,7 @@ import HeaderViewProvider from '@/contexts/HeaderViewContext';
 import ContentDBProvider from '@/contexts/ContentDBContext';
 
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const poppins = Poppins({weight:['400', '500'], subsets:['latin'], variable: '--font-poppins'});
 
@@ -19,16 +20,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
     <html lang="en">
-      <body className={`${poppins.className} text-mood-primary bg-mood-light`}>
-        <HeaderViewProvider>
+      <HeaderViewProvider>
+        <body className={`${poppins.className} text-mood-primary bg-mood-light`}>
           <Header />
           <ContentDBProvider>
             {children}
           </ContentDBProvider>
-        </HeaderViewProvider>
-      </body>
+          <Footer />
+        </body>
+      </HeaderViewProvider>
     </html>
   )
 }

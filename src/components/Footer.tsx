@@ -1,10 +1,12 @@
+'use client'
 import React from 'react';
+import Link from 'next/link';
 
 import scrollToTop from '@/helpers/scrollToTop';
 
 const Footer = () => {
   return (
-    <footer className='relative bg-mood-tertiary'>
+    <footer className='relative bg-mood-tertiary text-mood-light'>
       <a
         href={`https://pedropaiva.vercel.app`} target="_blank"
         className="absolute bottom-2 text-sm text-thin font-sans text-mood-quaternary hover:text-mood-light duration-300"
@@ -23,6 +25,19 @@ const Footer = () => {
         </svg>
         Voltar ao Topo
       </button>
+      <nav className='w-full absolute bottom-12'>
+        <ul className='flex justify-center items-center gap-5'>
+          <li>
+            <Link href={`/projetos`}>Projetos</Link>
+          </li>
+          <li>
+            <Link href={`/`}>Home</Link>
+          </li>
+          <li>
+            <Link href={`/sobre`}>Sobre</Link>
+          </li>
+        </ul>
+      </nav>
     </footer>
   )
 }

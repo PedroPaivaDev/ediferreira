@@ -1,16 +1,14 @@
 'use client'
 import React from "react";
+import Link from "next/link";
 
-import { HeaderViewContext } from "@/contexts/HeaderViewContext";
 import { ContentDBContext } from "@/contexts/ContentDBContext";
 
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
-import Link from "next/link";
 
 export default function Home() {
-  const {handleScroll} = React.useContext(HeaderViewContext);
   const contentDB = React.useContext(ContentDBContext);
   const [videoLoaded, setVideoLoaded] = React.useState(false);
 
@@ -36,9 +34,7 @@ export default function Home() {
           fixed z-40 bg-mood-light
         "
       />}
-      <main onScroll={(e) => handleScroll(e)}
-        className={`${videoLoaded ? 'opacity-100' : 'opacity-0'} duration-1000`}
-      >
+      <main className={`${videoLoaded ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         <section id="home" className="
           flex shrink-0 flex-col justify-end items-center gap-1
           p-0 relative h-screen

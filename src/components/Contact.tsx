@@ -2,8 +2,6 @@ import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
-import Footer from './Footer';
-
 const Contact = () => {
   const contentDB = React.useContext(ContentDBContext);
 
@@ -41,7 +39,6 @@ const Contact = () => {
           )}
         </ul>
       </section>
-      <Footer />
     </>
   )
 }

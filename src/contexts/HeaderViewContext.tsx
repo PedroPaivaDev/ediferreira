@@ -3,7 +3,6 @@ import React from 'react';
 
 const defaultContext = {
   visible: true,
-  handleScroll: (event:React.UIEvent<HTMLElement>) => {},
   currentScrollZero: true
 }
 
@@ -14,8 +13,8 @@ const HeaderViewProvider = ({children}:{children:React.ReactNode}) => {
   const [prevScrollPos, setPrevScrollPos] = React.useState<number>(0);
   const [visible, setVisible] = React.useState<boolean>(true);
   
-  function handleScroll(event:React.UIEvent<HTMLElement>) {
-    const currentScrollPos = event.currentTarget.scrollTop;
+  function handleScroll() {
+    const currentScrollPos = window.scrollY;
     if(currentScrollPos===0) {
       setCurrentScrollZero(true);
       setVisible(true);
@@ -27,8 +26,16 @@ const HeaderViewProvider = ({children}:{children:React.ReactNode}) => {
     }
   };
 
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos]);
+
   return (
-    <HeaderViewContext.Provider value={{visible, handleScroll, currentScrollZero}}>
+    <HeaderViewContext.Provider value={{visible, currentScrollZero}}>
       {children}
     </HeaderViewContext.Provider>
   )
