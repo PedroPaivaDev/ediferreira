@@ -65,6 +65,27 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
     startYRef.current = null;
   };
 
+  React.useEffect(() => {
+    const projectsArray:string[] = Object.keys(projects);
+    const currentProjectIndex:number = projectsArray.indexOf(currentProject.id);
+    const timer = setInterval(() => {
+      if (currentProjectIndex === projectsArray.length - 1) {
+        setAnimeDirection('animeRight');
+        setCurrentProject(projects[projectsArray[0]]);
+      } else {
+        setCurrentProject((prevProject) => {
+          setAnimeDirection('animeRight');
+          const prevProjectIndex:number = projectsArray.indexOf(prevProject.id) + 1;
+          return projects[projectsArray[prevProjectIndex]]
+        });
+      }
+    }, 4000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [currentProject, projects]);
+
   return (
     <div id='slider'
       onTouchStart={handleTouchStart}
