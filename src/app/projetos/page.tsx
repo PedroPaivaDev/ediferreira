@@ -4,12 +4,14 @@ import { useSearchParams } from 'next/navigation';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
-import Project from '@/components/Project';
-import ProjectModal from '@/components/ProjectModal';
-import Contact from '@/components/Contact';
 import Services from '@/components/Services';
-import Slider from '@/components/Slider';
+import Projects from '@/components/Projects';
+import InstaPosts from '@/components/InstaPosts';
+import Contact from '@/components/Contact';
+
 import ProjectArrows from '@/components/ProjectArrows';
+import ProjectModal from '@/components/ProjectModal';
+import Project from '@/components/Project';
 
 const PageProjects = () => {
   const projectId = useSearchParams().get('projeto');
@@ -20,10 +22,8 @@ const PageProjects = () => {
     <main className='bg-mood-light pt-16'>
       {contentDB && !projectId && <>
         <Services />
-        <section>
-          <h2>Projetos</h2>
-          <Slider projects={contentDB?.projects}/>
-        </section>
+        <Projects />
+        <InstaPosts />
       </>}
       {contentDB?.projects && projectId &&
         <>

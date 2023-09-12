@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 
-import { getPostTypeById, getUserPosts } from '@/services/instagramAPI';
+import { getUserPosts } from '@/services/instagramAPI';
 
 
 const InstaPosts = () => {
@@ -21,22 +22,16 @@ const InstaPosts = () => {
         const userPosts = await getUserPosts();
         const posts:PostsArray = [];
 
-        await Promise.all(
-          userPosts.data.map(async (post) => {
-            const resolve = await getPostTypeById(post.id);
-
-            if (resolve.media_type !== 'VIDEO') {
-              const timestamp = Date.parse(resolve.timestamp);
-              const description = post.caption;
-
-              posts.push({
-                id: timestamp,
-                imageUrl: resolve.media_url,
-                description,
-              });
-            }
-          })
-        );
+        userPosts.data.map(post => {
+          if(post.media_type !== 'VIDEO') {
+            posts.push({
+              href: post.permalink,
+              id: Date.parse(post.timestamp),
+              imageUrl: post.media_url,
+              description: post.caption,
+            });
+          }
+        })
 
         posts.sort((a, b) => b.id - a.id);
 
@@ -51,11 +46,11 @@ const InstaPosts = () => {
 
   return (
     <section className='gap-5'>
-      <h2>Ultimos posts do Instagram</h2>
+      <h2>Últimas postagens do Instagram</h2>
       <div className='flex flex-wrap flex-col sm:flex-row justify-center items-center gap-10'>
         {instaPosts && instaPosts.slice(0,maxNumberOfPosts).map(post =>
-          <div key={post.id}
-            className='flex flex-col justify-center items-center max-w-[300px] cursor-pointer group'
+          <Link href={post.href} key={post.id} target='_blank'
+            className='flex flex-col justify-center items-center max-w-[300px] cursor-pointer group text-mood-secondary font-normal'
           >
             <Image
               src={post.imageUrl}
@@ -64,10 +59,10 @@ const InstaPosts = () => {
               alt='Post Insta'
               className='rounded-full h-[200px] shadow-lg group-hover:shadow-2xl duration-300'
               />
-            <p className='max-w-[200px] whitespace-break-spaces'>
+            <span className='max-w-[200px] whitespace-break-spaces group-hover:text-mood-primary duration-300'>
               { hideText(post.description, 30) }
-            </p>
-          </div>
+            </span>
+          </Link>
         )}
       </div>
     </section>

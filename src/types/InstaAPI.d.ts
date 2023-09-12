@@ -4,12 +4,16 @@ interface InstaUserId {
 }
 
 interface InstaUserPosts {
-  data: postIdDescription[];
+  data: postData[];
 }
 
-interface postIdDescription {
+interface postData {
   caption: string;
   id: string;
+  media_url: string;
+  media_type: 'IMAGE' | 'CAROUSEL_ALBUM' | 'VIDEO';
+  permalink: string;
+  timestamp: string;
 }
 
 interface InstaPostType {

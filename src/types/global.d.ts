@@ -44,4 +44,5 @@ interface PostImageDescription {
   id: number;
   description: string;
   imageUrl: string;
+  href: string;
 }

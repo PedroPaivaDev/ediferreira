@@ -6,6 +6,7 @@ import { ContentDBContext } from "@/contexts/ContentDBContext";
 
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
+import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -61,6 +62,7 @@ export default function Home() {
           </p>
           <Link href='/sobre' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
         </section>
+        <InstaPosts />
         <Contact />
       </main>
     </>

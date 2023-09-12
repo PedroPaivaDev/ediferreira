@@ -12,14 +12,14 @@ export async function getInsta(url:string) {
 // }
 
 export function getUserPosts():Promise<InstaUserPosts> {
-  const url = `https://graph.instagram.com/me/media?fields=id,caption&access_token=${access_token}`;
+  const url = `https://graph.instagram.com/me/media?fields=id,media_type,caption,permalink,media_url,timestamp&access_token=${access_token}`;
   return getInsta(url);
 }
 
-export async function getPostTypeById(postId:string):Promise<InstaPostType> {
-  const url = `https://graph.instagram.com/${postId}?fields=id,media_type,media_url,username,timestamp&access_token=${access_token}`
-  return getInsta(url);
-}
+// export async function getPostTypeById(postId:string):Promise<InstaPostType> {
+//   const url = `https://graph.instagram.com/${postId}?fields=id,media_type,media_url,username,timestamp&access_token=${access_token}`
+//   return getInsta(url);
+// }
 
 // export async function getMediasByPostId(postId:string):Promise<InstaPostMediasIds> {
 //   const url = `https://graph.instagram.com/${postId}/children?access_token=${access_token}`
