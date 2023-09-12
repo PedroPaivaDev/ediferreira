@@ -144,6 +144,17 @@ small {
   max-height: calc(100vh - 200px);
 }
 
+.list-item::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #cb97a5;
+    border-radius: 50%;
+}
+
 .animeLeft {
   opacity: 0;
   transform: translateX(calc(-100vw * 0.2));

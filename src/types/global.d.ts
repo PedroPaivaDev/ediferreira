@@ -2,6 +2,7 @@ interface ContentDB {
   home: HomeDB;
   projects: ProjectsDB;
   contacts: ContactsDB;
+  services: ServicesDB;
 }
 
 interface HomeDB {
@@ -15,9 +16,10 @@ interface ProjectsDB {
 
 interface ProjectDB {
   id: string;
-  name: string;
   mainPhoto: string;
   images: string[];
+  name: string;
+  subtitle: string;
   description: string;
 }
 
@@ -36,6 +38,16 @@ interface ContactDB {
   icon: string;
   address: string;
   url: string;
+}
+
+interface ServicesDB {
+  [key: string]: ServiceTypeDB;
+}
+
+interface ServiceTypeDB {
+  id: string;
+  subtitle: string;
+  items: string[];
 }
 
 type PostsArray = PostImageDescription[]

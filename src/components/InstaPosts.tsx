@@ -22,7 +22,7 @@ const InstaPosts = () => {
         const userPosts = await getUserPosts();
         const posts:PostsArray = [];
 
-        userPosts.data.map(post => {
+        userPosts.data.slice(0,8).map(post => {
           if(post.media_type !== 'VIDEO') {
             posts.push({
               href: post.permalink,

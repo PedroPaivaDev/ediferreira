@@ -13,7 +13,8 @@ const Project = ({project, setModalImage}:PropsProject) => {
         <h1 className='text-mood-primary'>
           {project.name}
         </h1>
-        <p className='text-mood-primary'>{project.description}</p>
+        <h3>{project.subtitle}</h3>
+        <p className='text-mood-primary mt-5'>{project.description}</p>
       </section>
       <section className='flex justify-center items-center flex-wrap gap-20 flex-col sm:flex-row'>
         {project.images.map(imageUrl =>
