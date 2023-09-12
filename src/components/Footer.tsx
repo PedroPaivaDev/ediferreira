@@ -27,13 +27,13 @@ const Footer = () => {
       </button>
       <nav className='w-full absolute bottom-12'>
         <ul className='flex justify-center items-center gap-5'>
-          <li>
-            <Link href={`/projetos`}>Projetos</Link>
-          </li>
-          <li>
+          <li className='hover:text-mood-primary duration-300'>
             <Link href={`/`}>Home</Link>
           </li>
-          <li>
+          <li className='hover:text-mood-primary duration-300'>
+            <Link href={`/projetos`}>Projetos</Link>
+          </li>
+          <li className='hover:text-mood-primary duration-300'>
             <Link href={`/sobre`}>Sobre</Link>
           </li>
         </ul>

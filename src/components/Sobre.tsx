@@ -13,7 +13,7 @@ const Sobre = () => {
         <Image
           src={contentDB.home.photoEdi} alt="Foto Designer Edi"
           width={240} height={240}
-          className="rounded-full col-span-3 object-cover h-60"
+          className="rounded-full col-span-3 object-cover h-60 shadow-lg"
         />
         <div className="flex flex-col flex-1 gap-5">
           <p>

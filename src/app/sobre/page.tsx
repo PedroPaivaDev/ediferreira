@@ -2,8 +2,9 @@
 import React from 'react';
 
 import Sobre from '@/components/Sobre';
-import Contact from '@/components/Contact';
 import Services from '@/components/Services';
+import InstaPosts from '@/components/InstaPosts';
+import Contact from '@/components/Contact';
 
 const PageSobre = () => {
   
@@ -11,6 +12,7 @@ const PageSobre = () => {
     <main className='bg-mood-light pt-16'>
       <Sobre />
       <Services />
+      <InstaPosts />
       <Contact />
     </main>
   )
