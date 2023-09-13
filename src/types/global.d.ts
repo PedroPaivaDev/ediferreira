@@ -3,11 +3,22 @@ interface ContentDB {
   projects: ProjectsDB;
   contacts: ContactsDB;
   services: ServicesDB;
+  about: AboutDB;
 }
 
 interface HomeDB {
   bgVideo: string;
   photoEdi: string;
+  callProjects: string;
+  callAbout: string;
+}
+
+interface AboutDB {
+  text: string;
+  projectsText: {
+    subtitle: string;
+    description: string;
+  }
 }
 
 interface ProjectsDB {
