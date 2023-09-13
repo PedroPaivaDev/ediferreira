@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 import { getUserPosts } from '@/services/instagramAPI';
 
-
 const InstaPosts = () => {
   const [instaPosts, setInstaPosts] = React.useState<PostsArray>([]);
   const maxNumberOfPosts:number = 3;
@@ -56,7 +55,7 @@ const InstaPosts = () => {
               src={post.imageUrl}
               width={200}
               height={200}
-              alt='Post Insta'
+              alt={`${post.id}`}
               className='rounded-full h-[200px] shadow-lg group-hover:shadow-2xl duration-300'
               />
             <span className='max-w-[200px] whitespace-break-spaces group-hover:text-mood-primary duration-300'>

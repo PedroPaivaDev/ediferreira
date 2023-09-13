@@ -11,7 +11,7 @@ const Services = () => {
       {contentDB && Object.keys(contentDB.services).map(type =>
         <div key={contentDB.services[type].id} className='
           w-full max-w-2xl border-solid border-mood-tertiary p-5
-          flex flex-col justify-center items-start
+          flex flex-col justify-center items-start rounded-lg
         '>
           <h3 className='font-bold'>{contentDB.services[type].subtitle}</h3>
           <ul className='flex flex-col justify-center items-start max-w-[900px] mt-3 gap-3'>
