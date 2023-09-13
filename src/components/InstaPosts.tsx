@@ -56,7 +56,7 @@ const InstaPosts = () => {
               width={200}
               height={200}
               alt={`${post.id}`}
-              className='rounded-full h-[200px] shadow-lg group-hover:shadow-2xl duration-300'
+              className='rounded-full h-[200px] shadow-lg duration-300'
               />
             <span className='max-w-[200px] whitespace-break-spaces group-hover:text-mood-primary duration-300'>
               { hideText(post.description, 30) }
