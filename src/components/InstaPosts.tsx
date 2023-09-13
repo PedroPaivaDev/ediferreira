@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { getUserPosts } from '@/services/instagramAPI';
 
@@ -51,13 +50,11 @@ const InstaPosts = () => {
           <Link href={post.href} key={post.id} target='_blank'
             className='flex flex-col justify-center items-center max-w-[300px] cursor-pointer group text-mood-secondary font-normal'
           >
-            <Image
+            <img
               src={post.imageUrl}
-              width={200}
-              height={200}
               alt={`${post.id}`}
-              className='rounded-full h-[200px] shadow-lg duration-300'
-              />
+              className='rounded-full h-52 w-52 shadow-lg group-hover:shadow-2xl duration-300'
+            />
             <span className='max-w-[200px] whitespace-break-spaces group-hover:text-mood-primary duration-300'>
               { hideText(post.description, 30) }
             </span>
