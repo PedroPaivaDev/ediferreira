@@ -22,7 +22,7 @@ A terceira sessão **Projetos** exibe um carroçel de imagens, com uma imagem de
 
 A quarta sessão **Sobre** possui um breve resumo sobre a formação da designer e um link que redireciona o usuário para outra página, onde é exibida uma foto da designer e mais detalhes sobre a sua história.
 
-A quinta e última sessão **Contato** mostra um link para acessar o Instagram e o Whatsapp, além do e-mail para contato.
+A quinta e última sessão **Contato** mostra um link para acessar o Instagram, o Whatsapp e o e-mail para contato.
 
 > Caso você seja um desenvolvedor, use as instruções abaixo para instalar as dependências e sugerir alterações para a aplicação.
 
@@ -49,8 +49,8 @@ Clique nas versões abaixo, para observar a evolução do projeto ao longo do te
 
 | Versão | Update |
 | ------ | ------ |
-| [Versão 0.0](https://ediferreira-git-v00-pedropaivadev.vercel.app/) | Primeira versão do projeto, apresentada para a designer no dia 08 de Setembro de 2023, quando foram solicitados alguns ajustes a serem feitos. |
-| [Versão 0.1](https://ediferreira-git-v01-pedropaivadev.vercel.app/) | A página 'projetos' foi desenvolvida, para mostrar o que a designer entrega após a conclusão do projeto. Também foi adicionada a página 'sobre' para reduzir a quantidade de texto na página 'home'. Foi utilizada uma API para mostrar no site, alguns posts do Instagram da designer. |
+| [Versão 0.0](https://ediferreira-c1dscw9on-pedropaivadev.vercel.app/) | Primeira versão do projeto, apresentada para a designer no dia 08 de Setembro de 2023, quando foram solicitados alguns ajustes a serem feitos. |
+| [Versão 0.1](https://ediferreira-git-v01-pedropaivadev.vercel.app/) | A página 'projetos' foi desenvolvida, para mostrar os serviços prestados pela designer . Também foi adicionada a página 'sobre' para reduzir a quantidade de texto na página 'home'. Foi utilizada a API do Instgram para mostrar no site, os últimos três posts do Instagram da designer. |
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
