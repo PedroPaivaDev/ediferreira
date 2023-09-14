@@ -8,6 +8,7 @@ import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
+import objectBgImage from "@/helpers/objectBgImage";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
@@ -42,7 +43,8 @@ export default function Home() {
             p-0 relative h-screen
           ">
             <video id="videoEdi"
-              autoPlay loop muted playsInline preload="auto"
+              autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
+              style={objectBgImage(contentDB.home.bgPhoto)}
               className='w-full h-full object-cover absolute top-0 -z-10'
             >
               <source src={contentDB.home.bgVideo} type="video/mp4"/>
@@ -50,14 +52,14 @@ export default function Home() {
             <h1 className="text-mood-light">Edi Ferreira</h1>
             <h3 className="text-mood-light mb-24">Designer de Interiores</h3>
           </section>
-          <section className='bg-mood-secondary text-mood-light'>
-            <p className="mt-4">{contentDB.home.callProjects}</p>
-            <Link href='/projetos' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
-          </section>
-          <Projects />
           <section id="Sobre" className="bg-mood-secondary text-mood-light">
             <p className="mt-4">{contentDB.home.callAbout}</p>
             <Link href='/sobre' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
+          </section>
+          <Projects />
+          <section className='bg-mood-secondary text-mood-light'>
+            <p className="mt-4">{contentDB.home.callProjects}</p>
+            <Link href='/projetos' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
           </section>
         </>}
         <InstaPosts />

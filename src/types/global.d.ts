@@ -8,6 +8,7 @@ interface ContentDB {
 
 interface HomeDB {
   bgVideo: string;
+  bgPhoto: string;
   photoEdi: string;
   callProjects: string;
   callAbout: string;
