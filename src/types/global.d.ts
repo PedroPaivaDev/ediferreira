@@ -19,6 +19,11 @@ interface AboutDB {
   projectsText: {
     subtitle: string;
     description: string;
+  },
+  servicesText: {
+    firstParagraph: string;
+    secondParagraph: string;
+    thirdParagraph: string;
   }
 }
 

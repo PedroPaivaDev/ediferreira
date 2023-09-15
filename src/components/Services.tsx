@@ -7,7 +7,12 @@ const Services = () => {
 
   return (
     <section className='bg-mood-secondary text-mood-light gap-5'>
-      <h2>Serviços</h2>
+      <h2>Por que contratar nossos serviços?</h2>
+      {contentDB && <div className='max-w-2xl flex flex-col justify-center items-center gap-5'>
+        <p>{contentDB.about.servicesText.firstParagraph}</p>
+        <p>{contentDB.about.servicesText.secondParagraph}</p>
+        <p>{contentDB.about.servicesText.thirdParagraph}</p>
+      </div>}
       {contentDB && Object.keys(contentDB.services).map(type =>
         <div key={contentDB.services[type].id} className='
           w-full max-w-2xl border-solid border-mood-tertiary p-5
