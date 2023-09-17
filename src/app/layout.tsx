@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google';
 
 import HeaderViewProvider from '@/contexts/HeaderViewContext';
 import ContentDBProvider from '@/contexts/ContentDBContext';
+import AuthGoogleProvider from '@/contexts/AuthGoogleContext';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,9 +27,11 @@ export default function RootLayout({
       <HeaderViewProvider>
         <body className={`${poppins.className} text-mood-primary bg-mood-light`}>
           <Header />
-          <ContentDBProvider>
-            {children}
-          </ContentDBProvider>
+          <AuthGoogleProvider>
+            <ContentDBProvider>
+              {children}
+            </ContentDBProvider>
+          </AuthGoogleProvider>
           <Footer />
         </body>
       </HeaderViewProvider>

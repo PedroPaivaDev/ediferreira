@@ -2,10 +2,15 @@
 import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
+import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
+
 import TextArea from '@/components/TextArea';
+import SignIn from '@/components/SingIn';
 
 const Admin = () => {
   const contentDB = React.useContext(ContentDBContext);
+  const {userAuth} = React.useContext(AuthGoogleContext);
+
   const [videoPreview, setVideoPreview] = React.useState<string | null>(null);
   const [videoFile, setVideoFile] = React.useState<File | null>(null);
 
@@ -22,7 +27,8 @@ const Admin = () => {
 
   return (
     <main className={`bg-mood-light pt-16 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
-      {contentDB && <div className='w-full flex flex-col justify-start items-start gap-10 max-w-3xl pb-20'>
+      <SignIn />
+      {contentDB && userAuth && <div className='w-full flex flex-col justify-start items-start gap-10 max-w-3xl pb-20'>
         <h2>Conteúdo da Home</h2>
         <div className='flex flex-col justify-start items-start gap-3'>
           <p>Escolha um novo vídeo</p>

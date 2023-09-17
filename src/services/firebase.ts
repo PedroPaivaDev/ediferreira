@@ -1,5 +1,6 @@
 import React from "react";
 import { initializeApp } from "firebase/app";
+import { User, getAuth } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 // Your web app's Firebase configuration
@@ -18,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Realtime Database and get a reference to the service
 const db = getDatabase(app);
+export const auth = getAuth(app);
 
 //----------------------------------------
 
