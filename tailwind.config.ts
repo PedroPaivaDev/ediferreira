@@ -13,6 +13,10 @@ module.exports = {
         'blackShadowInsetBottom': 'inset 0 -150px 150px -100px black'
       },
       colors: {
+        'status': {
+          'sucess': '#1AB912',
+          'error': '#f31'
+        },
         'mood': {
           'light': '#faf0e9',
           'primary': '#1e4d2a',

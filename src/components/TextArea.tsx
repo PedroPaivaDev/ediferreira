@@ -18,6 +18,7 @@ const TextArea = ({id, label, placeholder}:PropsTextArea) => {
         // onChange={onChange}
         // onBlur={onBlur}
         className='w-full'
+        rows={5}
       />
     </div>
   )

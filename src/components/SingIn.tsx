@@ -8,22 +8,27 @@ const SignIn: React.FC = () => {
   const {signInGoogle, logout, userAuth } = React.useContext(AuthGoogleContext);
 
   if(userAuth===false) {
-    return <Loader/>
+    return <Loader className='h-screen'/>
   } else if(userAuth===null) {
-    return <div>      
-      <p className='signInMsg'>Olá, Edi. Faça login com a sua conta do Google</p>
-      <button onClick={signInGoogle} className='signInButton'>Login com a conta do Google</button>
+    return <div className='w-full h-screen mt-5'>
+      <h3 className='mb-5'>Página da administração do site</h3>
+      <p>Faça login com a sua conta do Google (contato.ediferreira@gmail.com).</p>
+      <button onClick={signInGoogle} className='
+        bg-mood-secondary rounded-lg px-5 py-3 mt-5
+        text-mood-light hover:text-mood-tertiary duration-300
+      '>
+        Login
+      </button>
     </div>
   } else {
     return (
-      <div>
-        <div className='userData'>
-          <div className='userContent'>
-            <div className='userName'>
-              <button onClick={logout} className='signInButton'>Sair</button>
-            </div>
-          </div>
-        </div>
+      <div className='py-3'>
+        <button onClick={logout} className='
+          bg-mood-secondary rounded-lg px-5 py-3
+          text-mood-light hover:text-mood-tertiary duration-300
+        '>
+          Logout
+        </button>
       </div>
     );
   }
