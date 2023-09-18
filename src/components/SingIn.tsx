@@ -4,7 +4,7 @@ import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
 
 import Loader from '../components/Loader';
 
-const SignIn = ({isEdiEmail}:{isEdiEmail:boolean}) => {
+const SignIn = () => {
   const {signInGoogle, logout, userAuth } = React.useContext(AuthGoogleContext);
 
   if(userAuth===false) {
@@ -23,7 +23,6 @@ const SignIn = ({isEdiEmail}:{isEdiEmail:boolean}) => {
   } else {
     return (
       <div className='py-3'>
-        {isEdiEmail && <p className='text-status-error mb-5'>O e-mail que você selecionou não é o "contato.ediferreira@gmail.com". Clique em "Logout" e escolha o e-mail correto.</p>}
         <button onClick={logout} className='
           bg-mood-secondary rounded-lg px-5 py-3
           text-mood-light hover:text-mood-tertiary duration-300

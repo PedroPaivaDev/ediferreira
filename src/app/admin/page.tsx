@@ -11,7 +11,6 @@ import SignIn from '@/components/SingIn';
 const Admin = () => {
   const contentDB = React.useContext(ContentDBContext);
   const {userAuth} = React.useContext(AuthGoogleContext);
-  const [isEdiEmail, setIsEdiEmail] = React.useState(false);
 
   const [videoPreview, setVideoPreview] = React.useState<string | null>(null);
   const [videoFile, setVideoFile] = React.useState<File | null>(null);
@@ -38,19 +37,11 @@ const Admin = () => {
     setPotoFile(files[0]);
     setPhotoPreview(videoPreviewURL);
   }
-
-  React.useEffect(() => {
-    if(userAuth && userAuth.email!=="contato.ediferreira@gmail.com") {
-      setIsEdiEmail(true);
-    } else {
-      setIsEdiEmail(false);
-    }
-  },[userAuth]);
   
   return (
     <main className={`py-16 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
-      <SignIn isEdiEmail={isEdiEmail} />
-      {contentDB && isEdiEmail &&
+      <SignIn />
+      {contentDB && userAuth &&
         <div className='w-full flex flex-col justify-start items-start gap-10 max-w-4xl px-20'>
           <p>Bem vinda, Edi.</p>
           <div id='homeContent' className='w-full flex flex-col justify-start items-start gap-5'>
