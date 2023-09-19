@@ -23,8 +23,8 @@ const SignIn = () => {
   } else if(userAuth.email!=="contato.ediferreira@gmail.com") {
     return (
       <div className=' h-screen py-3'>
-        <p className='text-status-error mb-5'>O e-mail que você selecionou não é o "contato.ediferreira@gmail.com".</p>
-        <p>Clique em "Logout" e escolha o e-mail correto.</p>
+        <p className='text-status-error mb-5'>O e-mail que você selecionou não é o &quot;contato.ediferreira@gmail.com&quot;.</p>
+        <p>Clique em &quot;Logout&quot; e escolha o e-mail correto.</p>
         <button onClick={logout} className='
           bg-mood-secondary rounded-lg px-5 py-3
           text-mood-light hover:text-mood-tertiary duration-300
