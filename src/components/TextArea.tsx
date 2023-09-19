@@ -13,10 +13,7 @@ const TextArea = ({id, label, placeholder}:PropsTextArea) => {
       <textarea 
         id={id}
         name={id}
-        // value={''}
         placeholder={placeholder}
-        // onChange={onChange}
-        // onBlur={onBlur}
         className='w-full p-5'
         rows={5}
       />
