@@ -38,14 +38,18 @@ const Admin = () => {
     setPhotoPreview(videoPreviewURL);
   }
   
+  if(!userAuth) {
+    return <main className='pt-16'><SignIn /></main>
+  }
+  
   return (
     <main className={`py-16 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
       <SignIn />
-      {contentDB && userAuth &&
+      {contentDB && userAuth.email==="contato.ediferreira@gmail.com" &&
         <div className='w-full flex flex-col justify-start items-start gap-10 max-w-4xl px-20'>
           <p>Bem vinda, Edi.</p>
           <div id='homeContent' className='w-full flex flex-col justify-start items-start gap-5'>
-            <h3>Conteúdo da Home</h3>
+            <h3>Conteúdo da Página &quot;Home&quot;</h3>
             <div className='flex flex-col justify-start items-start gap-3'>
               <label htmlFor='newBgVideo'>Escolha um novo vídeo vertical com no máximo 5 megabytes e que não possua áudio:</label>
               <input
@@ -69,10 +73,10 @@ const Admin = () => {
             <TextArea id='callProjects' label={`Chamada para a página "Projetos":`} placeholder={contentDB.home.callProjects}/>
           </div>
           <div id='aboutContent' className='w-full flex flex-col justify-start items-start gap-5'>
-            <h3>Conteúdo da Sessão "Sobre"</h3>
+            <h3>Conteúdo da Sessão &quot;Sobre&quot;</h3>
             <TextArea id='aboutText' label={`Texto da sessão "sobre":`} placeholder={contentDB.about.text}/>
             <div className='flex flex-col justify-start items-start gap-3'>
-              <label htmlFor="photoEdi">Escolha uma nova foto para a sessão "sobre"</label>
+              <label htmlFor="photoEdi">Escolha uma nova foto para a sessão &quot;sobre&quot;</label>
               <input
                 onChange={onPhotoSelected}
                 name="photoEdi"
@@ -89,7 +93,7 @@ const Admin = () => {
             </div>
           </div>
           <div id='servicesContent' className='w-full flex flex-col justify-start items-start gap-5'>
-            <h3>Conteúdo da Sessão "Serviços"</h3>
+            <h3>Conteúdo da Sessão &quot;Serviços&quot;</h3>
             <TextArea id='servicesTextFirstP' label={`Primeiro texto:`} placeholder={contentDB.about.servicesText.firstParagraph}/>
             <TextArea id='servicesTextSecondP' label={`Segundo texto:`} placeholder={contentDB.about.servicesText.secondParagraph}/>
             <TextArea id='servicesTextThirdP' label={`Terceiro texto:`} placeholder={contentDB.about.servicesText.thirdParagraph}/>
