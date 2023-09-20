@@ -1,18 +1,18 @@
 import React from 'react';
 
 interface PropsTextArea {
-  id: string;
+  name: string;
   label: string;
   placeholder: string;
 }
 
-const TextArea = ({id, label, placeholder}:PropsTextArea) => {
+const TextArea = ({name, label, placeholder}:PropsTextArea) => {
   return (
     <div className='w-full flex flex-col justify-start items-start gap-3'>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={name}>{label}</label>
       <textarea 
-        id={id}
-        name={id}
+        id={name}
+        name={name}
         placeholder={placeholder}
         className='w-full p-5'
         rows={5}

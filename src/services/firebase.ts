@@ -1,7 +1,7 @@
 import React from "react";
 import { initializeApp } from "firebase/app";
-import { User, getAuth } from "firebase/auth";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, onValue, update } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -32,4 +32,11 @@ export function getData<Type>(path:string, setState:React.Dispatch<React.SetStat
     (snapshot) => setState(snapshot.val()),
     {onlyOnce: true}
   )
+}
+
+export function changeContent(path:string, content:ObjectKeyString) {
+  const contentRef = ref(db, `content/${path}`);
+  update(contentRef, content).then(() => {
+    console.log(`${path} updated`)
+  }).catch(err => console.log(err));
 }

@@ -75,3 +75,7 @@ interface PostImageDescription {
   imageUrl: string;
   href: string;
 }
+
+interface ObjectKeyString {
+  [key:string]: string;
+}
