@@ -65,6 +65,9 @@ interface ServiceTypeDB {
   id: string;
   subtitle: string;
   items: string[];
+  products: {
+    [key:string]: string;
+  }
 }
 
 type PostsArray = PostImageDescription[]
@@ -78,4 +81,10 @@ interface PostImageDescription {
 
 interface ObjectKeyString {
   [key:string]: string;
+}
+
+interface FormObjectKeyString {
+  [key: string]: {
+    [key: string]: string | Array;
+  }
 }

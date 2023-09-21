@@ -20,9 +20,9 @@ const Services = () => {
         '>
           <h3 className='font-bold'>{contentDB.services[type].subtitle}</h3>
           <ul className='flex flex-col justify-center items-start max-w-[900px] mt-3 gap-3'>
-          {contentDB.services[type].items.map(item =>
+          {Object.keys(contentDB.services[type].products).map(item =>
             <li className='relative text-left list-item ml-5' key={item}>
-              {item}
+              {contentDB.services[type].products[item]}
             </li>
           )}
           </ul>
