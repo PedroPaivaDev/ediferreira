@@ -18,8 +18,8 @@ module.exports = {
           'error': '#f31'
         },
         'mood': {
-          'light': '#faf0e9',
-          'primary': '#1e4d2a',
+          'light': '#F0EFED',
+          'primary': '#1E4D29',
           'secondary': '#6f8474',
           'tertiary': '#cb97a5',
           'quaternary': '#c6aec3',

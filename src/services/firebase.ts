@@ -37,6 +37,7 @@ export function getData<Type>(path:string, setState:React.Dispatch<React.SetStat
 export function changeContent(path:string, content:ObjectKeyString) {
   const contentRef = ref(db, `content/${path}`);
   update(contentRef, content).then(() => {
-    console.log(`${path} updated`)
+    confirm(`Os seguinte campos foram atualizados: ${path}.`) && window.location.reload();
+
   }).catch(err => console.log(err));
 }
