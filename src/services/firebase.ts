@@ -2,6 +2,7 @@ import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, onValue, update } from "firebase/database";
+import { getStorage, ref as storageRef, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,8 +21,28 @@ const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 const db = getDatabase(app);
 export const auth = getAuth(app);
+const storage = getStorage(app);
 
 //----------------------------------------
+
+//MÉTODOS DO STORAGE
+
+export async function uploadFileAndGetUrl(folderDB:string, fileName: string, fileObject: File) {
+  const fileRef = storageRef(storage, `${folderDB}/${fileName}`);
+  return uploadBytes(fileRef, fileObject).then(async (snapshot) => {
+    const url = await getDownloadURL(storageRef(storage, snapshot.metadata.fullPath));
+    return url;
+  });
+}
+
+export function removePhotoFromDB(category: string, fileName: string) {
+  const fileRef = storageRef(storage, `${category}/${fileName}`);
+  deleteObject(fileRef).then(() => {
+    alert("Arquivo removido do Banco de Dados");
+  }).catch(err => {
+    alert(`Não foi possível remover o arquivo no Banco de Dados, devido ao erro: ${err}`)
+  })
+}
 
 //MÉTODOS DO REALTIME DATABASE:
 

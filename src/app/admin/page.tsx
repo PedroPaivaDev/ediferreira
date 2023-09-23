@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { changeContent } from '@/services/firebase';
+import { changeContent, uploadFileAndGetUrl } from '@/services/firebase';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
 import createObjectFromEntries from '@/helpers/createObjectFromEntries';
@@ -16,10 +16,10 @@ const Admin = () => {
   const contentDB = React.useContext(ContentDBContext);
   const {userAuth} = React.useContext(AuthGoogleContext);
 
-  const [videoPreview, setVideoPreview] = React.useState<string | null>(null);
+  const [videoPreviewUrl, setVideoPreviewUrl] = React.useState<string | null>(null);
   const [videoFile, setVideoFile] = React.useState<File | null>(null);
 
-  const [photoPreview, setPhotoPreview] = React.useState<string | null>(null);
+  const [photoPreviewUrl, setPhotoPreviewUrl] = React.useState<string | null>(null);
   const [photoFile, setPotoFile] = React.useState<File | null>(null);
 
   function onVideoSelected(event: React.ChangeEvent<HTMLInputElement>) {
@@ -27,9 +27,8 @@ const Admin = () => {
     if (!files || !files[0]) {
       return;
     }
-    const videoPreviewURL = URL.createObjectURL(files[0]);
     setVideoFile(files[0]);
-    setVideoPreview(videoPreviewURL);
+    setVideoPreviewUrl(URL.createObjectURL(files[0]));
   }
 
   function onPhotoSelected(event: React.ChangeEvent<HTMLInputElement>) {
@@ -37,9 +36,8 @@ const Admin = () => {
     if (!files || !files[0]) {
       return;
     }
-    const videoPreviewURL = URL.createObjectURL(files[0]);
     setPotoFile(files[0]);
-    setPhotoPreview(videoPreviewURL);
+    setPhotoPreviewUrl(URL.createObjectURL(files[0]));
   }
   
   function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
@@ -63,7 +61,14 @@ const Admin = () => {
     const formData = new FormData(event.currentTarget);
     const formDataEntriesArray = Array.from(formData.entries());
     const formObjectChangedKeys = createObjectFromEntries(formDataEntriesArray as Array<[string, string]>);
-    console.log(formObjectChangedKeys)
+    Object.keys(formObjectChangedKeys).forEach(path =>
+      Object.keys(formObjectChangedKeys[path]).forEach(key => {
+        const objectFile = formObjectChangedKeys[path][key];
+        uploadFileAndGetUrl(key, objectFile.name, objectFile as File).then(fileUrl =>
+          changeContent(path, {[key]: fileUrl})
+        )
+      })
+    );
   }
   
   if(!userAuth) {
@@ -79,7 +84,7 @@ const Admin = () => {
           <div className='w-full max-w-4xl flex flex-col justify-start items-start gap-10 px-5'>
             <form className='w-full flex flex-col justify-start items-start gap-3' onSubmit={handleFileSubmit}>
               <h3 className='text-mood-tertiary'>Vídeo da Página &quot;Home&quot;</h3>
-              {<Button label='Salvar Novo Vídeo'/>}
+              {videoFile && <Button label='Salvar Novo Vídeo'/>}
               <label htmlFor='home&bgVideo'>Escolha um novo vídeo vertical com no máximo 5 megabytes e que não possua áudio:</label>
               <input
                 onChange={onVideoSelected}
@@ -89,17 +94,18 @@ const Admin = () => {
                 accept="video/*"
                 className='text-xs overflow-hidden'
               />
-              {videoPreview && (
+              {videoPreviewUrl && (
                 <video id="videoPreview" autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
-                  className='max-w-lg'
+                  className='max-w-lg' key={videoPreviewUrl}
                 >
-                  <source src={videoPreview} type="video/mp4" />
+                  <source src={videoPreviewUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}
             </form>
-            <div className='w-full flex flex-col justify-start items-start gap-3'>
+            <form className='w-full flex flex-col justify-start items-start gap-3' onSubmit={handleFileSubmit}>
               <h3 className='text-mood-tertiary'>Foto da Edi na Página &quot;Sobre&quot;</h3>
+              {photoFile && <Button label='Salvar Nova Foto da Edi'/>}
               <label htmlFor="home&photoEdi">Escolha uma nova foto que o rosto esteja centralizado, para a sessão &quot;sobre&quot;:</label>
               <input
                 onChange={onPhotoSelected}
@@ -109,12 +115,12 @@ const Admin = () => {
                 accept="image/*"
                 className="text-xs overflow-hidden"
               />
-              {photoPreview && (
-                <Image id="imagePreview" src={photoPreview} alt='Foto Nova da Edi'
-                  width={240} height={240} className='max-w-lg'
+              {photoPreviewUrl && (
+                <Image id="imagePreview" src={photoPreviewUrl} alt='Foto Nova da Edi'
+                  width={240} height={240} className='max-w-lg' key={photoPreviewUrl}
                 />
               )}
-            </div>
+            </form>
           </div>
           <form className='w-full flex flex-col justify-start items-start gap-10 max-w-4xl px-5' onSubmit={handleSubmit}>
             <div id='homeContent' className='w-full flex flex-col justify-start items-start gap-5'>
