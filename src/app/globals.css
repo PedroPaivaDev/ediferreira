@@ -129,6 +129,10 @@ small {
   max-height: calc(100vh - 200px);
 }
 
+.max-h-halfScreen {
+  max-height: calc(100vh / 2);
+}
+
 .list-item::before {
     content: "";
     position: absolute;

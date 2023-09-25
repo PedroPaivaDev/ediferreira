@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 
+import listAllFiles from '@/services/firebase';
 import handleFileSubmit from '@/helpers/handleFileSubmit';
 
 import Button from '@/components/Button';
@@ -8,6 +9,7 @@ import Button from '@/components/Button';
 const VideoHome = () => {
   const [videoPreviewUrl, setVideoPreviewUrl] = React.useState<string | null>(null);
   const [videoFile, setVideoFile] = React.useState<File | null>(null);
+  const [videosDBFiles, setVideosDBFiles] = React.useState<string[]>([]);
 
   function onVideoSelected(event: React.ChangeEvent<HTMLInputElement>) {
     const { files } = event.target;
@@ -17,6 +19,11 @@ const VideoHome = () => {
     setVideoFile(files[0]);
     setVideoPreviewUrl(URL.createObjectURL(files[0]));
   }
+
+  React.useEffect(() => {
+    listAllFiles('bgVideo', setVideosDBFiles);
+  },[]);
+
 
   return (
     <form className='w-full flex flex-col justify-start items-start gap-3' onSubmit={handleFileSubmit}>
@@ -39,6 +46,16 @@ const VideoHome = () => {
           Your browser does not support the video tag.
         </video>
       )}
+      <div className='flex flex-wrap gap-5'>
+        {videosDBFiles.map(video =>
+          <video id="videoPreview" autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
+            className='max-w-lg max-h-halfScreen' key={video}
+          >
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
+      </div>
     </form>
   )
 }
