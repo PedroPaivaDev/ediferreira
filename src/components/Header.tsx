@@ -4,16 +4,17 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 import { HeaderViewContext } from '@/contexts/HeaderViewContext';
-import { getData } from '@/services/firebase';
+
+import LogoType from './LogoType';
 
 const Header = () => {
   const path = usePathname();
   const {visible, currentScrollZero} = React.useContext(HeaderViewContext);
-  const [contactsSocialDB, setcontactsSocialDB] = React.useState<ContactsSocialDB|null>(null);
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    getData<ContactsSocialDB|null>('content/contacts/social', setcontactsSocialDB);
-  },[]);
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <header className={`
@@ -23,26 +24,14 @@ const Header = () => {
       }
       ${visible ? 'translate-y-0' : '-translate-y-full'}
     `}>
-      <nav className='relative flex justify-center items-center w-full max-w-[900px] gap-5 px-5'>
-        <Link href="/#home" className='sm:absolute w-full sm:w-auto'>
-          <svg className='group' version="1.0" xmlns="http://www.w3.org/2000/svg"
-          width="60" height="60" viewBox="0 0 392.000000 295.000000"
-          preserveAspectRatio="xMidYMid meet">
-            <g transform="translate(0.000000,295.000000) scale(0.100000,-0.100000)"
-            className='group-hover:fill-mood-tertiary duration-300 fill-mood-light' stroke="none">
-              <path d="M770 2217 l0 -733 -382 -171 -383 -172 -3 -55 c-2 -31 -1 -56 1 -56
-              3 0 170 75 373 166 203 91 375 168 382 171 9 4 12 -95 12 -476 l0 -481 960 0
-              960 0 0 45 0 45 -910 0 -910 0 0 458 0 459 28 12 c60 28 990 445 1028 461 l41
-              18 544 -247 544 -247 3 -657 2 -657 -1150 0 -1151 0 3 -48 3 -47 1198 -3 1197
-              -2 0 680 c0 374 3 680 8 680 4 0 174 -76 377 -168 l370 -168 3 55 c2 31 0 57
-              -5 58 -4 2 -174 79 -378 171 l-370 168 -3 532 -2 532 -50 0 -50 0 0 -505 c0
-              -278 -3 -505 -6 -505 -4 0 -250 111 -547 246 l-541 245 -540 -242 c-298 -133
-              -544 -244 -548 -246 -5 -2 -8 293 -8 656 l0 661 1145 0 1145 0 0 50 0 50
-              -1195 0 -1195 0 0 -733z"/>
-              </g>
-          </svg>
+      <nav className='relative flex justify-center items-center w-full max-w-[900px] px-5'>
+        <Link href="/#home" className={`w-full ${currentScrollZero && path==='/' ? 'invisible' : 'visible'}`}>
+          <LogoType type='name' className='h-10 fill-mood-light hover:fill-mood-tertiary duration-300'/>
         </Link>
-        <ul className='flex justify-start items-center sm:w-full gap-10'>
+        <ul className={`
+          xs:flex justify-center items-center gap-5 duration-300
+          ${isOpen ? 'flex bg-mood-quaternary absolute top-[60px] w-full h-10' : 'hidden'}
+        `}>
           <li>
             <Link
               href={`/projetos`}
@@ -51,7 +40,7 @@ const Header = () => {
               Projetos
             </Link>
           </li>
-          <li className='hidden sm:block '>
+          <li className='hidden sm:block'>
             <Link
               href={`/sobre`} 
               className='hover:text-mood-tertiary duration-300 text-mood-light'
@@ -59,29 +48,30 @@ const Header = () => {
               Sobre
             </Link>
           </li>
-        </ul>
-        <ul className='flex justify-end items-center sm:w-full gap-5'>
-          {contactsSocialDB && Object.keys(contactsSocialDB).map(socialId =>
-            <li className='hidden sm:block' key={contactsSocialDB[socialId].id}>
-              <a href={contactsSocialDB[socialId].url} target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  width="30" height="30" viewBox="0 0 256 256"
-                  className='hover:fill-mood-tertiary duration-300 fill-mood-light'
-                >
-                  <path d={contactsSocialDB[socialId].icon}></path>
-                </svg>
-              </a>
-            </li>
-          )}
           <li>
             <Link
-              href={`/#Contato`} 
+              href={`#Contato`}
               className='hover:text-mood-tertiary duration-300 text-mood-light'
             >
               Contato
             </Link>
           </li>
         </ul>
+        <button onClick={handleToggle} type="button"
+          className="xs:hidden flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600"
+        >
+          <svg
+            className="w-10 fill-mood-light"
+            viewBox="0 0 256 256"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isOpen ? (
+              <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+            ) : (
+              <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+            )}
+          </svg>
+        </button>
       </nav>
     </header>
   )

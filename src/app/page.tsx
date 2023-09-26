@@ -3,12 +3,13 @@ import React from "react";
 import Link from "next/link";
 
 import { ContentDBContext } from "@/contexts/ContentDBContext";
+import objectBgImage from "@/helpers/objectBgImage";
 
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
-import objectBgImage from "@/helpers/objectBgImage";
+import LogoType from "@/components/LogoType";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
@@ -49,8 +50,7 @@ export default function Home() {
             >
               <source src={contentDB.home.bgVideo} type="video/mp4"/>
             </video>
-            <h1 className="text-mood-light">Edi Ferreira</h1>
-            <h3 className="text-mood-light mb-24">Designer de Interiores</h3>
+            <LogoType type="circle" className="fill-mood-light w-60 mb-24" />
           </section>
           <section id="Sobre" className="bg-mood-secondary text-mood-light">
             <p className="mt-4">{contentDB.home.callAbout}</p>

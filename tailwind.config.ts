@@ -22,9 +22,12 @@ module.exports = {
           'primary': '#1E4D29',
           'secondary': '#6f8474',
           'tertiary': '#cb97a5',
-          'quaternary': '#c6aec3',
-          'quintenary': '#745070'
+          'quaternary': '#a8b5ab',
+          'quintenary': '#7d9081'
         }
+      },
+      screens: {
+        'xs': '400px'
       }
     },
   },

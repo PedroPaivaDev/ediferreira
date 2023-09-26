@@ -88,3 +88,5 @@ interface FormObjectKeyString {
     [key: string]: string | Array;
   }
 }
+
+type LogoType = 'default' | 'circle' | 'name';

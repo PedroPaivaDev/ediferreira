@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <>
       <section id="Contato"
-        className="bg-mood-tertiary text-mood-light gap-5"
+        className="bg-mood-secondary text-mood-light gap-5"
       >
         <h2>Fale Conosco</h2>
         <p className='text-mood-light'>{contentDB?.contacts.description}</p>
