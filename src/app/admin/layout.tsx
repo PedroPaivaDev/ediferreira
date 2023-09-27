@@ -34,8 +34,8 @@ const AdminLayout = ({children}:{children:React.ReactNode}) => {
           {children}
         </div> :
         <section className='h-screen flex flex-col gap-5'>
-          <p className='text-status-error'>O e-mail que você selecionou não é o "contato.ediferreira@gmail.com".</p>
-          <p>Clique em "Logout" e escolha o e-mail correto.</p>
+          <p className='text-status-error'>O e-mail que você selecionou não é o &quot;contato.ediferreira@gmail.com&quot;.</p>
+          <p>Clique em &quot;Logout&quot; e escolha o e-mail correto.</p>
         </section>
       }
     </main>
