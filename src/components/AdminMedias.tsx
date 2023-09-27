@@ -1,62 +1,86 @@
 'use client'
 import React from 'react';
+import Image from 'next/image';
 
-import listAllFiles from '@/services/firebase';
+import { ContentDBContext } from '@/contexts/ContentDBContext';
+
+import { listAllFiles } from '@/services/firebase';
 import handleFileSubmit from '@/helpers/handleFileSubmit';
 
 import Button from '@/components/Button';
+import AdminMediaPhotos from '@/components/AdminMediaPhotos';
 
 const AdminMedias = () => {
-  const [videoPreviewUrl, setVideoPreviewUrl] = React.useState<string | null>(null);
-  const [videoFile, setVideoFile] = React.useState<File | null>(null);
-  const [videosDBFiles, setVideosDBFiles] = React.useState<string[]>([]);
+  const contentDB = React.useContext(ContentDBContext);
 
-  function onVideoSelected(event: React.ChangeEvent<HTMLInputElement>) {
+  const [photosEdiStorageFiles, setPhotosEdiStorageFiles] = React.useState<FileObjectStorage[]>([]);
+  const [photoEdiPreviewUrl, setPhotoEdiPreviewUrl] = React.useState<string | null>(null);
+  const [photoEdiFile, setPhotoEdiFile] = React.useState<File | null>(null);
+
+  const [bgPhotosStorageFiles, setBgPhotosStorageFiles] = React.useState<FileObjectStorage[]>([]);
+  const [bgPhotoPreviewUrl, setBgPhotoPreviewUrl] = React.useState<string | null>(null);
+  const [bgPhotoFile, setBgPotoFile] = React.useState<File | null>(null);
+
+  function onFileSelected(
+    event: React.ChangeEvent<HTMLInputElement>,
+    setPhotoFile: React.Dispatch<React.SetStateAction<File | null>>,
+    setPhotoPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>
+  ) {
     const { files } = event.target;
     if (!files || !files[0]) {
       return;
     }
-    setVideoFile(files[0]);
-    setVideoPreviewUrl(URL.createObjectURL(files[0]));
+    setPhotoFile(files[0]);
+    setPhotoPreviewUrl(URL.createObjectURL(files[0]));
   }
 
   React.useEffect(() => {
-    listAllFiles('bgVideo', setVideosDBFiles);
+    listAllFiles('photoEdi', setPhotosEdiStorageFiles);
+    listAllFiles('bgPhoto', setBgPhotosStorageFiles);
   },[]);
 
 
   return (
-    <form className='w-full flex flex-col justify-start items-start gap-3' onSubmit={handleFileSubmit}>
-      <h3 className='text-mood-tertiary'>Vídeo da Página &quot;Home&quot;</h3>
-      {videoFile && <Button label='Salvar Novo Vídeo'/>}
-      <label htmlFor='home&bgVideo'>Escolha um novo vídeo vertical com no máximo 5 megabytes e que não possua áudio:</label>
-      <input
-        onChange={onVideoSelected}
-        name="home&bgVideo"
-        type="file"
-        id="home&bgVideo"
-        accept="video/*"
-        className='text-xs overflow-hidden'
-      />
-      {videoPreviewUrl && (
-        <video id="videoPreview" autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
-          className='max-w-lg' key={videoPreviewUrl}
-        >
-          <source src={videoPreviewUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )}
-      <div className='flex justify-center items-center flex-wrap gap-5'>
-        {videosDBFiles.map(video =>
-          <video id="videoPreview" autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
-            className='max-w-lg max-h-halfScreen' key={video}
-          >
-            <source src={video} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        )}
-      </div>
-    </form>
+    <>
+      <form className='w-full flex flex-col justify-start items-start gap-5 text-left' onSubmit={handleFileSubmit}>
+        <h3 className='text-mood-tertiary'>Foto da Edi na Página &quot;Sobre&quot;</h3>
+        <p>Faça upload de nova foto que o seu rosto esteja centralizado ou escolha uma das fotos abaixo para usar na sessão &quot;sobre&quot;:</p>
+        <input
+          onChange={(e) => onFileSelected(e, setPhotoEdiFile, setPhotoEdiPreviewUrl)}
+          name="home&photoEdi"
+          type="file"
+          id="home&photoEdi"
+          accept="image/*"
+          className="text-xs overflow-hidden"
+        />
+        {photoEdiPreviewUrl && (<div className='flex'>
+          <Image id="photoEdiPreview" src={photoEdiPreviewUrl} alt='Foto Nova da Edi'
+            width={240} height={240} className='h-60 rounded-full object-cover' key={photoEdiPreviewUrl}
+          />
+          {photoEdiFile && <Button label='Fazer Upload'/>}
+        </div>)}
+        {contentDB && photosEdiStorageFiles && <AdminMediaPhotos photos={photosEdiStorageFiles} contentDB={contentDB}/>}
+      </form>
+      <form className='w-full flex flex-col justify-start items-start gap-5 text-left' onSubmit={handleFileSubmit}>
+        <h3 className='text-mood-tertiary'>Foto no início da Página &quot;Home&quot;</h3>
+        <p>Faça upload de nova foto para a home ou escolha uma das fotos abaixo para usar como background:</p>
+        <input
+          onChange={(e) => onFileSelected(e, setBgPotoFile, setBgPhotoPreviewUrl)}
+          name="home&bgPhoto"
+          type="file"
+          id="home&bgPhoto"
+          accept="image/*"
+          className="text-xs overflow-hidden"
+        />
+        {bgPhotoPreviewUrl && (<div className='flex'>
+          <Image id="bgPhotoPreview" src={bgPhotoPreviewUrl} alt='Foto Nova da Edi'
+            width={240} height={240} className='h-60 rounded-full object-cover' key={bgPhotoPreviewUrl}
+          />
+          {bgPhotoFile && <Button label='Fazer Upload'/>}
+        </div>)}
+        {contentDB && bgPhotosStorageFiles && <AdminMediaPhotos photos={bgPhotosStorageFiles} contentDB={contentDB}/>}
+      </form>
+    </>
   )
 }
 

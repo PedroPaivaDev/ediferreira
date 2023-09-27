@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { ContentDBContext } from "@/contexts/ContentDBContext";
 import objectBgImage from "@/helpers/objectBgImage";
+// import objectBgImage from "@/helpers/objectBgImage";
 
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
@@ -13,43 +14,43 @@ import LogoType from "@/components/LogoType";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
-  const [videoLoaded, setVideoLoaded] = React.useState(false);
+  // const [videoLoaded, setVideoLoaded] = React.useState(false);
 
-  React.useEffect(() => {
-    const videoElement = document.getElementById('videoEdi');
-    const handleVideoLoaded = () => {
-      setVideoLoaded(true);
-    };
-    if(videoElement) {
-      videoElement.addEventListener('canplay', handleVideoLoaded);  
+  // React.useEffect(() => {
+  //   const videoElement = document.getElementById('videoEdi');
+  //   const handleVideoLoaded = () => {
+  //     setVideoLoaded(true);
+  //   };
+  //   if(videoElement) {
+  //     videoElement.addEventListener('canplay', handleVideoLoaded);  
 
-      return () => {
-        videoElement.removeEventListener('canplay', handleVideoLoaded);
-      }
-    }
-  }, [contentDB]);
+  //     return () => {
+  //       videoElement.removeEventListener('canplay', handleVideoLoaded);
+  //     }
+  //   }
+  // }, [contentDB]);
 
   return (
     <>
-      {!videoLoaded && <Loader
+      {!contentDB && <Loader
         className="
           w-full h-full flex flex-col justify-center items-center
           fixed z-40 bg-mood-light
         "
       />}
-      <main className={`${videoLoaded ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+      <main className={`${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && <>
-          <section id="home" className="
+          <section id="home" style={objectBgImage(contentDB.home.bgPhoto)} className="
             flex shrink-0 flex-col justify-end items-center gap-1
             p-0 relative h-screen
           ">
-            <video id="videoEdi"
+            {/* <video id="videoEdi"
               autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
               style={objectBgImage(contentDB.home.bgPhoto)}
               className='w-full h-full object-cover absolute top-0 -z-10'
             >
               <source src={contentDB.home.bgVideo} type="video/mp4"/>
-            </video>
+            </video> */}
             <LogoType type="circle" className="fill-mood-light w-60 mb-24" />
           </section>
           <section id="Sobre" className="bg-mood-secondary text-mood-light">

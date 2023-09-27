@@ -38,20 +38,24 @@ export async function uploadFileAndGetUrl(folderDB:string, fileName: string, fil
 export function removePhotoFromDB(folderDB: string, fileName: string) {
   const fileRef = storageRef(storage, `${folderDB}/${fileName}`);
   deleteObject(fileRef).then(() => {
-    alert("Arquivo removido do Banco de Dados");
+    window.location.reload();
   }).catch(err => {
     alert(`Não foi possível remover o arquivo no Banco de Dados, devido ao erro: ${err}`)
   })
 }
 
-export default function listAllFiles(folderDB:string, setState:React.Dispatch<React.SetStateAction<string[]>>) {
+export function listAllFiles(folderDB:string, setState:React.Dispatch<React.SetStateAction<FileObjectStorage[]>>) {
   const fileRef = storageRef(storage, `${folderDB}`);
   listAll(fileRef).then((snapshot) => {
     snapshot.items.map(async (file) => {
       const url = await getDownloadURL(storageRef(storage, file.fullPath));
       setState((current) => [
         ...current,
-        url
+        {
+          name: file.name,
+          folder: folderDB,
+          url: url
+        }
       ])
     })
   });
@@ -71,7 +75,8 @@ export function getData<Type>(path:string, setState:React.Dispatch<React.SetStat
 export function changeContent(path:string, content:ObjectKeyString) {
   const contentRef = ref(db, `content/${path}`);
   update(contentRef, content).then(() => {
-    confirm(`Os seguinte campos foram atualizados: ${path}.`) && window.location.reload();
+    // confirm(`Os seguinte campos foram atualizados: ${path}.`) && 
+    window.location.reload();
 
   }).catch(err => console.log(err));
 }

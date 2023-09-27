@@ -9,8 +9,11 @@ export default function handleFileSubmit(event:React.FormEvent<HTMLFormElement>)
   Object.keys(formObjectChangedKeys).forEach(path =>
     Object.keys(formObjectChangedKeys[path]).forEach(key => {
       const objectFile = formObjectChangedKeys[path][key];
-      uploadFileAndGetUrl(key, objectFile.name, objectFile as File).then(fileUrl =>
-        changeContent(path, {[key]: fileUrl})
+      uploadFileAndGetUrl(key, objectFile.name, objectFile as File).then(fileUrl => {
+        // changeContent(path, {[key]: fileUrl})
+        alert(`O arquivo ${objectFile.name} foi adicionado ao banco de dados.`);
+        window.location.reload();
+      }
       )
     })
   );

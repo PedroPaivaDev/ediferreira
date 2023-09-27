@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
 import AdminMedias from '@/components/AdminMedias';
-import AdminPhoto from '@/components/AdminPhoto';
 import AdminTexts from '@/components/AdminTexts';
 import AdminProjects from '@/components/AdminProjects';
 
@@ -20,7 +19,6 @@ const Admin = () => {
         <p>Selecione uma das três categorias acima (midias, textos, projetos), para alterar os seus conteúdos.</p>
       </>}
       {projectId==='midias' && <AdminMedias/>}
-      {projectId==='foto' && <AdminPhoto/>}
       {projectId==='textos' && <AdminTexts/>}
       {projectId==='projetos' && <AdminProjects/>}
     </>

@@ -7,7 +7,7 @@ import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
 
 import SignIn from '@/components/SingIn';
 
-const adminSections = ['midias', 'foto', 'textos', 'projetos']
+const adminSections = ['midias', 'textos', 'projetos']
 
 const AdminLayout = ({children}:{children:React.ReactNode}) => {
   const contentDB = React.useContext(ContentDBContext);

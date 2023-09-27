@@ -90,3 +90,9 @@ interface FormObjectKeyString {
 }
 
 type LogoType = 'default' | 'circle' | 'name';
+
+interface FileObjectStorage {
+  name: string;
+  url: string;
+  folder: 'bgPhoto'|'photoEdi'|'bgVideo';
+}
