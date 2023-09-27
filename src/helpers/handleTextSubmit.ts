@@ -6,7 +6,7 @@ export default function handleTextSubmit(event:React.FormEvent<HTMLFormElement>)
   const formData = new FormData(event.currentTarget);
   const formDataEntriesArray = Array.from(formData.entries());
   const formObjectChangedKeys = createObjectFromEntries(formDataEntriesArray as Array<[string, string]>);
-  if(Object.keys(Object.keys(formObjectChangedKeys).length===0)) {
+  if(Object.keys(formObjectChangedKeys).length===0) {
     alert('Nenhum campo foi alterado.');
     return
   }

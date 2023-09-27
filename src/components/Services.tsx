@@ -2,16 +2,16 @@ import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
+import P from './P';
+
 const Services = () => {
   const contentDB = React.useContext(ContentDBContext);
 
   return (
     <section className='bg-mood-secondary text-mood-light gap-5'>
       <h2>Por que contratar nossos serviços?</h2>
-      {contentDB && <div className='max-w-2xl flex flex-col justify-center items-center gap-5'>
-        <p>{contentDB.about.servicesText.firstParagraph}</p>
-        <p>{contentDB.about.servicesText.secondParagraph}</p>
-        <p>{contentDB.about.servicesText.thirdParagraph}</p>
+      {contentDB && <div className='max-w-2xl flex flex-col justify-center items-center gap-5 text-justify'>
+        <P>{contentDB.about.servicesText.firstParagraph}</P>
       </div>}
       {contentDB && Object.keys(contentDB.services).map(type =>
         <div key={contentDB.services[type].id} className='

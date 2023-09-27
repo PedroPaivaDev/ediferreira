@@ -9,6 +9,10 @@ interface PropsTextArea {
 const TextArea = ({name, label, placeholder}:PropsTextArea) => {
   const [valueDB, setValueDB] = React.useState('');
 
+  function handleOnChange({target}:React.ChangeEvent<HTMLTextAreaElement>) {
+    setValueDB(target.value);
+  }
+
   function handleOnFocus() {
     if(valueDB==='') {
       setValueDB(placeholder)
@@ -33,7 +37,7 @@ const TextArea = ({name, label, placeholder}:PropsTextArea) => {
         value={valueDB}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        onChange={({target}) => setValueDB(target.value)}
+        onChange={handleOnChange}
       />
     </div>
   )

@@ -3,6 +3,7 @@ import React from 'react';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
 import Slider from './Slider';
+import P from './P';
 
 const Projects = () => {
   const contentDB = React.useContext(ContentDBContext);
@@ -13,9 +14,9 @@ const Projects = () => {
     >
       <h2>Projetos</h2>
       {contentDB && <>
-        <p>{contentDB.about.projectsText.subtitle}</p>
+        <P>{contentDB.about.projectsText.subtitle}</P>
         <Slider projects={contentDB.projects}/>
-        <p>{contentDB.about.projectsText.description}</p>
+        <P>{contentDB.about.projectsText.description}</P>
       </>}
     </section>
   )

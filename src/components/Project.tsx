@@ -1,5 +1,7 @@
 import React from 'react';
 
+import P from './P';
+
 interface PropsProject {
   project: ProjectDB;
   setModalImage: React.Dispatch<React.SetStateAction<string | null>>;
@@ -14,7 +16,7 @@ const Project = ({project, setModalImage}:PropsProject) => {
           {project.name}
         </h1>
         <h3>{project.subtitle}</h3>
-        <p className='text-mood-primary mt-5'>{project.description}</p>
+        <P className='text-mood-primary mt-5'>{project.description}</P>
       </section>
       <section className='flex justify-center items-center flex-wrap gap-20 flex-col sm:flex-row'>
         {project.images.map(imageUrl =>

@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
+import P from './P';
+
 const About = () => {
   const contentDB = React.useContext(ContentDBContext);
 
@@ -16,7 +18,7 @@ const About = () => {
           className="rounded-full col-span-3 object-cover h-60 shadow-lg"
         />
         <div className="flex flex-col flex-1 gap-5">
-          <p>{contentDB.about.text}</p>
+            <P>{contentDB.about.text}</P>
         </div>
       </div>}
     </section>

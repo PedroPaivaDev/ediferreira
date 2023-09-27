@@ -2,6 +2,8 @@ import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
+import P from './P';
+
 const Contact = () => {
   const contentDB = React.useContext(ContentDBContext);
 
@@ -11,7 +13,7 @@ const Contact = () => {
         className="bg-mood-secondary text-mood-light gap-5"
       >
         <h2>Fale Conosco</h2>
-        <p className='text-mood-light'>{contentDB?.contacts.description}</p>
+        {contentDB && <P className='text-mood-light'>{contentDB?.contacts.description}</P>}
         <ul className='
           flex flex-col justify-center items-start gap-5
         '>

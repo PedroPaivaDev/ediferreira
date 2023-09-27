@@ -30,9 +30,7 @@ const AdminTexts = () => {
         </div>
         <div id='servicesContent' className='w-full flex flex-col justify-start items-start gap-5'>
           <h3 className='text-mood-tertiary'>Conteúdo da Sessão &quot;Serviços&quot;</h3>
-          <TextArea name='about/servicesText&firstParagraph' label={`Primeiro parágrafo:`} placeholder={contentDB.about.servicesText.firstParagraph}/>
-          <TextArea name='about/servicesText&secondParagraph' label={`Segundo parágrafo:`} placeholder={contentDB.about.servicesText.secondParagraph}/>
-          <TextArea name='about/servicesText&thirdParagraph' label={`Terceiro parágrafo:`} placeholder={contentDB.about.servicesText.thirdParagraph}/>
+          <TextArea name='about/servicesText&firstParagraph' label={`Texto da sessão "serviços":`} placeholder={contentDB.about.servicesText.firstParagraph}/>
           <div id='servicesItems' className='w-full flex flex-col justify-start items-start gap-5'>
             <h3>Tipos de serviços:</h3>
             {Object.keys(contentDB.services).map(serviceId =>
