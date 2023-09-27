@@ -1,12 +1,12 @@
 'use client'
-import React from 'react'
+import React from 'react';
 import Image from 'next/image';
 
 import handleFileSubmit from '@/helpers/handleFileSubmit';
 
 import Button from '@/components/Button';
 
-const AdminFoto = () => {
+const AdminPhoto = () => {
   const [photoPreviewUrl, setPhotoPreviewUrl] = React.useState<string | null>(null);
   const [photoFile, setPotoFile] = React.useState<File | null>(null);
 
@@ -41,4 +41,4 @@ const AdminFoto = () => {
   )
 }
 
-export default AdminFoto
+export default AdminPhoto;

@@ -3,13 +3,19 @@ import React from 'react';
 import Link from 'next/link';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
+import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
 
 import SignIn from '@/components/SingIn';
 
-const adminSections = ['video', 'foto', 'textos', 'projetos']
+const adminSections = ['midias', 'foto', 'textos', 'projetos']
 
 const AdminLayout = ({children}:{children:React.ReactNode}) => {
   const contentDB = React.useContext(ContentDBContext);
+  const {userAuth} = React.useContext(AuthGoogleContext);
+  
+  if(!userAuth) {
+    return <main className='pt-16'><SignIn /></main>
+  }
 
   return (
     <main className={`gap-5 py-16 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
@@ -17,15 +23,21 @@ const AdminLayout = ({children}:{children:React.ReactNode}) => {
         <ul className='w-full max-w-4xl flex justify-center items-center gap-10 p-5 flex-wrap'>
           {adminSections.map(section =>
             <li key={section}>
-              <Link className='hover:text-mood-tertiary duration-300 font-normal' href={`/admin/${section}`}>{section}</Link>
+              <Link className='hover:text-mood-tertiary duration-300 font-normal' href={`admin?content=${section}`}>{section}</Link>
             </li>
           )}
         </ul>
       </nav>
       <SignIn />
-      <div className='w-full max-w-4xl flex flex-col justify-start items-start gap-10 px-5'>
-        {children}
-      </div>
+      {contentDB && userAuth.email==="contato.ediferreira@gmail.com" ?
+        <div className='w-full max-w-4xl flex flex-col justify-start items-start gap-10 px-5'>
+          {children}
+        </div> :
+        <section className='h-screen flex flex-col gap-5'>
+          <p className='text-status-error'>O e-mail que você selecionou não é o "contato.ediferreira@gmail.com".</p>
+          <p>Clique em "Logout" e escolha o e-mail correto.</p>
+        </section>
+      }
     </main>
   )
 }

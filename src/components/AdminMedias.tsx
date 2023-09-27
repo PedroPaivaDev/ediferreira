@@ -6,7 +6,7 @@ import handleFileSubmit from '@/helpers/handleFileSubmit';
 
 import Button from '@/components/Button';
 
-const VideoHome = () => {
+const AdminMedias = () => {
   const [videoPreviewUrl, setVideoPreviewUrl] = React.useState<string | null>(null);
   const [videoFile, setVideoFile] = React.useState<File | null>(null);
   const [videosDBFiles, setVideosDBFiles] = React.useState<string[]>([]);
@@ -46,7 +46,7 @@ const VideoHome = () => {
           Your browser does not support the video tag.
         </video>
       )}
-      <div className='flex flex-wrap gap-5'>
+      <div className='flex justify-center items-center flex-wrap gap-5'>
         {videosDBFiles.map(video =>
           <video id="videoPreview" autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
             className='max-w-lg max-h-halfScreen' key={video}
@@ -60,4 +60,4 @@ const VideoHome = () => {
   )
 }
 
-export default VideoHome;
+export default AdminMedias;

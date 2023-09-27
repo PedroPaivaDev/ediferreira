@@ -68,4 +68,4 @@ const AdminTexts = () => {
   )
 }
 
-export default AdminTexts
+export default AdminTexts;

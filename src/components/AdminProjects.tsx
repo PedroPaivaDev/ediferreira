@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const AdminProjects = () => {
   return (
@@ -8,4 +8,4 @@ const AdminProjects = () => {
   )
 }
 
-export default AdminProjects
+export default AdminProjects;
