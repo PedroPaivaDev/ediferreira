@@ -44,7 +44,7 @@ export function removePhotoFromDB(folderDB: string, fileName: string) {
   })
 }
 
-export function listAllFiles(folderDB:string, setState:React.Dispatch<React.SetStateAction<FileObjectStorage[]>>) {
+export function listAllFiles(folderDB:FolderFileStorage, setState:React.Dispatch<React.SetStateAction<FileObjectStorage[]>>) {
   const fileRef = storageRef(storage, `${folderDB}`);
   listAll(fileRef).then((snapshot) => {
     snapshot.items.map(async (file) => {
