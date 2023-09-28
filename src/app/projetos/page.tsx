@@ -29,8 +29,8 @@ const PageProjects = () => {
       />}
       <main className={`bg-mood-light pt-16 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && !projectId && <>
-          <Services />
           <Projects />
+          <Services />
           <InstaPosts />
         </>}
         {contentDB?.projects && projectId &&

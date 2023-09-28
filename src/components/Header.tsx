@@ -7,6 +7,8 @@ import { HeaderViewContext } from '@/contexts/HeaderViewContext';
 
 import LogoType from './LogoType';
 
+const sandwichNavBar = ['/#Home', '/Projetos', '/Sobre', '#Contato'];
+
 const Header = () => {
   const path = usePathname();
   const {visible, currentScrollZero} = React.useContext(HeaderViewContext);
@@ -23,42 +25,29 @@ const Header = () => {
         'bg-transparent' : 'bg-mood-primary'
       }
       ${visible ? 'translate-y-0' : '-translate-y-full'}
+      sm:translate-y-0
     `}>
       <nav className='relative flex justify-center items-center w-full max-w-[900px] px-5'>
         <Link href="/#home" className={`w-full ${currentScrollZero && path==='/' ? 'invisible' : 'visible'}`}>
           <LogoType type='name' className='h-10 fill-mood-light hover:fill-mood-tertiary duration-300'/>
         </Link>
         <ul className={`
-          xs:flex justify-center items-center gap-5 duration-300
+          sm:flex justify-center items-center gap-5 duration-300
           ${isOpen ? 'flex bg-mood-quaternary absolute top-[60px] w-full h-10' : 'hidden'}
         `}>
-          <li>
-            <Link
-              href={`/projetos`}
-              className='hover:text-mood-tertiary duration-300 text-mood-light'
-            >
-              Projetos
-            </Link>
-          </li>
-          <li className='hidden sm:block'>
-            <Link
-              href={`/sobre`} 
-              className='hover:text-mood-tertiary duration-300 text-mood-light'
-            >
-              Sobre
-            </Link>
-          </li>
-          <li>
-            <Link
-              href={`#Contato`}
-              className='hover:text-mood-tertiary duration-300 text-mood-light'
-            >
-              Contato
-            </Link>
-          </li>
+          {sandwichNavBar.map(navLink =>
+            <li key={navLink}>
+              <Link
+                href={`${navLink.toLowerCase()}`}
+                className='hover:text-mood-tertiary duration-300 text-mood-light'
+              >
+                {navLink.replace(/[^\w\s]/gi, '')}
+              </Link>
+            </li>
+          )}
         </ul>
         <button onClick={handleToggle} type="button"
-          className="xs:hidden flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600"
+          className="sm:hidden flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600"
         >
           <svg
             className="w-10 fill-mood-light"
