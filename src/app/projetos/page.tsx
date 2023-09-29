@@ -27,7 +27,7 @@ const PageProjects = () => {
           fixed z-40 bg-mood-light
         "
       />}
-      <main className={`bg-mood-light pt-16 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+      <main className={`bg-mood-light pt-28 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && !projectId && <>
           <Projects />
           <Services />

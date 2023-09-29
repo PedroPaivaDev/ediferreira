@@ -20,20 +20,20 @@ const Header = () => {
 
   return (
     <header className={`
-      h-16 duration-300
+      h-24 duration-300
       ${currentScrollZero && path==='/' ?
         'bg-transparent' : 'bg-mood-primary'
       }
       ${visible ? 'translate-y-0' : '-translate-y-full'}
       sm:translate-y-0
     `}>
-      <nav className='relative flex justify-center items-center w-full max-w-[900px] px-5'>
-        <Link href="/#home" className={`w-full ${currentScrollZero && path==='/' ? 'invisible' : 'visible'}`}>
-          <LogoType type='name' className='h-10 fill-mood-light hover:fill-mood-tertiary duration-300'/>
-        </Link>
+      <nav className='flex justify-center items-center w-full max-w-[900px] px-5'>
+        <button className={`w-auto sm:w-full pointer-events-auto sm:pointer-events-none`} onClick={handleToggle}>
+          <LogoType type={isOpen ? 'closed' : 'name'} className='w-72 fill-mood-light'/>
+        </button>
         <ul className={`
           sm:flex justify-center items-center gap-5 duration-300
-          ${isOpen ? 'flex bg-mood-quaternary absolute top-[60px] w-full h-10' : 'hidden'}
+          ${isOpen ? 'flex bg-mood-quaternary absolute top-24 w-full h-10' : 'hidden'}
         `}>
           {sandwichNavBar.map(navLink =>
             <li key={navLink}>
@@ -46,7 +46,7 @@ const Header = () => {
             </li>
           )}
         </ul>
-        <button onClick={handleToggle} type="button"
+        {/* <button onClick={handleToggle} type="button"
           className="sm:hidden flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600"
         >
           <svg
@@ -60,7 +60,7 @@ const Header = () => {
               <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
             )}
           </svg>
-        </button>
+        </button> */}
       </nav>
     </header>
   )

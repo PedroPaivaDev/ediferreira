@@ -89,7 +89,7 @@ interface FormObjectKeyString {
   }
 }
 
-type LogoType = 'default' | 'circle' | 'name';
+type LogoType = 'default' | 'circle' | 'name' | 'closed';
 
 interface FileObjectStorage {
   name: string;

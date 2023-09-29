@@ -63,7 +63,7 @@ const AdminTexts = () => {
           </div>
         </div>
       </>}
-      <Button label='Salvar Textos' className='fixed right-5 top-[150px]'/>
+      <Button label='Salvar Textos' className='fixed right-5 top-[220px]'/>
     </form>
   )
 }

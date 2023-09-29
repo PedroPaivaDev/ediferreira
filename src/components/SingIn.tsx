@@ -9,7 +9,7 @@ const SignIn = () => {
   const {signInGoogle, logout, userAuth } = React.useContext(AuthGoogleContext);
 
   if(userAuth===false) {
-    return <Loader className='h-almostScreen'/>
+    return <Loader className='h-almostScreen py-24'/>
   } else if(userAuth===null) {
     return <div className='w-full h-almostScreen'>
       <h3 className='mb-5'>Página da administração do site</h3>

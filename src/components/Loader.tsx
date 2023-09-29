@@ -7,7 +7,7 @@ interface PropsLoader {
 const Loader = ({className}:PropsLoader) => {
   return (
     <div className={className}>
-      <svg xmlns="http://www.w3.org/2000/svg" className='m-auto bg-none block' width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+      <svg xmlns="http://www.w3.org/2000/svg" className='bg-none block' width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <g transform="translate(50 50)">
           <g transform="scale(0.8)">
             <g transform="translate(-50 -50)">

@@ -51,7 +51,6 @@ export default function Home() {
             >
               <source src={contentDB.home.bgVideo} type="video/mp4"/>
             </video> */}
-            <LogoType type="circle" className="fill-mood-light w-60 mb-24" />
           </section>
           <section id="Sobre" className="bg-mood-secondary text-mood-light">
             <p className="mt-4">{contentDB.home.callAbout}</p>
