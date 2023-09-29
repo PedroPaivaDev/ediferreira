@@ -10,7 +10,6 @@ import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
-import LogoType from "@/components/LogoType";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);

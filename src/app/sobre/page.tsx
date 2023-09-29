@@ -20,7 +20,7 @@ const PageAbout = () => {
           fixed z-40 bg-mood-light
         "
       />}
-      <main className={`bg-mood-light pt-28 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+      <main className={`bg-mood-light pt-[136px] ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         <About />
         <Services />
         <InstaPosts />

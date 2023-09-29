@@ -20,26 +20,25 @@ const Header = () => {
 
   return (
     <header className={`
-      h-24 duration-300
+      duration-300
       ${currentScrollZero && path==='/' ?
         'bg-transparent' : 'bg-mood-primary'
       }
       ${visible ? 'translate-y-0' : '-translate-y-full'}
       sm:translate-y-0
     `}>
-      <nav className='flex justify-center items-center w-full max-w-[900px] px-5'>
-        <button className={`w-auto sm:w-full pointer-events-auto sm:pointer-events-none`} onClick={handleToggle}>
+      <nav className='flex flex-wrap sm:flex-nowrap justify-center items-center w-full max-w-[900px] px-5'>
+        <div className={`h-24 w-full flex justify-center sm:justify-start`} onClick={handleToggle}>
           <LogoType type={isOpen ? 'closed' : 'name'} className='w-72 fill-mood-light'/>
-        </button>
+        </div>
         <ul className={`
-          sm:flex justify-center items-center gap-5 duration-300
-          ${isOpen ? 'flex bg-mood-quaternary absolute top-24 w-full h-10' : 'hidden'}
+          flex justify-center items-center gap-5 duration-300
         `}>
           {sandwichNavBar.map(navLink =>
             <li key={navLink}>
               <Link
                 href={`${navLink.toLowerCase()}`}
-                className='hover:text-mood-tertiary duration-300 text-mood-light'
+                className='hover:text-mood-tertiary duration-300 text-mood-light leading-10'
               >
                 {navLink.replace(/[^\w\s]/gi, '')}
               </Link>

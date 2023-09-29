@@ -30,7 +30,7 @@ const ProjectArrows = ({projectId}:{projectId:string}) => {
     <div
       className='relative w-full flex justify-center items-center bg-mood-quaternary'
     >
-      <Link href='/projetos' className='text-mood-light m-5 z-20 hover:text-mood-secondary duration-300'>
+      <Link href='/projetos' className='text-mood-light m-5 z-10 hover:text-mood-secondary duration-300'>
         outros projetos
       </Link>
       {contentDB && <SlideArrows
