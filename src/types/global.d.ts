@@ -80,7 +80,7 @@ interface PostImageDescription {
 }
 
 interface ObjectKeyString {
-  [key:string]: string;
+  [key:string]: string | string[];
 }
 
 interface FormObjectKeyString {
