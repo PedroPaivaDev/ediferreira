@@ -25,13 +25,13 @@ const Select = ({initial, options, selectedOption, setSelectedOption, className,
   }
 
   return (
-    <div className={`flex items-center gap-5 ${className}`}>
+    <div className={`flex sm:items-center gap-5 ${className}`}>
       <label htmlFor={label}>{label}</label>
       <select
         name={name} id={label}
         value={handleValue()}
         onChange={handleChange}
-        className='h-8 px-4' {...props}
+        className='h-8 px-4 hover:bg-mood-quaternary cursor-pointer duration-300' {...props}
       >
         {initial && <option value="" disabled>{initial}</option>}
         {options.map((option) => (

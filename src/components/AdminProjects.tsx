@@ -4,10 +4,12 @@ import { ContentDBContext } from '@/contexts/ContentDBContext';
 import { changeContent, removePhotoFromDB } from '@/services/firebase';
 import getFileNameFromUrl from '@/helpers/getFileNameFromUrl';
 import objectBgImage from '@/helpers/objectBgImage';
+import handleTextSubmit from '@/helpers/handleTextSubmit';
 
 import Select from './Select';
 import InputText from './InputText';
 import TextArea from './TextArea';
+import Button from './Button';
 
 const AdminProjects = () => {
   const contentDB = React.useContext(ContentDBContext);
@@ -15,29 +17,35 @@ const AdminProjects = () => {
 
   function handleDeleteImage(imageFolder:string, imageUrl:string, contentDB:ContentDB) {
     const newImagesArray = contentDB.projects[imageFolder].images.filter(photoUrl => photoUrl!==imageUrl)
-    changeContent(`projects/${imageFolder}`, {images: newImagesArray})
-    confirm('Deseja excluir esta foto?') && removePhotoFromDB(`projetos/${imageFolder}`, getFileNameFromUrl(imageUrl));
+    if(confirm('Deseja excluir esta foto?')) {
+      removePhotoFromDB(`projetos/${imageFolder}`, getFileNameFromUrl(imageUrl));
+      changeContent(`projects/${imageFolder}`, {images: newImagesArray});
+    } else return;
   }
-
 
   return (
     <div className='w-full flex flex-col justify-start items-start gap-3'>
       <h3 className='text-mood-tertiary'>Editar e Adicionar Projetos</h3>
+      <Button label='Cadastrar um Novo Projeto'/>
+      <p>ou</p>
       {contentDB && <Select
         name="projetos"
-        label="Projeto:"
+        label="Edite um Projeto Cadastrado:"
         initial="Selecione um projeto"
         options={Object.keys(contentDB.projects)}
         selectedOption={selectedProject} setSelectedOption={setSelectedProject}
+        className='flex-col sm:flex-row'
       />}
       {selectedProject && contentDB && <div className='flex flex-col justify-start items-start gap-5'>
-        <form className='w-full flex flex-col justify-start items-start gap-5'>
+        <form className='w-full flex flex-col justify-start items-start gap-5' onSubmit={handleTextSubmit}>
           <p>Edite o conteúdo deste projeto, utilizando os campos abaixo:</p>
           <InputText label="Nome:" name={`projects/${selectedProject}&name`} placeholder={contentDB.projects[selectedProject].name}/>
           <InputText label="Subtítulo:" name={`projects/${selectedProject}&subtitle`} placeholder={contentDB.projects[selectedProject].subtitle}/>
           <TextArea label="Descrição:" name={`projects/${selectedProject}&description`} placeholder={contentDB.projects[selectedProject].description}/>
+          <Button label='Salvar Alterações dos Textos'/>
         </form>
-        <form className='flex flex-wrap gap-5'>
+        <p>{`Clique no "X" para remover as imagens:`}</p>
+        <form className='w-full flex flex-col sm:flex-row flex-wrap justify-center items-center gap-5'>
           {contentDB.projects[selectedProject].images.map(photoUrl =>
             <div key={photoUrl} style={objectBgImage(photoUrl)}
               className={`
