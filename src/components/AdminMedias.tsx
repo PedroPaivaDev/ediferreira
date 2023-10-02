@@ -35,8 +35,8 @@ const AdminMedias = () => {
   }
 
   React.useEffect(() => {
-    listAllFiles('photoEdi', setPhotosEdiStorageFiles);
-    listAllFiles('bgPhoto', setBgPhotosStorageFiles);
+    listAllFiles('photoEdi', 'photoEdi', setPhotosEdiStorageFiles);
+    listAllFiles('bgPhoto', 'photoEdi', setBgPhotosStorageFiles);
   },[]);
 
 
@@ -59,7 +59,18 @@ const AdminMedias = () => {
           />
           {photoEdiFile && <Button label='Fazer Upload'/>}
         </div>)}
-        {contentDB && photosEdiStorageFiles && <AdminMediaPhotos photos={photosEdiStorageFiles} contentDB={contentDB}/>}
+        {contentDB && photosEdiStorageFiles &&
+          <div className='flex justify-center items-center flex-wrap gap-5'>
+            {photosEdiStorageFiles.map(photo =>
+              <AdminMediaPhotos key={photo.name}
+                photoUrlDB={contentDB.home.photoEdi}
+                usePhotoOnPathDB='home'
+                photo={photo} fileStorageFolderPath='photoEdi'
+                className='rounded-full'
+              />
+            )}
+          </div>
+        }
       </form>
       <form className='w-full flex flex-col justify-start items-start gap-5 text-left' onSubmit={handleFileSubmit}>
         <h3 className='text-mood-tertiary'>Foto no início da Página &quot;Home&quot;</h3>
@@ -78,7 +89,17 @@ const AdminMedias = () => {
           />
           {bgPhotoFile && <Button label='Fazer Upload'/>}
         </div>)}
-        {contentDB && bgPhotosStorageFiles && <AdminMediaPhotos photos={bgPhotosStorageFiles} contentDB={contentDB}/>}
+        {contentDB && bgPhotosStorageFiles &&
+          <div className='flex justify-center items-center flex-wrap gap-5'>
+            {bgPhotosStorageFiles.map(photo =>
+              <AdminMediaPhotos key={photo.name}
+                photoUrlDB={contentDB.home.bgPhoto}
+                usePhotoOnPathDB='home'
+                photo={photo} fileStorageFolderPath='bgPhoto'
+              />
+            )}
+          </div>
+        }
       </form>
     </>
   )

@@ -94,7 +94,11 @@ type LogoType = 'default' | 'circle' | 'name' | 'closeSandwich' | 'openSandwich'
 interface FileObjectStorage {
   name: string;
   url: string;
-  folder: FolderFileStorage;
+  folder: FileStorageFolder;
 }
 
-type FolderFileStorage = 'bgPhoto'|'photoEdi'|'bgVideo';
+type FileStorageFolder = 'bgPhoto' | 'bgVideo' | 'photoEdi' | 'mainPhoto'
+
+type FileStoragePath = 'bgPhoto' | 'bgVideo' | 'photoEdi' | `projetos/${string}`;
+
+type UsePhotoOnPathDB = 'home' | `projects/${string}`;

@@ -1,9 +1,17 @@
-import { removePhotoFromDB } from "@/services/firebase";
+import { changeContent, removePhotoFromStorage } from "@/services/firebase";
 
-export default function handleDeleteFile(folder:FolderFileStorage, photoObject:FileObjectStorage, contentDB:ContentDB) {
-  if(contentDB?.home[folder] !== photoObject.url) {
-    confirm('Deseja excluir esta foto?') &&
-    removePhotoFromDB(photoObject.folder, photoObject.name);
+export default function handleDeleteFile(
+  photoBeingUsedUrlDB:string,
+  fileStoragePath:FileStoragePath,
+  photoObject:FileObjectStorage,
+  pathPhotoUsedOnDB: UsePhotoOnPathDB,
+  projectPhotosDB?:string[]
+) {
+  if(photoBeingUsedUrlDB !== photoObject.url) {
+    if(confirm('Deseja excluir esta foto?')) {
+      removePhotoFromStorage(fileStoragePath, photoObject.name);
+      projectPhotosDB && changeContent(pathPhotoUsedOnDB, {images: projectPhotosDB.filter(photoUrl => photoUrl!==photoObject.url)});
+    } else return;
   } else {
     alert('Você não pode excluir uma foto que esteja sendo utilizada.')
     return

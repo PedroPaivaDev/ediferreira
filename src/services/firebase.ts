@@ -27,16 +27,16 @@ const storage = getStorage(app);
 
 //MÉTODOS DO STORAGE
 
-export async function uploadFileAndGetUrl(folderDB:string, fileName: string, fileObject: File) {
-  const fileRef = storageRef(storage, `${folderDB}/${fileName}`);
+export async function uploadFileAndGetUrl(folderStoragePath:string, fileName: string, fileObject: File) {
+  const fileRef = storageRef(storage, `${folderStoragePath}/${fileName}`);
   return uploadBytes(fileRef, fileObject).then(async (snapshot) => {
     const url = await getDownloadURL(storageRef(storage, snapshot.metadata.fullPath));
     return url;
   });
 }
 
-export function removePhotoFromDB(folderDB: string, fileName: string) {
-  const fileRef = storageRef(storage, `${folderDB}/${fileName}`);
+export function removePhotoFromStorage(folderStoragePath: string, fileName: string) {
+  const fileRef = storageRef(storage, `${folderStoragePath}/${fileName}`);
   deleteObject(fileRef).then(() => {
     window.location.reload();
   }).catch(err => {
@@ -44,22 +44,31 @@ export function removePhotoFromDB(folderDB: string, fileName: string) {
   })
 }
 
-export function listAllFiles(folderDB:FolderFileStorage, setState:React.Dispatch<React.SetStateAction<FileObjectStorage[]>>) {
-  const fileRef = storageRef(storage, `${folderDB}`);
-  listAll(fileRef).then((snapshot) => {
-    snapshot.items.map(async (file) => {
+export async function listAllFiles(
+  folderStoragePath:FileStoragePath,
+  folderName:FileStorageFolder,
+  setState:React.Dispatch<React.SetStateAction<FileObjectStorage[]>>
+) {
+  const fileRef = storageRef(storage, `${folderStoragePath}`);
+  try {
+    const snapshot = await listAll(fileRef);
+
+    const promises = snapshot.items.map(async (file) => {
       const url = await getDownloadURL(storageRef(storage, file.fullPath));
-      setState((current) => [
-        ...current,
-        {
-          name: file.name,
-          folder: folderDB,
-          url: url
-        }
-      ])
-    })
-  });
+      return {
+        name: file.name,
+        folder: folderName,
+        url: url
+      };
+    });
+
+    const arrayPhotoObjects = await Promise.all(promises);
+    setState(arrayPhotoObjects);
+  } catch (error) {
+    console.error('Error listing files:', error);
+  }
 }
+
 
 //MÉTODOS DO REALTIME DATABASE:
 
