@@ -7,7 +7,7 @@ export default function handleDeleteFile(
   pathPhotoUsedOnDB: UsePhotoOnPathDB,
   projectPhotosDB?:string[]
 ) {
-  if(photoBeingUsedUrlDB !== photoObject.url) {
+  if(!photoBeingUsedUrlDB.includes(photoObject.url)) {
     if(confirm('Deseja excluir esta foto?')) {
       removePhotoFromStorage(fileStoragePath, photoObject.name);
       projectPhotosDB && changeContent(pathPhotoUsedOnDB, {images: projectPhotosDB.filter(photoUrl => photoUrl!==photoObject.url)});

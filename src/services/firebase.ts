@@ -1,7 +1,7 @@
 import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, onValue, update } from "firebase/database";
+import { getDatabase, ref, onValue, update, remove } from "firebase/database";
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytes, deleteObject, listAll } from "firebase/storage";
 
 // Your web app's Firebase configuration
@@ -66,6 +66,24 @@ export async function listAllFiles(
     setState(arrayPhotoObjects);
   } catch (error) {
     console.error('Error listing files:', error);
+  }
+}
+
+export async function deleteProject(projectId:string) {
+  //até o dia 02 de outubro de 2023, o Firebase não permite remover pastas do Storage, então as imagens do projeto serão removidas, mas não a sua pasta.
+  try {
+    const storageFolderRef = storageRef(storage, `projetos/${projectId}`);
+    const storageFiles = await listAll(storageFolderRef);
+    const deletePromises = storageFiles.items.map(item => deleteObject(item));
+
+    await Promise.all(deletePromises);
+
+    const getRef = ref(db, `content/projects/${projectId}`);
+    await remove(getRef);
+
+    window.location.reload();
+  } catch (error) {
+    console.error('Erro ao excluir o projeto:', error);
   }
 }
 

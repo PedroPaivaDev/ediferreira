@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
-import { listAllFiles } from '@/services/firebase';
+import { deleteProject, listAllFiles } from '@/services/firebase';
 import handleTextSubmit from '@/helpers/handleTextSubmit';
 
 import AdminMediaPhotos from './AdminMediaPhotos';
@@ -14,6 +14,12 @@ const AdminProjects = () => {
   const contentDB = React.useContext(ContentDBContext);
   const [selectedProject, setSelectedProject] = React.useState<string|null>(null);
   const [photosProjectStorageFiles, setPhotosProjectStorageFiles] = React.useState<FileObjectStorage[]>([]);
+
+  function handleDeleteProject(projectId:string) {
+    if(confirm('Esta ação não poderá ser desfeita. Tem certeza que deseja excluir este projeto?')) {
+      deleteProject(projectId);
+    } else return;
+  }
 
   React.useEffect(() => {
     selectedProject && listAllFiles(`projetos/${selectedProject}`, 'mainPhoto', setPhotosProjectStorageFiles);
@@ -33,6 +39,7 @@ const AdminProjects = () => {
         className='flex-col sm:flex-row'
       />}
       {selectedProject && contentDB && <div key={selectedProject} className='animeLeft flex flex-col justify-start items-start gap-5'>
+        <Button label='Excluir Projeto' className='bg-status-error' onClick={() => handleDeleteProject(selectedProject)}/>
         <form className='w-full flex flex-col justify-start items-start gap-5' onSubmit={handleTextSubmit}>
           <p>Edite o conteúdo deste projeto, utilizando os campos abaixo:</p>
           <InputText label="Nome:" name={`projects/${selectedProject}&name`} placeholder={contentDB.projects[selectedProject].name}/>
@@ -41,6 +48,7 @@ const AdminProjects = () => {
           <Button label='Salvar Alterações dos Textos'/>
         </form>
         <p>{`Clique no "X" para remover as imagens:`}</p>
+        <p>Selecione uma das imagens para ser a capa do projeto:</p>
         <div className='w-full flex flex-col sm:flex-row flex-wrap justify-center items-center gap-5'>
           {photosProjectStorageFiles.map(photo =>
             <AdminMediaPhotos key={photo.name}
