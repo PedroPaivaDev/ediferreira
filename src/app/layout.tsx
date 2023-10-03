@@ -6,6 +6,7 @@ import HeaderViewProvider from '@/contexts/HeaderViewContext';
 import ContentDBProvider from '@/contexts/ContentDBContext';
 import AuthGoogleProvider from '@/contexts/AuthGoogleContext';
 
+import WhatsappButton from '@/components/WhatsappButton';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -26,6 +27,7 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
           <AuthGoogleProvider>
             <ContentDBProvider>
               {children}
+              <WhatsappButton />
             </ContentDBProvider>
           </AuthGoogleProvider>
           <Footer />
