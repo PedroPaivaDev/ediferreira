@@ -59,6 +59,17 @@ export default function Home() {
           <section className='bg-mood-secondary text-mood-light'>
             <p className="mt-4">{contentDB.home.callProjects}</p>
             <Link href='/projetos' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
+            <a href={contentDB?.contacts.social['1whatsapp'].url}  target="_blank"
+              className='group mt-5 px-5 py-2 rounded-full bg-mood-primary flex items-center gap-3'
+            >
+              <span className="text-mood-light group-hover:text-mood-tertiary duration-300">Entre em Contato</span>
+              <svg xmlns="http://www.w3.org/2000/svg"
+                width="40" height="40" viewBox="0 0 256 256"
+                className='fill-mood-light group-hover:fill-mood-tertiary duration-300'
+              >
+                <path d={contentDB?.contacts.social['1whatsapp'].icon}/>
+              </svg>
+            </a>
           </section>
         </>}
         <InstaPosts />
