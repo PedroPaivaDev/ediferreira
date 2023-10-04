@@ -7,7 +7,7 @@ import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
 
 import SignIn from '@/components/SingIn';
 
-const adminSections = ['midias', 'textos', 'projetos']
+const adminSections = ['midias', 'textos', 'projetos', 'novo']
 
 const AdminLayout = ({children}:{children:React.ReactNode}) => {
   const contentDB = React.useContext(ContentDBContext);
@@ -20,7 +20,7 @@ const AdminLayout = ({children}:{children:React.ReactNode}) => {
   return (
     <main className={`gap-5 py-[136px] ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
       <nav className='w-full min-h-10 flex flex-col justify-center items-center bg-mood-secondary text-mood-light'>
-        <ul className='w-full max-w-4xl flex justify-center items-center gap-10 p-5 flex-wrap'>
+        <ul className='w-full max-w-md flex justify-between items-center p-5 flex-wrap'>
           {adminSections.map(section =>
             <li key={section}>
               <Link className='hover:text-mood-tertiary duration-300 font-normal' href={`admin?content=${section}`}>{section}</Link>

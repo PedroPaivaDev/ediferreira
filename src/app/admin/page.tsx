@@ -7,6 +7,7 @@ import { ContentDBContext } from '@/contexts/ContentDBContext';
 import AdminMedias from '@/components/AdminMedias';
 import AdminTexts from '@/components/AdminTexts';
 import AdminProjects from '@/components/AdminProjects';
+import AdminNewProject from '@/components/AdminNewProject';
 
 const Admin = () => {
   const projectId = useSearchParams().get('content');
@@ -21,6 +22,7 @@ const Admin = () => {
       {projectId==='midias' && <AdminMedias/>}
       {projectId==='textos' && <AdminTexts/>}
       {projectId==='projetos' && <AdminProjects/>}
+      {projectId==='novo' && <AdminNewProject/>}
     </>
   );
 }

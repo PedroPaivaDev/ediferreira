@@ -27,9 +27,7 @@ const AdminProjects = () => {
 
   return (
     <div className='w-full flex flex-col justify-start items-start gap-3'>
-      <h3 className='text-mood-tertiary'>Editar e Adicionar Projetos</h3>
-      <Button label='Cadastrar um Novo Projeto'/>
-      <p>ou</p>
+      <h3 className='text-mood-tertiary'>Editar Projetos</h3>
       {contentDB && <Select
         name="projetos"
         label="Edite um Projeto Cadastrado:"
