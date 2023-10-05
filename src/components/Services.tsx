@@ -3,7 +3,6 @@ import React from 'react';
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 
 import P from './P';
-import WhatsappButton from './WhatsappButton';
 
 const Services = () => {
   const contentDB = React.useContext(ContentDBContext);
@@ -14,7 +13,6 @@ const Services = () => {
       {contentDB && <div className='max-w-2xl flex flex-col justify-center items-center gap-5 text-justify'>
         <P>{contentDB.about.servicesText.firstParagraph}</P>
       </div>}
-      <WhatsappButton />
       {contentDB && Object.keys(contentDB.services).map(type =>
         <div key={contentDB.services[type].id} className='
           w-full max-w-2xl border-solid border-mood-tertiary p-5

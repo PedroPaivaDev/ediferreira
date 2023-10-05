@@ -6,7 +6,6 @@ import { ContentDBContext } from "@/contexts/ContentDBContext";
 import objectBgImage from "@/helpers/objectBgImage";
 // import objectBgImage from "@/helpers/objectBgImage";
 
-import WhatsappButton from "@/components/WhatsappButton";
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
@@ -60,7 +59,6 @@ export default function Home() {
           <section className='bg-mood-secondary text-mood-light'>
             <p className="mt-4">{contentDB.home.callProjects}</p>
             <Link href='/projetos' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
-            <WhatsappButton />
           </section>
         </>}
         <InstaPosts />
