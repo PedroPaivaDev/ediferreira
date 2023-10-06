@@ -95,6 +95,7 @@ interface FileObjectStorage {
   name: string;
   url: string;
   folder: FileStorageFolder;
+  size: number;
 }
 
 type FileStorageFolder = 'bgPhoto' | 'bgVideo' | 'photoEdi' | 'mainPhoto'

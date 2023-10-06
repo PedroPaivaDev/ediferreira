@@ -3,6 +3,7 @@ import React from 'react';
 import objectBgImage from '@/helpers/objectBgImage';
 import handleSelectedFile from '@/helpers/handleSelectedFile';
 import handleDeleteFile from '@/helpers/handleDeleteFile';
+import convertBytes from '@/helpers/convertBytes';
 
 interface PropsAdminMediaPhoto {
   photo: FileObjectStorage;
@@ -23,16 +24,18 @@ const AdminMediaPhotos = ({photo, photoUrlDB, fileStorageFolderPath, usePhotoOnP
       `}
     >
       <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-5 w-5 fill-mood-light hover:fill-status-error cursor-pointer duration-300"
+        className="absolute top-5 w-5 fill-mood-light hover:fill-status-error duration-300"
         onClick={() => handleDeleteFile(photoUrlDB, fileStorageFolderPath, photo, usePhotoOnPathDB, projectPhotosDB)}
       >
         <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
       </svg>
+      <p>{photo.name}</p>
+      <small>{convertBytes(photo.size)}</small>
       {photoUrlDB.includes(photo.url) ?
-        <p>
+        <p className='text-mood-tertiary cursor-pointer'>
           Utilizada
         </p> :
-        <p className='opacity-0 group-hover:opacity-100' onClick={() => handleSelectedFile(usePhotoOnPathDB, photo.folder, photo.url)}>
+        <p className='text-mood-tertiary cursor-pointer opacity-0 group-hover:opacity-100' onClick={() => handleSelectedFile(usePhotoOnPathDB, photo.folder, photo.url)}>
           usar esta
         </p>
       }

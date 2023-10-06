@@ -2,7 +2,7 @@ import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, onValue, update, remove } from "firebase/database";
-import { getStorage, ref as storageRef, getDownloadURL, uploadBytes, deleteObject, listAll } from "firebase/storage";
+import { getStorage, ref as storageRef, getDownloadURL, uploadBytes, deleteObject, listAll, getMetadata } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -54,11 +54,14 @@ export async function listAllFiles(
     const snapshot = await listAll(fileRef);
 
     const promises = snapshot.items.map(async (file) => {
-      const url = await getDownloadURL(storageRef(storage, file.fullPath));
+      const fileRef = storageRef(storage, file.fullPath);
+      const url = await getDownloadURL(fileRef);
+      const metadata = await getMetadata(fileRef);
       return {
         name: file.name,
         folder: folderName,
-        url: url
+        url: url,
+        size: metadata.size
       };
     });
 
