@@ -1,27 +1,33 @@
 import React from 'react';
 
 interface PropsTextArea {
+  value?: string;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   label: string;
   placeholder: string;
 }
 
-const TextArea = ({name, label, placeholder}:PropsTextArea) => {
+const TextArea = ({value, setValue, name, label, placeholder}:PropsTextArea) => {
   const [valueDB, setValueDB] = React.useState('');
 
-  function handleOnChange({target}:React.ChangeEvent<HTMLTextAreaElement>) {
-    setValueDB(target.value);
-  }
-
   function handleOnFocus() {
-    if(valueDB==='') {
+    if(!value && valueDB==='') {
       setValueDB(placeholder)
     }
   }
 
   function handleOnBlur() {
-    if(placeholder===valueDB) {
+    if(!value && placeholder===valueDB) {
       setValueDB('')
+    }
+  }
+
+  function handleOnChange({target}:React.ChangeEvent<HTMLTextAreaElement>) {
+    if(setValue) {
+      setValue(target.value);
+    } else {
+      setValueDB(target.value)
     }
   }
 
@@ -34,7 +40,7 @@ const TextArea = ({name, label, placeholder}:PropsTextArea) => {
         placeholder={placeholder}
         className='w-full p-5'
         rows={5}
-        value={valueDB}
+        value={value ?? valueDB}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         onChange={handleOnChange}

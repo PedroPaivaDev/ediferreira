@@ -1,4 +1,4 @@
-import { changeContent, uploadFileAndGetUrl } from "@/services/firebase";
+import { uploadFileAndGetUrl } from "@/services/firebase";
 import createObjectFromEntries from "./createObjectFromEntries";
 
 export default function handleFileSubmit(event:React.FormEvent<HTMLFormElement>) {
@@ -12,8 +12,7 @@ export default function handleFileSubmit(event:React.FormEvent<HTMLFormElement>)
       uploadFileAndGetUrl(key, objectFile.name, objectFile as File).then(() => {
         alert(`O arquivo ${objectFile.name} foi adicionado ao banco de dados.`);
         window.location.reload();
-      }
-      )
+      })
     })
   );
 }

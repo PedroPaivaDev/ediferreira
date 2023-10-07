@@ -1,18 +1,55 @@
 import React from 'react';
 
-import handleTextSubmit from '@/helpers/handleTextSubmit';
+import { ContentDBContext } from '@/contexts/ContentDBContext';
 import objectBgImage from '@/helpers/objectBgImage';
 import convertBytes from '@/helpers/convertBytes';
 
 import InputText from './InputText';
 import TextArea from './TextArea';
 import Button from './Button';
+import { changeContent, uploadFilesAndGetUrls } from '@/services/firebase';
+import getFileNameFromUrl from '@/helpers/getFileNameFromUrl';
 
 const AdminNewProject = () => {
-  const [newProjectName, setNewProjectName] = React.useState<string>('');
+  const contentDB = React.useContext(ContentDBContext);
   const [newProjectId, setNewProjectId] = React.useState<string>('');
-  const [photosObjectFiles, setPhotosObjectFiles] = React.useState<FileObjectStorage[]>([]);
-  const [mainProjectPhoto, setMainProjectPhoto] = React.useState<FileObjectStorage>();
+  const [newProjectName, setNewProjectName] = React.useState<string>('');
+  const [newProjectSubtitle, setnewProjectSubtitle] = React.useState<string>('');
+  const [newProjectDescription, setNewProjectDescription] = React.useState('');
+
+  const [photosObjectFiles, setPhotosObjectFiles] = React.useState<FileObjectLocal[]>([]);
+  const [mainProjectPhoto, setMainProjectPhoto] = React.useState<FileObjectLocal>();
+
+  function handleSubmitNewProject() {
+    if(Object.keys(contentDB?.projects as ProjectsDB).includes(newProjectId) && !confirm('Já existe um projeto com este nome no site. Deseja substituí-lo?')) {
+      return
+    } else if(!newProjectName || !newProjectSubtitle || !newProjectDescription) {
+      alert('Preencha todos os campos de texto');
+      return;
+    } else if(photosObjectFiles.length === 0) {
+      alert('Escolha pelo menos uma foto para o projeto');
+      return;
+    } else if(!mainProjectPhoto) {
+      alert('Defina uma foto para ser a capa do projeto');
+      return;
+    } else {
+      uploadFilesAndGetUrls(photosObjectFiles, newProjectId).then(urlsImagesArray =>{
+        function findMainPhoto() {
+          return urlsImagesArray.filter(url => getFileNameFromUrl(url)===mainProjectPhoto?.name)[0]
+        }
+        const newProjectObject = {
+          id: newProjectId,
+          name: newProjectName,
+          subtitle: newProjectSubtitle,
+          description: newProjectDescription,
+          mainPhoto: findMainPhoto(),
+          images: urlsImagesArray
+        }
+        alert(`O projeto ${newProjectName} foi cadastrado ao banco de dados.`);
+        changeContent(`projects/${newProjectId}`, newProjectObject);
+      })
+    }
+  }
 
   function handleFilesSelect(
     event: React.ChangeEvent<HTMLInputElement>
@@ -21,11 +58,11 @@ const AdminNewProject = () => {
     if (!files || !files[0]) {
       return;
     }
-    const arrayPhotoObjects:FileObjectStorage[] = [];
+    const arrayPhotoObjects:FileObjectLocal[] = [];
     for(let i=0; i < files.length; i++) {
       arrayPhotoObjects.push({
+        file: files[i],
         name: files[i].name,
-        folder: 'mainPhoto',
         url: URL.createObjectURL(files[i]),
         size: files[i].size
       })
@@ -36,7 +73,11 @@ const AdminNewProject = () => {
     ]);
   }
 
-  function handleRemovePhoto(photoObject:FileObjectStorage) {
+  function handleSelectMainPhoto(photo:FileObjectLocal) {
+    setMainProjectPhoto(photo);
+  }
+
+  function handleRemovePhoto(photoObject:FileObjectLocal) {
     setPhotosObjectFiles(photosObjectFiles.filter(photo => photo.url!==photoObject.url));
   }
 
@@ -47,22 +88,11 @@ const AdminNewProject = () => {
   return (
     <div className='w-full flex flex-col justify-start items-start gap-3'>
       <h3 className='text-mood-tertiary'>Cadastrar Novo Projeto</h3>
-      <form className='w-full flex flex-col justify-start items-start gap-5' onSubmit={handleTextSubmit}>
-        <p>Edite o conteúdo deste projeto, utilizando os campos abaixo:</p>
-        <div className={`w-full flex flex-col justify-start items-start gap-3`}>
-          <label htmlFor='newProjectName' className='mr-3'>{`Nome: `}</label>
-          <input 
-            id='newProjectName'
-            name={`projects/${newProjectId}&name`}
-            type='text'
-            className='p-3 w-full'
-            value={newProjectName}
-            onChange={({target}) => setNewProjectName(target.value)}
-          />
-        </div>
-        <InputText label="Subtítulo:" name={`projects/${newProjectId}&subtitle`} placeholder='Ex.: Thera Berrine - Brooklin 71 m².'/>
-        <TextArea label="Descrição:" name={`projects/${newProjectId}&description`} placeholder=''/>
-        <Button label='Salvar Alterações dos Textos'/>
+      <form className='w-full flex flex-col justify-start items-start gap-5'>
+        <p>Adicione o conteúdo do novo projeto, utilizando os campos abaixo:</p>
+        <InputText label="Nome:" name={`projects/${newProjectId}&name`} placeholder='' value={newProjectName} setValue={setNewProjectName}/>
+        <InputText label="Subtítulo:" name={`projects/${newProjectId}&subtitle`} placeholder='Ex.: Thera Berrine - Brooklin 71 m².' value={newProjectSubtitle} setValue={setnewProjectSubtitle}/>
+        <TextArea label="Descrição:" name={`projects/${newProjectId}&description`} placeholder='' value={newProjectDescription} setValue={setNewProjectDescription}/>
       </form>
       <p className='mt-10'>Escolha as fotos do projeto e defina uma para ser utilizada como capa do projeto:</p>
       <input
@@ -95,13 +125,14 @@ const AdminNewProject = () => {
               <p className='text-mood-tertiary cursor-pointer'>
                 Utilizada
               </p> :
-              <p className='text-mood-tertiary cursor-pointer opacity-0 group-hover:opacity-100' onClick={() => setMainProjectPhoto(photo)}>
+              <p className='text-mood-tertiary cursor-pointer opacity-0 group-hover:opacity-100' onClick={() => handleSelectMainPhoto(photo)}>
                 usar esta
               </p>
             }
           </div>
         )}
       </div>
+      <Button label='Salvar Novo Projeto' onClick={handleSubmitNewProject}/>
     </div>
   )
 }

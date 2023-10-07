@@ -98,6 +98,13 @@ interface FileObjectStorage {
   size: number;
 }
 
+interface FileObjectLocal {
+  file: File;
+  name: string;
+  url: string;
+  size: number;
+}
+
 type FileStorageFolder = 'bgPhoto' | 'bgVideo' | 'photoEdi' | 'mainPhoto'
 
 type FileStoragePath = 'bgPhoto' | 'bgVideo' | 'photoEdi' | `projetos/${string}`;

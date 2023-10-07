@@ -35,6 +35,33 @@ export async function uploadFileAndGetUrl(folderStoragePath:string, fileName: st
   });
 }
 
+export async function uploadFilesAndGetUrls(files:FileObjectLocal[], newProjectId:string) {
+  const folderRef = storageRef(storage, `projetos/${newProjectId}/`);
+  const uploadTasks = files.map(async (fileObject) => {
+    const file = fileObject.file;
+    const fileName = fileObject.name;
+    const fileRef = storageRef(folderRef, fileName);
+
+    try {
+      await uploadBytes(fileRef, file);
+
+      const downloadURL = await getDownloadURL(fileRef);
+      return downloadURL;
+    } catch (error) {
+      console.error(`Failed to upload ${fileName}: ${error}`);
+      throw error;
+    }
+  });
+
+  try {
+    const downloadURLs = await Promise.all(uploadTasks);
+    return downloadURLs;
+  } catch (error) {
+    console.error('Failed to upload files:', error);
+    throw error;
+  }
+}
+
 export function removePhotoFromStorage(folderStoragePath: string, fileName: string) {
   const fileRef = storageRef(storage, `${folderStoragePath}/${fileName}`);
   deleteObject(fileRef).then(() => {
