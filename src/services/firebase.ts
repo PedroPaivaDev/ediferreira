@@ -35,8 +35,8 @@ export async function uploadFileAndGetUrl(folderStoragePath:string, fileName: st
   });
 }
 
-export async function uploadFilesAndGetUrls(files:FileObjectLocal[], newProjectId:string) {
-  const folderRef = storageRef(storage, `projetos/${newProjectId}/`);
+export async function uploadFilesAndGetUrls(files:FileObjectLocal[], projectId:string) {
+  const folderRef = storageRef(storage, `projetos/${projectId}/`);
   const uploadTasks = files.map(async (fileObject) => {
     const file = fileObject.file;
     const fileName = fileObject.name;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
-import { deleteProject, listAllFiles } from '@/services/firebase';
+import { changeContent, deleteProject, listAllFiles, uploadFilesAndGetUrls } from '@/services/firebase';
 import handleTextSubmit from '@/helpers/handleTextSubmit';
 
 import AdminMediaPhotos from './AdminMediaPhotos';
@@ -9,16 +9,34 @@ import Select from './Select';
 import InputText from './InputText';
 import TextArea from './TextArea';
 import Button from './Button';
+import InputPhotoFile from './InputPhotoFile';
 
 const AdminProjects = () => {
   const contentDB = React.useContext(ContentDBContext);
   const [selectedProject, setSelectedProject] = React.useState<string|null>(null);
   const [photosProjectStorageFiles, setPhotosProjectStorageFiles] = React.useState<FileObjectStorage[]>([]);
 
+  const [photosObjectFiles, setPhotosObjectFiles] = React.useState<FileObjectLocal[]>([]);
+
   function handleDeleteProject(projectId:string) {
     if(confirm('Esta ação não poderá ser desfeita. Tem certeza que deseja excluir este projeto?')) {
       deleteProject(projectId);
     } else return;
+  }
+
+  function handleUploadNewPhotos() {
+    if(!contentDB || !selectedProject) return;
+    const currentPhotosUrlsArray = contentDB.projects[selectedProject as string].images;
+    uploadFilesAndGetUrls(photosObjectFiles, selectedProject).then(newUploadedPhotosUrlsArray => {
+      const newImagesToProjectDB = {
+        images: [
+          ...currentPhotosUrlsArray,
+          ...newUploadedPhotosUrlsArray
+        ]
+      }
+      alert(`Novas imagens foram adicionadas ao projeto.`);
+      changeContent(`projects/${selectedProject}`, newImagesToProjectDB);
+    })
   }
 
   React.useEffect(() => {
@@ -57,6 +75,12 @@ const AdminProjects = () => {
             />
           )}
         </div>
+        <p className='mt-10'>Para adicionar mais fotos neste projeto:</p>
+        {photosObjectFiles.length>0 && <Button label='Adicionar Novas Imagens' onClick={handleUploadNewPhotos}/>}
+        <InputPhotoFile
+          projectId={selectedProject}
+          photosObjectFiles={photosObjectFiles} setPhotosObjectFiles={setPhotosObjectFiles}
+        />
       </div>}
     </div>
   )
