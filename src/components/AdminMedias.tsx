@@ -36,7 +36,7 @@ const AdminMedias = () => {
 
   React.useEffect(() => {
     listAllFiles('photoEdi', 'photoEdi', setPhotosEdiStorageFiles);
-    listAllFiles('bgPhoto', 'photoEdi', setBgPhotosStorageFiles);
+    listAllFiles('bgPhoto', 'bgPhoto', setBgPhotosStorageFiles);
   },[]);
 
 

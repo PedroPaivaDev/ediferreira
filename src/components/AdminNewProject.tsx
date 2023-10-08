@@ -63,7 +63,7 @@ const AdminNewProject = () => {
         <InputText label="Subtítulo:" name={`projects/${newProjectId}&subtitle`} placeholder='Ex.: Thera Berrine - Brooklin 71 m².' value={newProjectSubtitle} setValue={setnewProjectSubtitle}/>
         <TextArea label="Descrição:" name={`projects/${newProjectId}&description`} placeholder='' value={newProjectDescription} setValue={setNewProjectDescription}/>
       </form>
-      <p className='mt-10'>Escolha as fotos do projeto. Recomendo utilizar o site: https://www.easy-resize.com/pt/, para reduzir o tamanho das imagens, deixando-as com no máximo 500KB.</p>
+      <p className='mt-10'>Escolha as fotos do projeto. Recomendo utilizar o site: https://www.easy-resize.com/pt/, para reduzir o tamanho das imagens, deixando-as com no máximo 250KB.</p>
       <p>Em seguida, defina uma das imagens para ser utilizada como capa do projeto:</p>
       <InputPhotoFile
         projectId={newProjectId}
