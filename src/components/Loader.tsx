@@ -2,9 +2,10 @@ import React from 'react';
 
 interface PropsLoader {
   className?: string;
+  text?: string;
 }
 
-const Loader = ({className}:PropsLoader) => {
+const Loader = ({className, text}:PropsLoader) => {
   return (
     <div className={className}>
       <svg xmlns="http://www.w3.org/2000/svg" className='bg-none block' width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -31,7 +32,7 @@ const Loader = ({className}:PropsLoader) => {
           </g>
         </g>
       </svg>
-      <p>Carregando...</p>
+      {text ?? <p>Carregando...</p>}
     </div>
   )
 }

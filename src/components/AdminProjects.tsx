@@ -13,6 +13,7 @@ import InputPhotoFile from './InputPhotoFile';
 
 const AdminProjects = () => {
   const contentDB = React.useContext(ContentDBContext);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [selectedProject, setSelectedProject] = React.useState<string|null>(null);
   const [photosProjectStorageFiles, setPhotosProjectStorageFiles] = React.useState<FileObjectStorage[]>([]);
 
@@ -25,6 +26,7 @@ const AdminProjects = () => {
   }
 
   function handleUploadNewPhotos() {
+    setLoading(true);
     if(!contentDB || !selectedProject) return;
     const currentPhotosUrlsArray = contentDB.projects[selectedProject as string].images;
     uploadFilesAndGetUrls(photosObjectFiles, selectedProject).then(newUploadedPhotosUrlsArray => {
@@ -36,6 +38,11 @@ const AdminProjects = () => {
       }
       alert(`Novas imagens foram adicionadas ao projeto.`);
       changeContent(`projects/${selectedProject}`, newImagesToProjectDB);
+      setLoading(false);
+    }).catch(err => {
+      setLoading(false);
+      console.log(err);
+      alert('Não foi possível salvar as novas imagens.');
     })
   }
 
@@ -76,7 +83,7 @@ const AdminProjects = () => {
           )}
         </div>
         <p className='mt-10'>Para adicionar mais fotos neste projeto:</p>
-        {photosObjectFiles.length>0 && <Button label='Adicionar Novas Imagens' onClick={handleUploadNewPhotos}/>}
+        {photosObjectFiles.length>0 && <Button label='Adicionar Novas Imagens' onClick={handleUploadNewPhotos} loading={loading}/>}
         <InputPhotoFile
           projectId={selectedProject}
           photosObjectFiles={photosObjectFiles} setPhotosObjectFiles={setPhotosObjectFiles}

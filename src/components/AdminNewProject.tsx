@@ -11,6 +11,7 @@ import InputPhotoFile from './InputPhotoFile';
 
 const AdminNewProject = () => {
   const contentDB = React.useContext(ContentDBContext);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [newProjectId, setNewProjectId] = React.useState<string>('');
   const [newProjectName, setNewProjectName] = React.useState<string>('');
   const [newProjectSubtitle, setnewProjectSubtitle] = React.useState<string>('');
@@ -32,6 +33,7 @@ const AdminNewProject = () => {
       alert('Defina uma foto para ser a capa do projeto');
       return;
     } else {
+      setLoading(true);
       uploadFilesAndGetUrls(photosObjectFiles, newProjectId).then(urlsImagesArray =>{
         function findMainPhoto() {
           return urlsImagesArray.filter(url => getFileNameFromUrl(url)===mainProjectPhoto?.name)[0]
@@ -46,6 +48,11 @@ const AdminNewProject = () => {
         }
         alert(`O projeto ${newProjectName} foi cadastrado ao banco de dados.`);
         changeContent(`projects/${newProjectId}`, newProjectObject);
+        setLoading(false);
+      }).catch(err => {
+        setLoading(false);
+        console.log(err);
+        alert('Não foi possível cadastrar o novo projeto.');
       })
     }
   }
@@ -70,7 +77,7 @@ const AdminNewProject = () => {
         mainProjectPhoto={mainProjectPhoto} setMainProjectPhoto={setMainProjectPhoto}
         photosObjectFiles={photosObjectFiles} setPhotosObjectFiles={setPhotosObjectFiles}
       />
-      <Button label='Salvar Novo Projeto' onClick={handleSubmitNewProject}/>
+      <Button label='Salvar Novo Projeto' onClick={handleSubmitNewProject} loading={loading}/>
     </div>
   )
 }

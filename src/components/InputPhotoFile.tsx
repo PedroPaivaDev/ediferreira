@@ -70,8 +70,8 @@ const InputPhotoFile = ({projectId, photosObjectFiles, mainProjectPhoto, setPhot
             </svg>
             <p>{photo.name}</p>
             <small>{convertBytes(photo.size)}</small>
-            {mainProjectPhoto && <>
-              {mainProjectPhoto.url.includes(photo.url) ?
+            {setMainProjectPhoto && <>
+              {mainProjectPhoto?.url.includes(photo.url) ?
                 <p className='text-mood-tertiary cursor-pointer'>
                   Utilizada
                 </p> :
