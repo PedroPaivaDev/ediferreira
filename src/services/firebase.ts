@@ -1,7 +1,7 @@
 import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, onValue, update, remove } from "firebase/database";
+import { getDatabase, ref, onValue, update, remove, get } from "firebase/database";
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytes, deleteObject, listAll, getMetadata } from "firebase/storage";
 
 // Your web app's Firebase configuration
@@ -127,6 +127,17 @@ export function getData<Type>(path:string, setState:React.Dispatch<React.SetStat
     (snapshot) => setState(snapshot.val()),
     {onlyOnce: true}
   )
+}
+
+export async function getContentDB(): Promise<ContentDB|null> {
+  const dataRef = ref(db, 'content');
+  const snapshot = await get(dataRef);
+
+  if (snapshot.exists()) {
+    return snapshot.val() as ContentDB;
+  }
+
+  return null;
 }
 
 export function changeContent(path:string, content:ObjectKeyString) {

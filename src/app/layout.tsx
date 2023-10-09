@@ -15,6 +15,10 @@ const poppins = Poppins({weight:['400', '500'], subsets:['latin'], variable: '--
 export const metadata: Metadata = {
   title: 'Edi Ferreira',
   description: 'Designer de Interiores e Lighting Design',
+  robots: {
+    follow: true,
+    index: true
+  }
 }
 
 export default function RootLayout({children}:{children:React.ReactNode}) {

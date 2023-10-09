@@ -1,8 +1,9 @@
 'use client'
 import React from "react";
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from "next/link";
 
-import { ContentDBContext } from "@/contexts/ContentDBContext";
+import { getContentDB } from "@/services/firebase";
 import objectBgImage from "@/helpers/objectBgImage";
 // import objectBgImage from "@/helpers/objectBgImage";
 
@@ -11,8 +12,32 @@ import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
 
-export default function Home() {
-  const contentDB = React.useContext(ContentDBContext);
+export const getStaticProps: GetStaticProps = async (context) => {
+  const data = await fetch("https://db-ediferreira-default-rtdb.firebaseio.com/content.json");
+  const contentDB = await data.json();
+  return {
+    props: {
+      contentDB
+    }
+  }
+  // try {
+  //   const contentDB = await getContentDB();
+  //   return {
+  //     props: {
+  //       contentDB,
+  //     },
+  //   };
+  // } catch (error) {
+  //   console.error('Error fetching data:', error);
+  //   return {
+  //     props: {
+  //       contentDB: null,
+  //     },
+  //   };
+  // }
+};
+
+export default function Home({contentDB}:InferGetStaticPropsType<typeof getStaticProps>) {
   // const [videoLoaded, setVideoLoaded] = React.useState(false);
 
   // React.useEffect(() => {
