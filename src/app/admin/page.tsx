@@ -17,7 +17,7 @@ const Admin = () => {
     <>
       {contentDB && !projectId && <>
         <p>Bem vinda, Edi.</p>
-        <p>Selecione uma das três categorias acima (midias, textos, projetos), para alterar os seus conteúdos.</p>
+        <p>Selecione uma das quatro categorias acima (midias, textos, projetos, novo), para alterar os seus conteúdos.</p>
       </>}
       {projectId==='midias' && <AdminMedias/>}
       {projectId==='textos' && <AdminTexts/>}

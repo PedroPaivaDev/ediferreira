@@ -49,8 +49,12 @@ Clique nas versões abaixo, para observar a evolução do projeto ao longo do te
 
 | Versão | Update |
 | ------ | ------ |
-| [Versão 0.0](https://ediferreira-c1dscw9on-pedropaivadev.vercel.app/) | Primeira versão do projeto, apresentada para a designer no dia 08 de Setembro de 2023, quando foram solicitados alguns ajustes a serem feitos. |
-| [Versão 0.1](https://ediferreira-git-v01-pedropaivadev.vercel.app/) | A página 'projetos' foi desenvolvida, para mostrar os serviços prestados pela designer . Também foi adicionada a página 'sobre' para reduzir a quantidade de texto na página 'home'. Foi utilizada a API do Instgram para mostrar no site, os últimos três posts do Instagram da designer. |
+| [Versão 0.0](https://ediferreira-c1dscw9on-pedropaivadev.vercel.app/) | Primeira versão do projeto, apresentada para a designer no dia 08 de Setembro 2023, quando foram solicitados alguns ajustes a serem feitos. |
+| [Versão 0.1](https://ediferreira-git-v01-pedropaivadev.vercel.app/) | A página 'projetos' foi desenvolvida, para mostrar os serviços prestados pela designer. Também foi adicionada a página 'sobre' para reduzir a quantidade de texto na página 'home'. Foi utilizada a API do Instgram para mostrar no site, os últimos três posts do Instagram da designer. Esta versão foi apresentada dia 14 de Setembro. |
+| [Versão 0.2](https://ediferreira-git-v02-pedropaivadev.vercel.app/) | Pequena modificação na sessão 'serviços' solicitada no dia 15 de Setembro, onde foram adicionados alguns parágrafos de texto. Essa versão foi aprovada e dado início à página 'admin'. |
+| [Versão 0.3](https://ediferreira-git-v03-pedropaivadev.vercel.app/) | Esta versão foi iniciada no dia 25 de Setembro, para inserir a Logo definitiva e definir sua posição. A designer também optou por remover o vídeo da primeira sessão da Home, já que a resolução dele estava ruim na tela do computador e ela não tinha nenhum vídeo gravado na horizontal. No dia 27 de Setembro foram solicitadas mais altereções no cabeçalho do site. |
+| [Versão 0.4](https://ediferreira-git-v04-pedropaivadev.vercel.app/) | Versão definitiva do Layout do site, apresentada e aprovada no dia 29 de Setembro. A logo ficou apenas no cabeçalho e os atalhos de navegação ficam sempre visíveis no cabeçalho do site. |
+| [Administrativa](https://ediferreira-git-admin-pedropaivadev.vercel.app/) | Adicionada a página de administração do site, para permitir a edição dos conteúdos do site diretamente pelo browser. Aqui também foi adicionado um botão fixo na tela, para que o usuário possa entrar em contato pelo Whatsapp. |
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
