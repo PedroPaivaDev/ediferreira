@@ -16,7 +16,11 @@ const SignIn = () => {
       <p>Faça login com a sua conta do Google (contato.ediferreira@gmail.com).</p>
       <Button label='Login' onClick={signInGoogle}/>
     </div>
-  } else if(userAuth.email==="contato.ediferreira@gmail.com" || userAuth.email==="pedropaivadev@gmail.com") {
+  } else if(
+      userAuth.email==="contato.ediferreira@gmail.com" ||
+      userAuth.email==="pedropaivadev@gmail.com" ||
+      userAuth.email==="projetos.ediferreira@gmail.com"
+    ) {
     return (
       <div className='w-full max-w-4xl flex px-5'>
         <Button label='Logout' onClick={logout}/>

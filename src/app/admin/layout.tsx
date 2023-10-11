@@ -29,7 +29,11 @@ const AdminLayout = ({children}:{children:React.ReactNode}) => {
         </ul>
       </nav>
       <SignIn />
-      {contentDB && (userAuth.email==="contato.ediferreira@gmail.com" || userAuth.email==="pedropaivadev@gmail.com") ?
+      {contentDB && (
+        userAuth.email==="contato.ediferreira@gmail.com" ||
+        userAuth.email==="pedropaivadev@gmail.com" ||
+        userAuth.email==="projetos.ediferreira@gmail.com"
+      ) ?
         <div className='w-full max-w-4xl flex flex-col justify-start items-start gap-10 px-5'>
           {children}
         </div> :
