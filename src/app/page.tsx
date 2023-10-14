@@ -13,6 +13,25 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    if(contentDB) {
+      const image = new Image();
+      image.src = contentDB.home.bgPhoto
+
+      const handleImageLoaded = () => {
+        setImageLoaded(true);
+      };
+      image.addEventListener('load', handleImageLoaded);
+
+      return () => {
+        image.removeEventListener('load', handleImageLoaded);
+      };
+    }
+  }, [contentDB]);
+
+
   // const [videoLoaded, setVideoLoaded] = React.useState(false);
 
   // React.useEffect(() => {
@@ -31,13 +50,13 @@ export default function Home() {
 
   return (
     <>
-      {!contentDB && <Loader
+      {!imageLoaded && <Loader
         className="
           w-full h-full flex flex-col justify-center items-center
           fixed z-40 bg-mood-light
         "
       />}
-      <main className={`${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+      <main className={`${imageLoaded ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && <>
           <section id="home" style={objectBgImage(contentDB.home.bgPhoto)} className="
             flex shrink-0 flex-col justify-end items-center gap-1
