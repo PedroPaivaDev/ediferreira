@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { ContentDBContext } from "@/contexts/ContentDBContext";
 import objectBgImage from "@/helpers/objectBgImage";
+import { initGoogleAnalytics, initGoogleTagManager } from "@/lib/analitics";
 // import objectBgImage from "@/helpers/objectBgImage";
 
 import Loader from "@/components/Loader";
@@ -30,6 +31,12 @@ export default function Home() {
       };
     }
   }, [contentDB]);
+
+  React.useEffect(() => {
+    // Initialize Google Tag Manager and Google Analytics on component mount
+    initGoogleTagManager();
+    initGoogleAnalytics();
+  }, []);
 
 
   // const [videoLoaded, setVideoLoaded] = React.useState(false);

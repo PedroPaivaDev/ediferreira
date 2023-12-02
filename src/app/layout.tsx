@@ -1,6 +1,4 @@
-'use client'
 import './globals.css'
-import { useEffect } from 'react';
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google';
 
@@ -11,7 +9,6 @@ import AuthGoogleProvider from '@/contexts/AuthGoogleContext';
 import WhatsappButton from '@/components/WhatsappButton';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { initGoogleAnalytics, initGoogleTagManager } from '@/lib/analitics';
 
 const poppins = Poppins({weight:['400', '500'], subsets:['latin'], variable: '--font-poppins'});
 
@@ -25,12 +22,6 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({children}:{children:React.ReactNode}) {
-
-  useEffect(() => {
-    // Initialize Google Tag Manager and Google Analytics on component mount
-    initGoogleTagManager();
-    initGoogleAnalytics();
-  }, []);
   return (
     <html lang="en">
       <HeaderViewProvider>
