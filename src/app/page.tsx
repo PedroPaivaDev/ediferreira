@@ -5,12 +5,14 @@ import Link from "next/link";
 import { ContentDBContext } from "@/contexts/ContentDBContext";
 import objectBgImage from "@/helpers/objectBgImage";
 import { initGoogleAnalytics, initGoogleTagManager } from "@/lib/analitics";
+import { initFacebookPixel } from "@/lib/FacebookPixel";
 // import objectBgImage from "@/helpers/objectBgImage";
 
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
+import FacebookScript from "@/lib/FacebookScript";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
@@ -36,6 +38,7 @@ export default function Home() {
     // Initialize Google Tag Manager and Google Analytics on component mount
     initGoogleTagManager();
     initGoogleAnalytics();
+    initFacebookPixel();
   }, []);
 
 
@@ -57,6 +60,7 @@ export default function Home() {
 
   return (
     <>
+      <FacebookScript />
       {!imageLoaded && <Loader
         className="
           w-full h-full flex flex-col justify-center items-center
