@@ -25,6 +25,30 @@ const ProjectModal = ({projectImages, modalImage, setModalImage}:PropsProjectMod
     }
   }
 
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setModalImage(null);
+      } else if (event.key === 'ArrowRight') {
+        if (currentIndexImage < projectImages.length - 1) {
+          setModalImage(projectImages[currentIndexImage + 1]);
+          setCurrentIndexImage(currentIndexImage + 1);
+        }
+      } else if (event.key === 'ArrowLeft') {
+        if (currentIndexImage > 0) {
+          setModalImage(projectImages[currentIndexImage - 1]);
+          setCurrentIndexImage(currentIndexImage - 1);
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentIndexImage, projectImages, setModalImage]);
+
   return (
     <div onClick={(e) => handleOutsideClick(e)}
       className='
