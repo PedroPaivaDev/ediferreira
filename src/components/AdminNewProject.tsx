@@ -36,7 +36,7 @@ const AdminNewProject = () => {
       setLoading(true);
       uploadFilesAndGetUrls(photosObjectFiles, newProjectId).then(urlsImagesArray =>{
         function findMainPhoto() {
-          return urlsImagesArray.filter(url => getFileNameFromUrl(url)===mainProjectPhoto?.name)[0]
+          return urlsImagesArray.filter(url => getFileNameFromUrl(url)===mainProjectPhoto?.name.replace(/[^\w\s]/gi, ''))[0]
         }
         const newProjectObject = {
           id: newProjectId,

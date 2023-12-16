@@ -39,7 +39,7 @@ export async function uploadFilesAndGetUrls(files:FileObjectLocal[], projectId:s
   const folderRef = storageRef(storage, `projetos/${projectId}/`);
   const uploadTasks = files.map(async (fileObject) => {
     const file = fileObject.file;
-    const fileName = fileObject.name;
+    const fileName = fileObject.name.replace(/[^\w\s]/gi, '');
     const fileRef = storageRef(folderRef, fileName);
 
     try {
