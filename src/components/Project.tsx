@@ -26,7 +26,7 @@ const Project = ({project, setModalImage}:PropsProject) => {
           '>
             <img
               src={imageUrl}
-              className='h-full max-h-almostScreen object-contain rounded-md'
+              className='h-full max-h-almostScreen sm:max-h-[50vh] object-contain rounded-md'
               onClick={() => setModalImage(imageUrl)}
             />
           </div>

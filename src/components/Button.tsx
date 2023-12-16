@@ -11,10 +11,11 @@ const Button = ({label, className, loading, ...props}:PropsButton) => {
   return (
     <>
       <button
-        className={`${className}
-          bg-mood-secondary rounded-lg px-5 py-3
+        className={`
+          bg-mood-primary rounded-sm px-5 py-2
           text-mood-light hover:text-mood-tertiary duration-300
           shadow-lg
+          ${className}
         `}
         {...props}
       >

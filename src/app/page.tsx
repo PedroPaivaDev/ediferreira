@@ -13,6 +13,7 @@ import Projects from "@/components/Projects";
 import InstaPosts from "@/components/InstaPosts";
 import Contact from "@/components/Contact";
 import FacebookScript from "@/lib/FacebookScript";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
@@ -73,6 +74,7 @@ export default function Home() {
             flex shrink-0 flex-col justify-end items-center gap-1
             p-0 relative h-screen
           ">
+            <ContactForm />
             {/* <video id="videoEdi"
               autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
               style={objectBgImage(contentDB.home.bgPhoto)}

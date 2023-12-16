@@ -22,7 +22,7 @@ const Header = () => {
       ${visible ? 'translate-y-0' : '-translate-y-full'}
       sm:translate-y-0
     `}>
-      <nav className='flex flex-wrap sm:flex-nowrap justify-center items-center w-full max-w-[900px] px-5'>
+      <nav className='flex flex-wrap sm:flex-nowrap justify-center items-center w-full max-w-[1650px] px-5'>
         <div className={`h-24 w-full flex justify-center sm:justify-start`}>
           <LogoType type='name' className='w-72 fill-mood-light'/>
         </div>
@@ -33,7 +33,7 @@ const Header = () => {
             <li key={navLink}>
               <Link
                 href={`${navLink.toLowerCase()}`}
-                className='hover:text-mood-tertiary duration-300 text-mood-light leading-10'
+                className='hover:text-mood-tertiary duration-300 text-mood-light leading-10 text-sm xs:text-base'
               >
                 {navLink.replace(/[^\w\s]/gi, '')}
               </Link>
