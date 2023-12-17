@@ -3,13 +3,17 @@ import React from 'react';
 import InputContactForm from './InputContactForm';
 import Button from './Button';
 
-const ContactForm = () => {
+interface PropsContactForm {
+    className?: string;
+}
+
+const ContactForm = ({className}:PropsContactForm) => {
   return (
-    <div className='
-        absolute top-1/2 -translate-y-1/2 right-5
+    <div className={`
         bg-mood-light bg-opacity-80 rounded-sm
-        hidden xs:flex flex-col px-6 py-16
-    '>
+        flex flex-col px-6 py-16
+        ${className}
+    `}>
         <h3 className='text-left'>
             <strong className='align-text-bottom'>Olá!</strong> Solicite um orçamento
         </h3>

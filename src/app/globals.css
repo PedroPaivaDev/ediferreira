@@ -117,22 +117,6 @@ small {
   font-size: 0.625rem;
 }
 
-.w-almostScreen {
-  width: calc(100vw - 40px);
-}
-
-.h-almostScreen {
-  height: calc(100vh - 200px);
-}
-
-.max-h-almostScreen {
-  max-height: calc(100vh - 200px);
-}
-
-.max-h-halfScreen {
-  max-height: calc(100vh / 2);
-}
-
 .list-item::before {
     content: "";
     position: absolute;

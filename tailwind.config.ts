@@ -28,6 +28,24 @@ module.exports = {
       },
       screens: {
         'xs': '375px'
+      },
+      width: {
+        'almostScreen': 'calc(100vw - 40px)'
+      },
+      minWidth: {
+        'almostScreen': 'calc(100vw - 40px)'
+      },
+      maxWidth: {
+        'almostScreen': 'calc(100vw - 40px)'
+      },
+      height: {
+        'almostScreen': 'calc(100vh - 200px)'
+      },
+      minHeight: {
+        'almostScreen': 'calc(100vh - 200px)'
+      },
+      maxHeight: {
+        'almostScreen': 'calc(100vh - 200px)'
       }
     },
   },

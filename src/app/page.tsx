@@ -71,10 +71,12 @@ export default function Home() {
       <main className={`${imageLoaded ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && <>
           <section id="home" style={objectBgImage(contentDB.home.bgPhoto)} className="
-            flex shrink-0 flex-col justify-end items-center gap-1
-            p-0 relative h-screen
+            flex shrink-0 justify-center items-center p-5
+            relative h-screen
           ">
-            <ContactForm />
+            <div className="flex justify-end w-full max-w-[1650px]">
+              <ContactForm className="hidden sm:flex"/>
+            </div>
             {/* <video id="videoEdi"
               autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
               style={objectBgImage(contentDB.home.bgPhoto)}
