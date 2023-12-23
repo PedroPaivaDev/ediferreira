@@ -110,3 +110,10 @@ type FileStorageFolder = 'bgPhoto' | 'bgVideo' | 'photoEdi' | 'mainPhoto'
 type FileStoragePath = 'bgPhoto' | 'bgVideo' | 'photoEdi' | `projetos/${string}`;
 
 type UsePhotoOnPathDB = 'home' | `projects/${string}`;
+
+interface ContactFormData {
+  'nome completo': string;
+  'e-mail': string;
+  whatsapp: string;
+  cidade: string;
+}

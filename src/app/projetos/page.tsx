@@ -33,10 +33,10 @@ const PageProjects = () => {
           <Services />
           <ContactForm
             className="w-full items-center"
+            classHeader="sm:gap-3"
             classForm="items-end"
             classInputContainer="sm:grid grid-cols-2"
             classInput="bg-mood-quaternary placeholder:text-mood-light"
-            classButton="w-48"
           />
         </>}
         {contentDB?.projects && projectId &&
