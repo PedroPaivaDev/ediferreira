@@ -1,10 +1,14 @@
 import React from 'react';
 
-const InputContactForm = ({...props}:React.ComponentProps<'input'>) => {
+type PropsInputContactForm = React.ComponentProps<'input'> & {
+  className?: string;
+}
+
+const InputContactForm = ({className, ...props}:PropsInputContactForm) => {
   return (
     <input
         type='text'
-        className='bg-mood-light rounded-sm text-xs p-3'
+        className={`bg-mood-light rounded-sm text-xs p-3 ${className}`}
         {...props}
     />
   )

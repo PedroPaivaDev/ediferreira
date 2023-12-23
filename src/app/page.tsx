@@ -6,14 +6,13 @@ import { ContentDBContext } from "@/contexts/ContentDBContext";
 import objectBgImage from "@/helpers/objectBgImage";
 import { initGoogleAnalytics, initGoogleTagManager } from "@/lib/analitics";
 import { initFacebookPixel } from "@/lib/FacebookPixel";
+import FacebookScript from "@/lib/FacebookScript";
 // import objectBgImage from "@/helpers/objectBgImage";
 
 import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
-import InstaPosts from "@/components/InstaPosts";
-import Contact from "@/components/Contact";
-import FacebookScript from "@/lib/FacebookScript";
 import ContactForm from "@/components/ContactForm";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
@@ -75,7 +74,12 @@ export default function Home() {
             relative h-screen
           ">
             <div className="flex justify-end w-full max-w-[1650px]">
-              <ContactForm className="hidden sm:flex"/>
+              <ContactForm
+                greeting={true}
+                className="hidden sm:flex"
+                classHeader="sm:flex-col"
+                classForm="items-start"
+              />
             </div>
             {/* <video id="videoEdi"
               autoPlay={true} loop={true} muted={true} playsInline={true} preload="auto"
@@ -95,7 +99,13 @@ export default function Home() {
             <Link href='/projetos' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
           </section>
         </>}
-        <InstaPosts />
+        <ContactForm
+          className="w-full items-center"
+          classForm="items-end"
+          classInputContainer="sm:grid grid-cols-2"
+          classInput="bg-mood-quaternary placeholder:text-mood-light"
+          classButton="w-48"
+        />
         <Contact />
       </main>
     </>

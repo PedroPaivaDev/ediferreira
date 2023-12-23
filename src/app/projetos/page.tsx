@@ -6,7 +6,7 @@ import { ContentDBContext } from '@/contexts/ContentDBContext';
 
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
-import InstaPosts from '@/components/InstaPosts';
+import ContactForm from '@/components/ContactForm';
 import Contact from '@/components/Contact';
 
 import ProjectArrows from '@/components/ProjectArrows';
@@ -31,7 +31,13 @@ const PageProjects = () => {
         {contentDB && !projectId && <>
           <Projects />
           <Services />
-          <InstaPosts />
+          <ContactForm
+            className="w-full items-center"
+            classForm="items-end"
+            classInputContainer="sm:grid grid-cols-2"
+            classInput="bg-mood-quaternary placeholder:text-mood-light"
+            classButton="w-48"
+          />
         </>}
         {contentDB?.projects && projectId &&
           <>

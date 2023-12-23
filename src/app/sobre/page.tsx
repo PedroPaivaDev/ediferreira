@@ -6,7 +6,7 @@ import { ContentDBContext } from '@/contexts/ContentDBContext';
 import Loader from '@/components/Loader';
 import About from '@/components/About';
 import Services from '@/components/Services';
-import InstaPosts from '@/components/InstaPosts';
+import ContactForm from '@/components/ContactForm';
 import Contact from '@/components/Contact';
 
 const PageAbout = () => {
@@ -23,7 +23,13 @@ const PageAbout = () => {
       <main className={`bg-mood-light pt-[136px] ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         <About />
         <Services />
-        <InstaPosts />
+        <ContactForm
+          className="w-full items-center"
+          classForm="items-end"
+          classInputContainer="sm:grid grid-cols-2"
+          classInput="bg-mood-quaternary placeholder:text-mood-light"
+          classButton="w-48"
+        />
         <Contact />
       </main>
     </>
