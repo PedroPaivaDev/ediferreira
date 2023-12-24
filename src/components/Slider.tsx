@@ -7,9 +7,10 @@ import SlideArrows from './SlideArrows';
 
 interface PropsSlider {
   projects: ProjectsDB;
+  className?: string;
 }
 
-const Slider: React.FC<PropsSlider> = ({ projects }) => {
+const Slider: React.FC<PropsSlider> = ({ projects, className }) => {
   const startXRef = React.useRef<number | null>(null);
   const startYRef = React.useRef<number | null>(null);
   
@@ -90,10 +91,11 @@ const Slider: React.FC<PropsSlider> = ({ projects }) => {
     <div id='slider'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      className='
+      className={`
         w-full max-w-[900px] h-almostScreen relative shadow-lg
         flex items-end justify-center overflow-x-hidden
-      '
+        ${className}
+      `}
     >
       {projects && Object.keys(projects).map(projectId =>
         <div key={projects[projectId].id}
