@@ -3,10 +3,9 @@ import { useRouter } from 'next/navigation';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { ContentDBContext } from '@/contexts/ContentDBContext';
-
 import InputContactForm from './InputContactForm';
 import Button from './Button';
+import { ContactDataContext } from '@/contexts/ContactDataContext';
 
 interface PropsContactForm {
     greeting?: boolean;
@@ -32,7 +31,7 @@ const ContactForm = ({
     classHeader, classForm, classInputContainer, classInput, classButton
 }:PropsContactForm) => {
     const router = useRouter();
-    const contentDB = React.useContext(ContentDBContext);
+    const {setContactFormData} = React.useContext(ContactDataContext);
 
     const initialValues: ContactFormData = {
         'nome completo': '',
@@ -42,9 +41,8 @@ const ContactForm = ({
     };
 
     const handleSubmit = (values: ContactFormData) => {
-        console.log(values);
-        const whatsappLink = `${contentDB?.contacts.social['1whatsapp'].url}`;
-        router.push(whatsappLink);
+        setContactFormData(values);
+        router.push('/obrigado');
     };
 
     return (

@@ -3,8 +3,9 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google';
 
 import HeaderViewProvider from '@/contexts/HeaderViewContext';
-import ContentDBProvider from '@/contexts/ContentDBContext';
 import AuthGoogleProvider from '@/contexts/AuthGoogleContext';
+import ContentDBProvider from '@/contexts/ContentDBContext';
+import ContactDataProvider from '@/contexts/ContactDataContext';
 
 import WhatsappButton from '@/components/WhatsappButton';
 import Header from '@/components/Header';
@@ -29,8 +30,10 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
           <Header />
           <AuthGoogleProvider>
             <ContentDBProvider>
-              {children}
-              <WhatsappButton />
+              <ContactDataProvider>
+                {children}
+                <WhatsappButton />
+              </ContactDataProvider>
             </ContentDBProvider>
           </AuthGoogleProvider>
           <Footer />
