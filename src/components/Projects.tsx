@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import {usePathname} from 'next/navigation';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 import objectBgImage from '@/helpers/objectBgImage';
@@ -9,6 +10,7 @@ import P from './P';
 
 const Projects = () => {
   const contentDB = React.useContext(ContentDBContext);
+  const pathname = usePathname();
 
   return (
     <section id="Projetos"
@@ -18,12 +20,12 @@ const Projects = () => {
       {contentDB && <>
         <P>{contentDB.about.projectsText.subtitle}</P>
         <Slider projects={contentDB.projects} className='md:hidden'/>
-        <div className='hidden md:flex gap-5 w-full'>
-          {Object.keys(contentDB.projects).slice(0,4).map(projectId =>
+        <div className='hidden md:flex flex-wrap justify-center gap-5 w-full'>
+          {Object.keys(contentDB.projects).slice(0, pathname==='/projetos' ? Object.keys(contentDB.projects).length : 4).map(projectId =>
               <Link 
                 key={contentDB.projects[projectId].id}
                 href={`projetos?projeto=${projectId}`}
-                className='w-full rounded-md  h-[50vh] overflow-hidden hover:shadow-xl duration-300'
+                className='w-full max-w-xs rounded-md  h-[50vh] overflow-hidden hover:shadow-xl duration-300'
                   >
                 <div
                   style={objectBgImage(contentDB.projects[projectId].mainPhoto)}
