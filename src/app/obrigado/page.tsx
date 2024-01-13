@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import { ContentDBContext } from '@/contexts/ContentDBContext';
 import { ContactDataContext } from '@/contexts/ContactDataContext';
+import { trackConversion } from '@/lib/analitics';
 
 const PageThanks = () => {
     const router = useRouter();
@@ -24,6 +25,7 @@ const PageThanks = () => {
         if(contactFormData) {
             setTimeout(() => {
                 contactFormData && redirectUser(contactFormData);
+                trackConversion();
             }, 5000);
         }
     }, [contactFormData]);

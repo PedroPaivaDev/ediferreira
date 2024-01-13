@@ -76,7 +76,7 @@ export default function Home() {
             <div className="flex justify-end w-full max-w-[1650px]">
               <ContactForm
                 greeting={true}
-                className="hidden sm:flex"
+                className="hidden lg:flex"
                 classHeader="sm:flex-col sm:gap-0"
                 classForm="items-start"
               />

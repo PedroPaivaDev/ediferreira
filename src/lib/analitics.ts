@@ -38,6 +38,10 @@ export const initGoogleAnalytics = () => {
     }
 };
 
+export const trackConversion = () => {
+    gtag('event', 'conversion', {'send_to': 'AW-11427641135/wME8CJf63_wYEK_uj8kq'});
+};
+
 // <!-- Google tag (gtag.js) -->
 // <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11427641135"></script>
 // <script>
