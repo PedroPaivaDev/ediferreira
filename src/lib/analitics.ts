@@ -6,7 +6,9 @@ declare const window: WindowWithDataLayer
 
 
 function gtag(...args: any[]) {
-    (window as any).dataLayer.push(...args);
+    if (window && window.dataLayer) {
+        window.dataLayer.push(...args);
+    }
 }
 
 export const initGoogleTagManager = () => {
@@ -39,7 +41,9 @@ export const initGoogleAnalytics = () => {
 };
 
 export const trackConversion = () => {
-    gtag('event', 'conversion', {'send_to': 'AW-11427641135/wME8CJf63_wYEK_uj8kq'});
+    if(typeof window !== 'undefined') {
+        gtag('event', 'conversion', {'send_to': 'AW-11427641135/wME8CJf63_wYEK_uj8kq'});        
+    }
 };
 
 // <!-- Google tag (gtag.js) -->

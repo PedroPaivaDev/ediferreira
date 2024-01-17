@@ -25,10 +25,13 @@ const PageThanks = () => {
         if(contactFormData) {
             setTimeout(() => {
                 contactFormData && redirectUser(contactFormData);
-                trackConversion();
             }, 5000);
         }
     }, [contactFormData]);
+
+    React.useEffect(() => {
+        trackConversion();
+    }, []);
 
     return (
         <main className={`
