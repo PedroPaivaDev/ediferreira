@@ -117,6 +117,10 @@ small {
   font-size: 0.625rem;
 }
 
+.pt-page {
+  padding-top: 96px;
+}
+
 .list-item::before {
     content: "";
     position: absolute;
@@ -147,18 +151,8 @@ small {
   }
 }
 
-@media (min-width: 40rem) {
-  .contain::-webkit-scrollbar, .bgPaper::-webkit-scrollbar {
-      background: transparent;
-      width: 10px;
-  }
-  .contain::-webkit-scrollbar-track, .bgPaper::-webkit-scrollbar-track {
-      background: rgba(127,105,91,0.2);
-      border-radius: 10px;
-      padding: 5px;
-  }
-  .contain::-webkit-scrollbar-thumb, .bgPaper::-webkit-scrollbar-thumb {
-      background-color: rgba(127,105,91,0.4);
-      border-radius: 10px;
+@media (max-width: 40rem) {
+  .pt-page {
+    padding-top: 136px;
   }
 }

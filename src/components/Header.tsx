@@ -33,7 +33,7 @@ const Header = () => {
             <li key={navLink}>
               <Link
                 href={`${navLink.toLowerCase()}`}
-                className='hover:text-mood-tertiary duration-300 font-normal text-mood-light leading-10 text-sm xs:text-base'
+                className='hover:text-mood-tertiary duration-300 font-normal text-mood-light leading-10 text-base'
               >
                 {navLink.replace(/[^\w\s]/gi, '')}
               </Link>

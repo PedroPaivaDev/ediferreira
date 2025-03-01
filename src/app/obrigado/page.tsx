@@ -35,7 +35,7 @@ const PageThanks = () => {
 
     return (
         <main className={`
-            bg-mood-light pt-[136px]
+            bg-mood-light pt-page
             ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000
         `}>
             <section className='justify-center h-[80vh] gap-2'>

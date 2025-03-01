@@ -14,11 +14,11 @@ const AdminLayout = ({children}:{children:React.ReactNode}) => {
   const {userAuth} = React.useContext(AuthGoogleContext);
   
   if(!userAuth) {
-    return <main className='pt-[136px]'><SignIn /></main>
+    return <main className='pt-page'><SignIn /></main>
   }
 
   return (
-    <main className={`gap-5 py-[136px] ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+    <main className={`gap-5 pt-page ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
       <nav className='w-full min-h-10 flex flex-col justify-center items-center bg-mood-secondary text-mood-light'>
         <ul className='w-full max-w-md flex justify-between items-center p-5 flex-wrap'>
           {adminSections.map(section =>
