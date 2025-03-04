@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, ErrorMessage, FieldProps } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import InputMask from 'react-input-mask';
 
 type PropsInputContactForm = React.ComponentProps<'input'> & {

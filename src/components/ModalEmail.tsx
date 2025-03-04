@@ -9,15 +9,13 @@ interface PropsModalEmails {
 }
 
 const ModalEmail = ({downloadLink, setOpenModalEmail }: PropsModalEmails) => {
-  console.log('ModalEmail', downloadLink)
-
   return (
     <Modal setOpenModal={setOpenModalEmail}>
       <ContactForm
         title=""
         subtitile="Preencha seus dados para acessar o material"
         customButtonText="Acessar material"
-        className="w-full items-center px-0 py-0"
+        className="w-full items-center"
         classHeader=""
         classForm="items-end"
         classInputContainer=""

@@ -28,7 +28,7 @@ const Modal = ({ children, setOpenModal }: PropsModal) => {
       onClick={() => setOpenModal(false)}
     >
       <div
-        className="bg-mood-light p-6 rounded-lg shadow-lg w-96 relative z-50"
+        className="bg-mood-light rounded-lg shadow-lg w-96 relative z-50"
         onClick={(e) => e.stopPropagation()}
       >
         <button

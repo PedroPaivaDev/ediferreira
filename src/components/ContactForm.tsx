@@ -37,14 +37,19 @@ const ContactForm = ({
     className, classHeader, classForm, classInputContainer, classInput, classButton
 }: PropsContactForm) => {
     const router = useRouter();
-    const { setContactFormData } = React.useContext(ContactDataContext);
-
-    const initialValues: ContactFormData = {
+    const { contactFormData, setContactFormData } = React.useContext(ContactDataContext);
+    const [initialValues, setInitialValues] = React.useState<ContactFormData>({
         'nome completo': '',
         'e-mail': '',
         whatsapp: '',
         cidade: ''
-    };
+    });
+
+    React.useEffect(() => {
+        if (contactFormData) {
+            setInitialValues(contactFormData);
+        }
+    }, [contactFormData]);
 
     const handleSubmit = (values: ContactFormData) => {
         setContactFormData(values);
@@ -70,6 +75,7 @@ const ContactForm = ({
                 </p>
             </div>
             <Formik
+                enableReinitialize
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
@@ -94,7 +100,7 @@ const ContactForm = ({
                 </Form>
             </Formik>
         </div>
-    )
+    );
 }
 
 export default ContactForm;
