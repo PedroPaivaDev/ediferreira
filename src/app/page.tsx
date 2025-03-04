@@ -13,13 +13,14 @@ import Loader from "@/components/Loader";
 import Projects from "@/components/Projects";
 import ContactForm from "@/components/ContactForm";
 import Contact from "@/components/Contact";
+import Ebooks from "@/components/Ebooks";
 
 export default function Home() {
   const contentDB = React.useContext(ContentDBContext);
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    if(contentDB) {
+    if (contentDB) {
       const image = new Image();
       image.src = contentDB.home.bgPhoto
 
@@ -76,7 +77,7 @@ export default function Home() {
             <div className="flex justify-end w-full max-w-[1650px]">
               <ContactForm
                 greeting={true}
-                className="hidden lg:flex"
+                className="hidden lg:flex bg-opacity-80"
                 classHeader="sm:flex-col sm:gap-0"
                 classForm="items-start"
               />
@@ -94,6 +95,7 @@ export default function Home() {
             <Link href='/sobre' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>
           </section>
           <Projects />
+          <Ebooks />
           <section className='bg-mood-secondary text-mood-light'>
             <p className="mt-4">{contentDB.home.callProjects}</p>
             <Link href='/projetos' className="text-mood-tertiary hover:text-mood-light duration-300">Saiba Mais</Link>

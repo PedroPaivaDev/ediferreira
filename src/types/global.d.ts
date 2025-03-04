@@ -4,6 +4,7 @@ interface ContentDB {
   contacts: ContactsDB;
   services: ServicesDB;
   about: AboutDB;
+  guides: Guides;
 }
 
 interface HomeDB {
@@ -28,7 +29,7 @@ interface AboutDB {
 }
 
 interface ProjectsDB {
-  [key:string]: ProjectDB;
+  [key: string]: ProjectDB;
 }
 
 interface ProjectDB {
@@ -46,7 +47,7 @@ interface ContactsDB {
 }
 
 interface ContactsSocialDB {
-  [key:string]: ContactDB;
+  [key: string]: ContactDB;
 }
 
 interface ContactDB {
@@ -66,7 +67,7 @@ interface ServiceTypeDB {
   subtitle: string;
   items: string[];
   products: {
-    [key:string]: string;
+    [key: string]: string;
   }
 }
 
@@ -80,7 +81,7 @@ interface PostImageDescription {
 }
 
 interface ObjectKeyString {
-  [key:string]: string | string[];
+  [key: string]: string | string[];
 }
 
 interface FormObjectKeyString {
@@ -116,4 +117,23 @@ interface ContactFormData {
   'e-mail': string;
   whatsapp: string;
   cidade: string;
+}
+
+interface Ebook {
+  description: string;
+  downloadLink: string;
+  id: string;
+  name: string;
+  downloadButtonText: string;
+}
+
+interface Ebooks {
+  [key: string]: Ebook;
+}
+
+interface Guides {
+  title: string;
+  subtitle: string;
+  isVisible: boolean;
+  ebooks: Ebooks;
 }

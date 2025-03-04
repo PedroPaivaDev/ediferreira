@@ -4,9 +4,11 @@ import { getAuth } from "firebase/auth";
 import { getDatabase, ref, onValue, update, remove, get } from "firebase/database";
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytes, deleteObject, listAll, getMetadata } from "firebase/storage";
 
+const access_token = process.env.NEXT_PUBLIC_KEY_API_FIREBASE;
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAVChL0MrJQKJhwx8r5QheC36OQY4GdRGE",
+  apiKey: access_token,
   authDomain: "db-ediferreira.firebaseapp.com",
   databaseURL: "https://db-ediferreira-default-rtdb.firebaseio.com",
   projectId: "db-ediferreira",

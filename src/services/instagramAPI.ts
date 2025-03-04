@@ -1,4 +1,4 @@
-const access_token = process.env.NEXT_PUBLIC_KEY_API;
+const access_token = process.env.NEXT_PUBLIC_KEY_API_INSTAGRAM;
 
 export async function getInsta(url:string) {
   const response = await fetch(url);

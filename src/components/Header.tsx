@@ -7,7 +7,7 @@ import { HeaderViewContext } from '@/contexts/HeaderViewContext';
 
 import LogoType from './LogoType';
 
-const sandwichNavBar = ['/#Home', '/Projetos', '/Sobre', '#Contato'];
+const sandwichNavBar = ['/#Home', '/Projetos', '/Sobre', '/#Guias', '#Contato'];
 
 const Header = () => {
   const path = usePathname();
