@@ -32,6 +32,8 @@ const PageProjects = () => {
           <Projects />
           <Services />
           <ContactForm
+            title="Solicite um orçamento"
+            subtitile="Espaços únicos para sonhos únicos"
             className="w-full items-center"
             classHeader="sm:gap-3"
             classForm="items-end"

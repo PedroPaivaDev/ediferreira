@@ -77,6 +77,8 @@ export default function Home() {
             <div className="flex justify-end w-full max-w-[1650px]">
               <ContactForm
                 greeting={true}
+                title="Solicite um orçamento"
+                subtitile="Espaços únicos para sonhos únicos"
                 className="hidden lg:flex bg-opacity-80"
                 classHeader="sm:flex-col sm:gap-0"
                 classForm="items-start"
@@ -102,6 +104,8 @@ export default function Home() {
           </section>
         </>}
         <ContactForm
+          title="Solicite um orçamento"
+          subtitile="Espaços únicos para sonhos únicos"
           className="w-full items-center"
           classHeader="sm:gap-3"
           classForm="items-end"

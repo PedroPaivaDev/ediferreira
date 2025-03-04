@@ -14,11 +14,15 @@ const ModalEmail = ({downloadLink, setOpenModalEmail }: PropsModalEmails) => {
   return (
     <Modal setOpenModal={setOpenModalEmail}>
       <ContactForm
-        className="w-full items-center"
-        classHeader="sm:gap-3"
+        title=""
+        subtitile="Preencha seus dados para acessar o material"
+        customButtonText="Acessar material"
+        className="w-full items-center px-0 py-0"
+        classHeader=""
         classForm="items-end"
-        classInputContainer="sm:grid grid-cols-2"
+        classInputContainer=""
         classInput="bg-mood-quaternary placeholder:text-mood-light"
+        classButton="mt-0"
         customRedirectLink={downloadLink}
       />
     </Modal>

@@ -9,6 +9,9 @@ import { ContactDataContext } from '@/contexts/ContactDataContext';
 
 interface PropsContactForm {
     greeting?: boolean;
+    title: string;
+    subtitile: string;
+    customButtonText?: string;
     customRedirectLink?: string;
     className?: string;
     classHeader?: string;
@@ -30,8 +33,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const ContactForm = ({
-    greeting, className, customRedirectLink,
-    classHeader, classForm, classInputContainer, classInput, classButton
+    greeting, title, subtitile, customButtonText, customRedirectLink,
+    className, classHeader, classForm, classInputContainer, classInput, classButton
 }: PropsContactForm) => {
     const router = useRouter();
     const { setContactFormData } = React.useContext(ContactDataContext);
@@ -59,11 +62,11 @@ const ContactForm = ({
             ${className}
         `}>
             <div className={`flex sm:flex-row flex-col justify-center items-center ${classHeader}`}>
-                <h3 className='text-left align-baseline'>
-                    {greeting && <strong className='align-baseline'>Olá!</strong>} Solicite um orçamento
+                <h3 className='text-center align-baseline'>
+                    {greeting && <strong className='align-baseline'>Olá! </strong>}{title}
                 </h3>
-                <p className='text-mood-secondary mt-1 text-left align-baseline'>
-                    Espaços únicos para sonhos únicos
+                <p className='text-mood-secondary mt-1 text-center align-baseline'>
+                    {subtitile}
                 </p>
             </div>
             <Formik
@@ -71,7 +74,7 @@ const ContactForm = ({
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
-                <Form className={`flex flex-col gap-3 w-full max-w-[640px] ${classForm}`}>
+                <Form className={`flex flex-col gap-5 w-full max-w-[640px] ${classForm}`}>
                     <div className={`flex flex-col w-full gap-5 ${classInputContainer}`}>
                         {inputsToRender.map(input =>
                             <InputContactForm
@@ -84,8 +87,8 @@ const ContactForm = ({
                         )}
                     </div>
                     <Button
-                        label='Iniciar conversa'
-                        className={`mt-5 ${classButton}`}
+                        label={customButtonText ?? 'Iniciar conversa'}
+                        className={`${classButton}`}
                         type='submit'
                     />
                 </Form>
