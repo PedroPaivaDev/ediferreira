@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import InputContactForm from './InputContactForm';
 import Button from './Button';
 import { ContactDataContext } from '@/contexts/ContactDataContext';
+import { createRegistration } from '@/services/firebase';
+import generateIdFromEmail from '@/helpers/generateIdFromEmail';
 
 interface PropsContactForm {
     greeting?: boolean;
@@ -53,6 +55,24 @@ const ContactForm = ({
 
     const handleSubmit = (values: ContactFormData) => {
         setContactFormData(values);
+
+        const customerDataId = generateIdFromEmail(values['e-mail'])
+        const customerData: RegistrationsDB = {
+            [customerDataId]: {
+                email: values['e-mail'],
+                name: values['nome completo'],
+                phone: values.whatsapp,
+                city: values.cidade,
+                openChatDate: !customRedirectLink ? new Date().toISOString() : null,
+                ebooks: customRedirectLink ? {
+                    downloadDate: new Date().toISOString(),
+                    ebookLink: customRedirectLink,
+                } : null,
+                id: customerDataId
+            }
+        }
+        createRegistration(customerData);
+
         if (customRedirectLink) {
             window.open(customRedirectLink, '_blank');
             return;

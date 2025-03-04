@@ -150,3 +150,10 @@ export function changeContent(path:string, content:ObjectKeyString) {
 
   }).catch(err => console.log(err));
 }
+
+export function createRegistration(registration:RegistrationsDB) {
+  const registrationRef = ref(db, 'private/registrations');
+  update(registrationRef, registration).then(() => {
+    alert(`Os seguinte campos foram atualizados: ${registration}.`)
+  }).catch(err => console.log(err));
+}
