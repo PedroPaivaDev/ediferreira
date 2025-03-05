@@ -154,6 +154,17 @@ export function changeContent(path:string, content:ObjectKeyString) {
 export function createRegistration(registration:RegistrationsDB) {
   const registrationRef = ref(db, 'private/registrations');
   update(registrationRef, registration).then(() => {
-    alert(`Os seguinte campos foram atualizados: ${registration}.`)
+    console.log(`Dados foram registrados: ${registration}.`)
   }).catch(err => console.log(err));
+}
+
+export async function getRegistrationsDB(): Promise<RegistrationsDB|null> {
+  const dataRef = ref(db, 'private/registrations');
+  const snapshot = await get(dataRef);
+
+  if (snapshot.exists()) {
+    return snapshot.val() as RegistrationsDB;
+  }
+
+  return null;
 }

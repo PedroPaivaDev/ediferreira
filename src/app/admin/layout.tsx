@@ -7,7 +7,7 @@ import { AuthGoogleContext } from '@/contexts/AuthGoogleContext';
 
 import SignIn from '@/components/SingIn';
 
-const adminSections = ['midias', 'textos', 'projetos', 'novo']
+const adminSections = ['midias', 'textos', 'projetos', 'novo', 'emails']
 
 const AdminLayout = ({children}:{children:React.ReactNode}) => {
   const contentDB = React.useContext(ContentDBContext);
@@ -18,7 +18,7 @@ const AdminLayout = ({children}:{children:React.ReactNode}) => {
   }
 
   return (
-    <main className={`gap-5 pt-page ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+    <main className={`gap-5 pt-page pb-20 ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
       <nav className='w-full min-h-10 flex flex-col justify-center items-center bg-mood-secondary text-mood-light'>
         <ul className='w-full max-w-md flex justify-between items-center p-5 flex-wrap'>
           {adminSections.map(section =>

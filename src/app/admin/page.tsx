@@ -8,6 +8,7 @@ import AdminMedias from '@/components/AdminMedias';
 import AdminTexts from '@/components/AdminTexts';
 import AdminProjects from '@/components/AdminProjects';
 import AdminNewProject from '@/components/AdminNewProject';
+import AdminRegistrations from '@/components/AdminRegistrations';
 
 const Admin = () => {
   const projectId = useSearchParams().get('content');
@@ -23,6 +24,7 @@ const Admin = () => {
       {projectId==='textos' && <AdminTexts/>}
       {projectId==='projetos' && <AdminProjects/>}
       {projectId==='novo' && <AdminNewProject/>}
+      {projectId==='emails' && <AdminRegistrations/>}
     </>
   );
 }
