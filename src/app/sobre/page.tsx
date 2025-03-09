@@ -7,6 +7,7 @@ import Loader from '@/components/Loader';
 import About from '@/components/About';
 import Services from '@/components/Services';
 import ContactForm from '@/components/ContactForm';
+import Ebooks from '@/components/Ebooks';
 import Contact from '@/components/Contact';
 
 const PageAbout = () => {
@@ -32,6 +33,7 @@ const PageAbout = () => {
           classInputContainer="sm:grid grid-cols-2"
           classInput="bg-mood-quaternary placeholder:text-mood-light"
         />
+        <Ebooks />
         <Contact />
       </main>
     </>

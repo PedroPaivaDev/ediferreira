@@ -7,6 +7,7 @@ import { ContentDBContext } from '@/contexts/ContentDBContext';
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
 import ContactForm from '@/components/ContactForm';
+import Ebooks from '@/components/Ebooks';
 import Contact from '@/components/Contact';
 
 import ProjectArrows from '@/components/ProjectArrows';
@@ -52,6 +53,7 @@ const PageProjects = () => {
             <ProjectArrows projectId={projectId} />
           </>
         }
+        <Ebooks />
         <Contact />
       </main>
     </>

@@ -106,9 +106,9 @@ interface FileObjectLocal {
   size: number;
 }
 
-type FileStorageFolder = 'bgPhoto' | 'bgVideo' | 'photoEdi' | 'mainPhoto'
+type FileStorageFolder = 'bgPhoto' | 'bgVideo' | 'photoEdi' | 'mainPhoto' | 'guides'
 
-type FileStoragePath = 'bgPhoto' | 'bgVideo' | 'photoEdi' | `projetos/${string}`;
+type FileStoragePath = 'bgPhoto' | 'bgVideo' | 'photoEdi' | `projetos/${string}` | 'ebooks/guides';
 
 type UsePhotoOnPathDB = 'home' | `projects/${string}`;
 

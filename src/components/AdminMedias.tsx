@@ -9,6 +9,7 @@ import handleFileSubmit from '@/helpers/handleFileSubmit';
 
 import Button from '@/components/Button';
 import AdminMediaPhotos from '@/components/AdminMediaPhotos';
+import AdminEditEbookList from './AdminEditEbookList';
 
 const AdminMedias = () => {
   const contentDB = React.useContext(ContentDBContext);
@@ -20,6 +21,8 @@ const AdminMedias = () => {
   const [bgPhotosStorageFiles, setBgPhotosStorageFiles] = React.useState<FileObjectStorage[]>([]);
   const [bgPhotoPreviewUrl, setBgPhotoPreviewUrl] = React.useState<string | null>(null);
   const [bgPhotoFile, setBgPotoFile] = React.useState<File | null>(null);
+
+  const [ebooksStorageFiles, setEbooksStorageFiles] = React.useState<FileObjectStorage[]>([]);
 
   function onFileSelected(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -37,8 +40,8 @@ const AdminMedias = () => {
   React.useEffect(() => {
     listAllFiles('photoEdi', 'photoEdi', setPhotosEdiStorageFiles);
     listAllFiles('bgPhoto', 'bgPhoto', setBgPhotosStorageFiles);
+    listAllFiles('ebooks/guides', 'guides', setEbooksStorageFiles);
   },[]);
-
 
   return (
     <>
@@ -101,6 +104,7 @@ const AdminMedias = () => {
           </div>
         }
       </form>
+      <AdminEditEbookList ebooksStorageFiles={ebooksStorageFiles} />
     </>
   )
 }

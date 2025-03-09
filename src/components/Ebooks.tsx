@@ -18,7 +18,7 @@ const Ebooks = () => {
   }
 
   return (
-    <section id='guias'>
+    <section id='ebooks'>
       {openModalEmail && ebookDownloadLink.length > 0 && <ModalEmail
         downloadLink={ebookDownloadLink}
         setOpenModalEmail={setOpenModalEmail}

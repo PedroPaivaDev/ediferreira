@@ -64,7 +64,7 @@ export async function uploadFilesAndGetUrls(files:FileObjectLocal[], projectId:s
   }
 }
 
-export function removePhotoFromStorage(folderStoragePath: string, fileName: string) {
+export function removeFileFromStorage(folderStoragePath: string, fileName: string) {
   const fileRef = storageRef(storage, `${folderStoragePath}/${fileName}`);
   deleteObject(fileRef).then(() => {
     window.location.reload();
@@ -116,6 +116,19 @@ export async function deleteProject(projectId:string) {
     window.location.reload();
   } catch (error) {
     console.error('Erro ao excluir o projeto:', error);
+  }
+}
+
+export async function deleteEbook(ebookId:string, fileName:string) {
+  //até o dia 02 de outubro de 2023, o Firebase não permite remover pastas do Storage, então as imagens do projeto serão removidas, mas não a sua pasta.
+  try {
+    const ebookStorageRef = storageRef(storage, `ebooks/guides/${fileName}`);
+    const ebookDbRef = ref(db, `content/guides/ebooks/${ebookId}`);
+    await deleteObject(ebookStorageRef)
+    await remove(ebookDbRef);
+    window.location.reload();
+  } catch (error) {
+    console.error('Erro ao excluir o ebook:', error);
   }
 }
 
