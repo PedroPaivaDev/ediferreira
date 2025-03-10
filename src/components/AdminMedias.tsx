@@ -9,7 +9,8 @@ import handleFileSubmit from '@/helpers/handleFileSubmit';
 
 import Button from '@/components/Button';
 import AdminMediaPhotos from '@/components/AdminMediaPhotos';
-import AdminEditEbookList from './AdminEditEbookList';
+import AdminEditEbookList from '@/components/AdminEditEbookList';
+import AdminAddEbook from '@/components/AdminAddEbook';
 
 const AdminMedias = () => {
   const contentDB = React.useContext(ContentDBContext);
@@ -105,6 +106,7 @@ const AdminMedias = () => {
         }
       </form>
       <AdminEditEbookList ebooksStorageFiles={ebooksStorageFiles} />
+      <AdminAddEbook />
     </>
   )
 }
