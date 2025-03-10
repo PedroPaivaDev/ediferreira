@@ -1,5 +1,22 @@
 import React from 'react';
+
+import exportToExcel from '@/lib/exportToExcel';
 import { getRegistrationsDB } from '@/services/firebase';
+
+import Button from './Button';
+
+interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  ebooks?: {
+    downloadDate?: string;
+    ebookLink?: string;
+  };
+  openChatDate?: string;
+}
 
 const AdminRegistrations = () => {
   const [registrationsDB, setRegistrationsDB] = React.useState<RegistrationsDB | null>(null);
@@ -27,9 +44,58 @@ const AdminRegistrations = () => {
     });
   }, []);
 
+  const mapRegistrationToUserData = (registration: RegistrationDB): UserData => {
+    return {
+      id: registration.id,
+      name: registration.name,
+      email: registration.email,
+      phone: registration.phone,
+      city: registration.city,
+      ebooks: registration.ebooks
+        ? {
+          downloadDate: registration.ebooks.downloadDate,
+          ebookLink: registration.ebooks.ebookLink,
+        }
+        : undefined,
+      openChatDate: registration.openChatDate || undefined,
+    };
+  };
+
+  function handleDownloadCompleteData() {
+    if(!registrationsDB) {
+      alert("Não há dados para serem baixados")
+      return
+    }
+    const mappedData = Object.fromEntries(
+      Object.entries(registrationsDB).map(([key, registration]) => [
+        key,
+        mapRegistrationToUserData(registration),
+      ])
+    );
+    exportToExcel(mappedData);
+  }
+
+  function handleDownloadFilteredData() {
+    const mappedData = Object.fromEntries(
+      filteredRegistrations.map(([key, registration]) => [
+        key,
+        mapRegistrationToUserData(registration),
+      ])
+    );
+    exportToExcel(mappedData);
+  }
+
   return (
     <div className="w-full flex flex-col justify-start items-start gap-3 text-left">
       <h3 className="text-mood-tertiary">Registros dos formulários de Whatsapp e Ebooks</h3>
+
+      {registrationsDB && (
+        <Button label='Baixar Dados Completos' onClick={handleDownloadCompleteData}/>
+      )}
+
+      {filteredRegistrations.length > 0 && (
+        <Button label='Baixar Dados Filtrados' onClick={handleDownloadFilteredData}/>
+      )}
 
       <input
         type="text"
@@ -52,7 +118,7 @@ const AdminRegistrations = () => {
                   <p className="text-sm mt-2">
                     <a
                       href={registration.ebooks.ebookLink}
-                      className='hover:underline'
+                      className="hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -65,12 +131,13 @@ const AdminRegistrations = () => {
                   <p className="text-sm mt-2">
                     <a
                       href={`https://api.whatsapp.com/send?phone=${formatPhoneNumber(registration.phone)}`}
-                      className='hover:underline'
+                      className="hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Chat em:
-                    </a> {new Date(registration.openChatDate).toLocaleString()}
+                    </a>{' '}
+                    {new Date(registration.openChatDate).toLocaleString()}
                   </p>
                 )}
               </li>
