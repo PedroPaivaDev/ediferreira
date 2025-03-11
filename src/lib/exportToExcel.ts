@@ -1,20 +1,7 @@
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
-interface UserData {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  ebooks?: {
-    downloadDate?: string;
-    ebookLink?: string;
-  };
-  openChatDate?: string;
-}
-
-export default function exportToExcel(data: Record<string, UserData>) {
+export default function exportToExcel(data: Record<string, UserDataDB>) {
   // Converter objeto JSON em array de objetos
   const formattedData = Object.values(data).map((user) => ({
     ID: user.id,

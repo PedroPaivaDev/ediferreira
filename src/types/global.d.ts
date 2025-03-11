@@ -119,6 +119,19 @@ interface ContactFormData {
   cidade?: string;
 }
 
+interface UserDataDB {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  city?: string;
+  ebooks?: {
+    downloadDate?: string;
+    ebookLink?: string;
+  };
+  openChatDate?: string;
+}
+
 interface Ebook {
   description: string;
   downloadLink: string;

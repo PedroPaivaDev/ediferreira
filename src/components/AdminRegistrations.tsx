@@ -5,19 +5,6 @@ import { getRegistrationsDB } from '@/services/firebase';
 
 import Button from './Button';
 
-interface UserData {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  ebooks?: {
-    downloadDate?: string;
-    ebookLink?: string;
-  };
-  openChatDate?: string;
-}
-
 const AdminRegistrations = () => {
   const [registrationsDB, setRegistrationsDB] = React.useState<RegistrationsDB | null>(null);
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -44,13 +31,13 @@ const AdminRegistrations = () => {
     });
   }, []);
 
-  const mapRegistrationToUserData = (registration: RegistrationDB): UserData => {
+  const mapRegistrationToUserData = (registration: RegistrationDB): UserDataDB => {
     return {
       id: registration.id,
       name: registration.name,
       email: registration.email,
-      phone: registration.phone,
-      city: registration.city,
+      phone: registration.phone ?? '',
+      city: registration.city ?? '',
       ebooks: registration.ebooks
         ? {
           downloadDate: registration.ebooks.downloadDate,
@@ -127,7 +114,7 @@ const AdminRegistrations = () => {
                     <span> {new Date(registration.ebooks.downloadDate).toLocaleString()}</span>
                   </p>
                 )}
-                {registration.openChatDate && (
+                {registration.openChatDate && registration.phone && (
                   <p className="text-sm mt-2">
                     <a
                       href={`https://api.whatsapp.com/send?phone=${formatPhoneNumber(registration.phone)}`}
