@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Modal from './Modal'
-import ContactForm from './ContactForm';
+import ContactFormEbook from './ContactFormEbook';
 
 interface PropsModalEmails {
   downloadLink: string
@@ -11,7 +11,7 @@ interface PropsModalEmails {
 const ModalEmail = ({downloadLink, setOpenModalEmail }: PropsModalEmails) => {
   return (
     <Modal setOpenModal={setOpenModalEmail}>
-      <ContactForm
+      <ContactFormEbook
         title=""
         subtitile="Preencha seus dados para acessar o material"
         customButtonText="Acessar material"

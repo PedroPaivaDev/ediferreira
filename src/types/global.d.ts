@@ -115,8 +115,8 @@ type UsePhotoOnPathDB = 'home' | `projects/${string}`;
 interface ContactFormData {
   'nome completo': string;
   'e-mail': string;
-  whatsapp: string;
-  cidade: string;
+  whatsapp?: string;
+  cidade?: string;
 }
 
 interface Ebook {

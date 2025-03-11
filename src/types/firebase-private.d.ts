@@ -6,9 +6,9 @@ interface CustomerEbookDB {
 interface RegistrationDB {
   email: string;
   name: string;
-  phone: string;
-  city: string;
-  openChatDate: strin | null;
+  phone?: string;
+  city?: string;
+  openChatDate?: string | null;
   ebooks: CustomerEbookDB | null;
   id: string;
 }
