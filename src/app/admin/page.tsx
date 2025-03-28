@@ -11,7 +11,7 @@ import AdminNewProject from '@/components/AdminNewProject';
 import AdminRegistrations from '@/components/AdminRegistrations';
 
 const Admin = () => {
-  const projectId = useSearchParams().get('content');
+  const projectId = useSearchParams()?.get('content');
   const contentDB = React.useContext(ContentDBContext);
   
   return (

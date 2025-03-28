@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+'use client'
+import React from 'react';
 
 interface PropsModal {
   children: React.ReactNode;
@@ -6,7 +7,7 @@ interface PropsModal {
 }
 
 const Modal = ({ children, setOpenModal }: PropsModal) => {
-  useEffect(() => {
+  React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setOpenModal(false);
