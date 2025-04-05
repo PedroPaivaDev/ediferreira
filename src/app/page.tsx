@@ -1,11 +1,8 @@
-'use client'
 import React from "react";
 import Link from "next/link";
 
 // import { ContentDBContext } from "@/contexts/ContentDBContext";
 import objectBgImage from "@/helpers/objectBgImage";
-import { initGoogleAnalytics, initGoogleTagManager } from "@/lib/analitics";
-import { initFacebookPixel } from "@/lib/FacebookPixel";
 import FacebookScript from "@/lib/FacebookScript";
 import { getContentDB } from "@/services/firebase";
 // import objectBgImage from "@/helpers/objectBgImage";
@@ -35,14 +32,6 @@ export default function Home() {
   //     };
   //   }
   // }, [contentDB]);
-
-  React.useEffect(() => {
-    // Initialize Google Tag Manager and Google Analytics on component mount
-    initGoogleTagManager();
-    initGoogleAnalytics();
-    initFacebookPixel();
-  }, []);
-
 
   // const [videoLoaded, setVideoLoaded] = React.useState(false);
 

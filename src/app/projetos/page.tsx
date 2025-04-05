@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import { getContentDB } from '@/services/firebase';
+import { ContentDBContext } from '@/contexts/ContentDBContext';
 
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
@@ -13,47 +13,50 @@ import Contact from '@/components/Contact';
 import ProjectArrows from '@/components/ProjectArrows';
 import ProjectModal from '@/components/ProjectModal';
 import Project from '@/components/Project';
+import Loader from '@/components/Loader';
 
 const PageProjects = () => {
   const projectId = useSearchParams()?.get('projeto');
+  const contentDB = React.useContext(ContentDBContext);
   const [modalImage, setModalImage] = React.useState<string | null>(null);
 
   return (
-    <main className={`bg-mood-light pt-page duration-1000`}>
-      {getContentDB().then(contentDB => {
-        if (!contentDB) return <></>;
-        return (
+    <>
+      {!contentDB && <Loader
+        className="
+          w-full h-full flex flex-col justify-center items-center
+          fixed z-40 bg-mood-light
+        "
+      />}
+      <main className={`bg-mood-light pt-page ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
+        {contentDB && !projectId && <>
+          <Projects />
+          <Services />
+          <ContactForm
+            title="Solicite um orçamento"
+            subtitile="Espaços únicos para sonhos únicos"
+            className="w-full items-center"
+            classHeader="sm:gap-3"
+            classForm="items-end"
+            classInputContainer="sm:grid grid-cols-2"
+            classInput="bg-mood-quaternary placeholder:text-mood-light"
+          />
+        </>}
+        {contentDB?.projects && projectId &&
           <>
-            {contentDB && !projectId && <>
-              <Projects />
-              <Services />
-              <ContactForm
-                title="Solicite um orçamento"
-                subtitile="Espaços únicos para sonhos únicos"
-                className="w-full items-center"
-                classHeader="sm:gap-3"
-                classForm="items-end"
-                classInputContainer="sm:grid grid-cols-2"
-                classInput="bg-mood-quaternary placeholder:text-mood-light"
-              />
-            </>}
-            {contentDB?.projects && projectId &&
-              <>
-                <ProjectArrows projectId={projectId} />
-                {modalImage && <ProjectModal
-                  projectImages={contentDB.projects[projectId].images}
-                  modalImage={modalImage} setModalImage={setModalImage}
-                />}
-                <Project project={contentDB.projects[projectId]} setModalImage={setModalImage} />
-                <ProjectArrows projectId={projectId} />
-              </>
-            }
-            <Ebooks />
-            <Contact />
+            <ProjectArrows projectId={projectId} />
+            {modalImage && <ProjectModal
+              projectImages={contentDB.projects[projectId].images}
+              modalImage={modalImage} setModalImage={setModalImage}
+            />}
+            <Project project={contentDB.projects[projectId]} setModalImage={setModalImage} />
+            <ProjectArrows projectId={projectId} />
           </>
-        )
-      })}
-    </main>
+        }
+        <Ebooks />
+        <Contact />
+      </main>
+    </>
   )
 }
 

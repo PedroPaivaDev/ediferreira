@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 import { HeaderViewContext } from '@/contexts/HeaderViewContext';
+import { initGoogleAnalytics, initGoogleTagManager } from '@/lib/analitics';
+import { initFacebookPixel } from '@/lib/FacebookPixel';
 
 import LogoType from './LogoType';
 
@@ -12,6 +14,17 @@ const sandwichNavBar = ['/#Home', '/Projetos', '/Sobre', '/#Ebooks', '#Contato']
 const Header = () => {
   const path = usePathname();
   const {visible, currentScrollZero} = React.useContext(HeaderViewContext);
+
+  React.useEffect(() => {
+    console.log('currentScrollZero', currentScrollZero)
+  }, [currentScrollZero])
+
+  React.useEffect(() => {
+    // Initialize Google Tag Manager and Google Analytics on component mount
+    initGoogleTagManager();
+    initGoogleAnalytics();
+    initFacebookPixel();
+  }, []);
 
   return (
     <header className={`
