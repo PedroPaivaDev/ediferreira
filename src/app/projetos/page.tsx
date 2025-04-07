@@ -30,7 +30,7 @@ const PageProjects = () => {
       />}
       <main className={`bg-mood-light pt-page ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && !projectId && <>
-          <Projects />
+          <Projects contentDB={contentDB}/>
           <Services />
           <ContactForm
             title="Solicite um orçamento"

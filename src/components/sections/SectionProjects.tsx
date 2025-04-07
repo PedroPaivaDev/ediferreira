@@ -1,16 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
 
-import objectBgImage from '@/helpers/objectBgImage';
+import objectBgImage from '@/helpers/objectBgImage'
 
-import Slider from './Slider';
-import P from './P';
+import P from '../P'
+import Slider from '../Slider'
 
-interface PropsProjects {
+interface PropsSectionProjects {
   contentDB: ContentDB | null
 }
 
-const Projects = ({contentDB}: PropsProjects) => {
+const SectionProjects = ({contentDB}: PropsSectionProjects) => {
   return (
     <section id="Projetos"
       className="bg-mood-light gap-5"
@@ -20,7 +20,7 @@ const Projects = ({contentDB}: PropsProjects) => {
         <P>{contentDB.about.projectsText.subtitle}</P>
         <Slider projects={contentDB.projects} className='md:hidden' />
         <div className='hidden md:flex flex-wrap justify-center gap-5 w-full'>
-          {Object.keys(contentDB.projects).slice(0, Object.keys(contentDB.projects).length).map(projectId =>
+          {Object.keys(contentDB.projects).slice(0, 4).map(projectId =>
             <Link
               key={contentDB.projects[projectId].id}
               href={`projetos?projeto=${projectId}`}
@@ -47,4 +47,4 @@ const Projects = ({contentDB}: PropsProjects) => {
   )
 }
 
-export default Projects;
+export default SectionProjects
