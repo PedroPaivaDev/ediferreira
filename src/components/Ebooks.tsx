@@ -1,13 +1,14 @@
 'use client'
 import React from 'react'
 
-import { ContentDBContext } from '@/contexts/ContentDBContext';
-
 import Button from './Button'
 import ModalEmail from './ModalEmail';
 
-const Ebooks = () => {
-  const contentDB = React.useContext(ContentDBContext);
+interface PropsEbooks {
+  contentDB: ContentDB | null
+}
+
+const Ebooks = ({contentDB}: PropsEbooks) => {
   const [openModalEmail, setOpenModalEmail] = React.useState(false);
   const [ebookDownloadLink, setEbookDownloadLink] = React.useState('');
 

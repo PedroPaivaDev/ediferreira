@@ -5,6 +5,7 @@ import Services from '@/components/Services';
 import ContactForm from '@/components/ContactForm';
 import Ebooks from '@/components/Ebooks';
 import Contact from '@/components/Contact';
+import { getContentDB } from '@/services/firebase';
 
 const PageAbout = () => {
   return (
@@ -20,7 +21,9 @@ const PageAbout = () => {
         classInputContainer="sm:grid grid-cols-2"
         classInput="bg-mood-quaternary placeholder:text-mood-light"
       />
-      <Ebooks />
+      {getContentDB().then(contentDB =>
+        <Ebooks contentDB={contentDB} />
+      )}
       <Contact />
     </main>
   )

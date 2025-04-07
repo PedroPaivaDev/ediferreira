@@ -16,10 +16,6 @@ const Header = () => {
   const {visible, currentScrollZero} = React.useContext(HeaderViewContext);
 
   React.useEffect(() => {
-    console.log('currentScrollZero', currentScrollZero)
-  }, [currentScrollZero])
-
-  React.useEffect(() => {
     // Initialize Google Tag Manager and Google Analytics on component mount
     initGoogleTagManager();
     initGoogleAnalytics();
@@ -29,9 +25,7 @@ const Header = () => {
   return (
     <header className={`
       duration-300
-      ${currentScrollZero && path==='/' ?
-        'bg-transparent' : 'bg-mood-primary'
-      }
+      bg-mood-primary
       ${visible ? 'translate-y-0' : '-translate-y-full'}
       sm:translate-y-0
     `}>

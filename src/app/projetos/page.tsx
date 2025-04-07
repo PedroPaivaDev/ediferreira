@@ -53,7 +53,7 @@ const PageProjects = () => {
             <ProjectArrows projectId={projectId} />
           </>
         }
-        <Ebooks />
+        <Ebooks contentDB={contentDB} />
         <Contact />
       </main>
     </>

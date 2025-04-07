@@ -60,9 +60,11 @@ export default function Home() {
         <SectionHomeBackground />
         <SectionCallAbout />
         {getContentDB().then(contentDB =>
-          <SectionProjects contentDB={contentDB} />
+          <>
+            <SectionProjects contentDB={contentDB} />
+            <Ebooks contentDB={contentDB} />
+          </>
         )}
-        <Ebooks />
         <SectionCallProjects />
         <ContactForm
           title="Solicite um orçamento"
