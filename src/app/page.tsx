@@ -4,12 +4,12 @@ import FacebookScript from "@/lib/FacebookScript";
 import { getContentDB } from "@/services/firebase";
 
 import ContactForm from "@/components/ContactForm";
-import Contact from "@/components/Contact";
 import Ebooks from "@/components/Ebooks";
 import SectionCallAbout from "@/components/sections/SectionCallAbout";
-import SectionCallProjects from "@/components/sections/SectionsCallProjects";
+import SectionCallProjects from "@/components/sections/SectionCallProjects";
 import SectionHomeBackground from "@/components/sections/SectionHomeBackground";
 import SectionProjects from "@/components/sections/SectionProjects";
+import SectionContact from "@/components/sections/SectionContact";
 
 export default function Home() {
   // const contentDB = React.useContext(ContentDBContext);
@@ -75,7 +75,7 @@ export default function Home() {
           classInputContainer="sm:grid grid-cols-2"
           classInput="bg-mood-quaternary placeholder:text-mood-light"
         />
-        <Contact />
+        <SectionContact />
       </main>
     </>
   )

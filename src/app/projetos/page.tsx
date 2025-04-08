@@ -20,18 +20,21 @@ const PageProjects = () => {
   const contentDB = React.useContext(ContentDBContext);
   const [modalImage, setModalImage] = React.useState<string | null>(null);
 
-  return (
-    <>
-      {!contentDB && <Loader
-        className="
+  if (!contentDB) return (
+    <Loader
+      className="
           w-full h-full flex flex-col justify-center items-center
           fixed z-40 bg-mood-light
         "
-      />}
+    />
+  );
+
+  return (
+    <>
       <main className={`bg-mood-light pt-page ${contentDB ? 'opacity-100' : 'opacity-0'} duration-1000`}>
         {contentDB && !projectId && <>
-          <Projects contentDB={contentDB}/>
-          <Services />
+          <Projects contentDB={contentDB} />
+          <Services contentDB={contentDB} />
           <ContactForm
             title="Solicite um orçamento"
             subtitile="Espaços únicos para sonhos únicos"
